@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="6">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>متغيّرات CSS: لون واحد يغيّر الموقع — فاصلة</title>
+<meta name="description" content="الدرس الحادي والعشرون: تعريف متغيّرات CSS في :root، واستخدامها بـ var()، وبناء وضع غامق كامل بتغيير سطر واحد." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/21-css-variables.html" />
+<meta property="og:title" content="متغيّرات CSS: لون واحد يغيّر الموقع — فاصلة" />
+<meta property="og:description" content="الدرس الحادي والعشرون: تعريف متغيّرات CSS في :root، واستخدامها بـ var()، وبناء وضع غامق كامل بتغيير سطر واحد." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../practice.html">تدريب</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة السادسة · الإتقان</div>
+    <h1>متغيّرات CSS: لون واحد يغيّر الموقع</h1>
+    <p class="lead">
+      تخيّل أنك كتبت اللون نفسه في أربعين مكانًا، ثم أردت تغييره. هذا الدرس يعطيك
+      اسمًا للقيمة بدل أن تكرّرها: تغيّره في سطر واحد، فيتغيّر في كل مكان.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 21</span><span>متوسط</span><span>22 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>
+      المتغيّر صندوق له اسم، تضع فيه قيمة (لون، قياس، ظل). تكتب القيمة مرة واحدة،
+      ثم تستعمل الاسم في كل مكان. وإن أردت تغييرها لاحقًا تغيّر ما في الصندوق فقط،
+      وكل من يستعمل الاسم يتغيّر معك.
+    </p>
+  </div>
+
+  <h2 id="why">المشكلة قبل الحل</h2>
+  <p>
+    اكتب صفحة صغيرة فيها زرّان وعنوان وفقرة. الآن أعطِ العنوان لونًا، والزرّين اللون
+    نفسه، والفقرة لونًا ثالثًا. ثم قرّر أن اللون الأساسي صار باهتًا على الشاشات.
+    كم سطرًا ستُعدّل؟ أربعة الآن، وأربعون في موقع كامل — وفي كل مرّة تنسى واحدًا.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>before.css</span><button data-copy>نسخ</button></div>
+<pre><code>h1 { color: #2f6f4f; }
+.btn { background: #2f6f4f; }
+.badge { border-color: #2f6f4f; }
+.link { color: #2f6f4f; }</code></pre>
+  </div>
+
+  <p>
+    ولاحظ الخطر الأكبر: التكرار لا يخطئ مرة واحدة، بل يخطئ بصمت. يبقى زرّ واحد
+    باللون القديم في صفحة نادرًا ما تفتحها، فلا تراه إلا يوم الإطلاق.
+  </p>
+
+  <h2 id="declare">كيف تُعلن متغيّرًا</h2>
+  <p>
+    المتغيّر في CSS يُكتب بشرطتين قبل الاسم: <code>--brand</code>. ويُعلَن داخل محدِّد
+    كأي خاصية أخرى، ويُقرأ بـ<code>var()</code>.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>variables.css</span><button data-copy>نسخ</button></div>
+<pre><code>:root {
+  --brand: #2f6f4f;
+  --ink: #17231f;
+  --paper: #f3f6ee;
+}
+
+h1 { color: var(--brand); }
+.btn { background: var(--brand); color: var(--paper); }
+.link { color: var(--brand); }</code></pre>
+  </div>
+
+  <p>
+    الآن تغيير اللون كله سطر واحد: <code>--brand</code> في <code>:root</code>.
+    و<code>:root</code> تعني «أعلى شجرة الصفحة»، أي أن المتغيّر يرثه كل عنصر تحته —
+    لذلك نضع فيه الألوان والقياسات العامة.
+  </p>
+
+  <div class="callout idea">
+    <b>لماذا شرطتان وليس كلمة var؟</b>
+    <p>
+      لأن الأسماء العادية محجوزة لخصائص CSS. الشرطتان تقولان للمتصفح: هذا اسم
+      اخترعته أنت. ولهذا تُقرأ بـ<code>var(--brand)</code> وليس <code>--brand</code> وحده.
+    </p>
+  </div>
+
+  <h2 id="theme">الوضع الغامق: المتغيّر يفتح بابًا</h2>
+  <p>
+    هنا تظهر الفائدة الحقيقية. بدل أن تكتب ثيمًا ثانيًا لكل عنصر، تُغيّر قيم
+    المتغيّرات نفسها حين يضيف المتصفح سمة على <code>html</code>:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>theme.css</span><button data-copy>نسخ</button></div>
+<pre><code>:root {
+  --paper: #f3f6ee;
+  --ink: #17231f;
+}
+
+html[data-theme="dark"] {
+  --paper: #0e181d;
+  --ink: #e8f0e9;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}</code></pre>
+  </div>
+
+  <p>
+    سطر JavaScript واحد يضيف <code>data-theme="dark"</code> إلى <code>html</code>،
+    وكل ما في الصفحة يتبدّل. لم نلمس عنصرًا واحدًا بعينه — لأن العناصر لا تعرف
+    الألوان، بل تعرف أسماءها.
+  </p>
+
+  <div class="callout warn">
+    <b>الخطأ الذي يوقع كل مبتدئ</b>
+    <p>
+      أن تكتب <code>color: --brand;</code> بلا <code>var()</code>. لا رسالة خطأ،
+      ولا لون — فقط نصّ يبقى كما هو. القاعدة: الإعلان بشرطتين، الاستخدام بـ<code>var()</code>.
+    </p>
+  </div>
+
+  <h2 id="fallback">قيمة احتياطية</h2>
+  <p>
+    <code>var()</code> تقبل قيمة ثانية بعد فاصلة، تُستعمل إن كان الاسم غير معرَّف:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>fallback.css</span><button data-copy>نسخ</button></div>
+<pre><code>.card {
+  border: 1px solid var(--line, #d9e2d0);
+  border-radius: var(--radius, 12px);
+}</code></pre>
+  </div>
+
+  <p>
+    هذه ليست تفصيلة صغيرة: صفحة تعمل قبل أن تكتب متغيّراتها كلها خير من صفحة بيضاء
+    لأن اسمًا واحدًا نُسي.
+  </p>
+
+  <h2 id="limits">حدود المتغيّر</h2>
+  <ul>
+    <li>لا يعمل داخل اسم خاصية، بل في <strong>قيمتها</strong> فقط: <code>var(--side)-color</code> لا تصحّ.</li>
+    <li>المتغيّر موروث: إن أعلنته داخل <code>.card</code> فلن تراه العناصر خارجه.</li>
+    <li>لا يستبدل CSS: هو للقيم المتكرّرة، لا لكل قيمة. قيمة تُستخدم مرة واحدة تُكتب مرة واحدة.</li>
+  </ul>
+
+  <h2 id="practice">تمرين: ثلاثة ألوان، سطر واحد</h2>
+  <p>
+    في المختبر، اكتب بطاقة فيها عنوان ونصّ وزرّ. أعطِ الثلاثة لونًا من متغيّر واحد
+    اسمه <code>--brand</code>، ثم غيّر قيمته مرّة واحدة وراقب ما يحدث.
+  </p>
+
+  <div class="callout">
+    <b>حلّ مقترح — افتحه بعد المحاولة</b>
+    <details>
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>card.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;div class="card"&gt;
+  &lt;h2&gt;عنوان البطاقة&lt;/h2&gt;
+  &lt;p&gt;سطر يشرح الفكرة في جملة واحدة.&lt;/p&gt;
+  &lt;a class="btn" href="#"&gt;اقرأ&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <div class="code-block">
+        <div class="code-head"><span>card.css</span><button data-copy>نسخ</button></div>
+<pre><code>:root { --brand: #2f6f4f; }
+
+.card { border: 1px solid var(--brand); border-radius: 12px; padding: 16px; }
+.card h2 { color: var(--brand); margin: 0 0 6px; }
+.btn { background: var(--brand); color: #fff; padding: 6px 14px; border-radius: 8px; }
+
+/* غيّر هذا السطر وحده، ثم راقب الثلاثة */
+:root { --brand: #b4552a; }</code></pre>
+      </div>
+      <p style="margin:8px 0 0;font-size:13.5px;color:var(--ink-soft)">
+        لاحظ أن السطر الأخير يعيد تعريف الاسم نفسه — ولهذا يفوز: التعريف الأحدث
+        يغلب عند التساوي.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>لماذا يوضع المتغيّر في <code>:root</code>؟</li>
+      <li>ما الفرق بين <code>--ink</code> و<code>var(--ink)</code>؟</li>
+      <li>كيف يُبنى وضع غامق كامل بلا تكرار الأنماط؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="21"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="20-js-dom.html"><small>السابق</small>DOM والتخزين</a>
+  <a href="22-motion.html"><small>التالي</small>حركة بلا مكتبات</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

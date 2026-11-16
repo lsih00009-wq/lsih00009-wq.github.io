@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="5">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>المتغيّرات والشروط: كيف تمنح صفحتك قرارًا — فاصلة</title>
+<meta name="description" content="الدرس الثامن عشر: الأنواع، let و const، المقارنات، if و else، وبناء أول قرار حقيقي في الصفحة — بشرح سطر بسطر." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/18-js-variables.html" />
+<meta property="og:title" content="المتغيّرات والشروط: كيف تمنح صفحتك قرارًا — فاصلة" />
+<meta property="og:description" content="الدرس الثامن عشر: الأنواع، let و const، المقارنات، if و else، وبناء أول قرار حقيقي في الصفحة — بشرح سطر بسطر." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../practice.html">تدريب</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الخامسة · الحركة</div>
+    <h1>المتغيّرات والشروط: كيف تمنح صفحتك قرارًا</h1>
+    <p class="lead">
+      اللغة التي تعرف أن تحفظ قيمة، وتقرّر بناءً عليها، هي لغة برمجة. في هذا الدرس
+      تحديدًا يبدأ الفرق بينك وبين من ينسخ الأكواد.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 18</span><span>مبتدئ</span><span>22 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>الصندوق (المتغيّر) نحفظ فيه شيئًا: رقمًا أو كلمة. والشرط يقول: «إن كان الرقم أكبر من عشرة فاكتب كذا، وإلا فاكتب كذا». بهذين الشيئين وحدهما تستطيع أن تجعل صفحتك تفكّر.</p>
+  </div>
+
+  <h2 id="types">ثلاثة أنواع تكفي في البداية</h2>
+  <p>
+    كل قيمة في JavaScript لها نوع. لا تحتاج إلى حفظ عشرة أنواع؛ ثلاثة تُغنيك الآن:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>types.js</span><button data-copy>نسخ</button></div>
+<pre><code>let age = 12;              // رقم (number) — بلا علامات تنصيص
+let name = "سالم";          // نص (string) — بين علامتي تنصيص
+let isReady = true;        // صحيح أو خطأ (boolean) — بلا تنصيص
+
+console.log(typeof age);   // number
+console.log(typeof name);  // string
+console.log(typeof isReady); // boolean</code></pre>
+  </div>
+
+  <div class="callout warn">
+    <b>أشهر خلط: الرقم بين تنصيصين</b>
+    <p>
+      <code>12</code> رقم، و<code>"12"</code> نص. الفرق ليس شكليًّا:
+      <code>"12" + 1</code> تعطي <code>"121"</code> (لصق نصوص)، و<code>12 + 1</code>
+      تعطي <code>13</code>. إن ظهرت لك أرقام ملتصقة بلا معنى، فابحث عن تنصيص زائد.
+    </p>
+  </div>
+
+  <h2 id="declare">إعلان المتغيّر وقواعده</h2>
+  <ul>
+    <li>الاسم بلا مسافات: <code>userName</code> صحيح، <code>user name</code> خطأ.</li>
+    <li>يبدأ بحرف أو <code>_</code>، لا برقم.</li>
+    <li>حسّاس لحالة الأحرف: <code>Name</code> ليست <code>name</code>.</li>
+    <li>اكتبه بالإنجليزية دائمًا — ولو كان مشروعك بالعربية. الأسماء العربية تُربك الأدوات.</li>
+    <li>اجعله معبّرًا: <code>clicks</code> أفضل من <code>x</code>، و<code>totalPrice</code> أفضل من <code>t</code>.</li>
+  </ul>
+
+  <h2 id="compare">المقارنة: كيف تسأل سؤالًا</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>compare.js</span><button data-copy>نسخ</button></div>
+<pre><code>let age = 12;
+
+console.log(age > 10);    // true
+console.log(age === 12);  // true — يساوي؟ بثلاث علامات
+console.log(age !== 15);  // true — لا يساوي
+console.log(age < 5);     // false
+
+// ونستطيع الجمع بين شرطين
+console.log(age > 10 && age < 20);  // صحيح: الاثنان معًا
+console.log(age > 20 || age < 15);  // صحيح: واحد منهما يكفي</code></pre>
+  </div>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>===</code>
+      <p>«يساوي تمامًا»: نفس القيمة ونفس النوع. استخدم الثلاثة دائمًا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>==</code>
+      <p>«يساوي بعد التحويل»، فتعتبر <code>"12"</code> تساوي <code>12</code>. تجنّبها: هي سبب أعطال صامتة كثيرة.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>&amp;&amp;</code>
+      <p>«و» — الشرطان معًا. وإن فشل الأول، لا يُنظر إلى الثاني أصلًا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>||</code>
+      <p>«أو» — يكفي واحد منهما.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>!</code>
+      <p>«عكس». <code>!isReady</code> تعني «ليس جاهزًا».</p>
+    </div>
+  </div>
+
+  <h2 id="if">القرار: if و else</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>decide.js</span><button data-copy>نسخ</button></div>
+<pre><code>let score = 7;
+
+if (score >= 10) {
+  console.log("ممتاز");
+} else if (score >= 5) {
+  console.log("مقبول");
+} else {
+  console.log("أعد المحاولة");
+}</code></pre>
+  </div>
+
+  <p>
+    اقرأه كجملة إنجليزية-عربية: «إن كان score أكبر أو يساوي ١٠ فاطبع ممتاز، وإلا إن
+    كان أكبر أو يساوي ٥ فاطبع مقبول، وإلا فاطبع أعد المحاولة».
+    لاحظ أن المتصفح يقف عند أول شرط يتحقق ولا يكمل — ولهذا رتّب شروطك من الأصعب إلى
+    الأسهل.
+  </p>
+
+  <h2 id="real">قرار حقيقي في الصفحة</h2>
+  <p>
+    الآن نربط كل هذا بالصفحة: نأخذ رقمًا من المستخدم، ونقرّر بناءً عليه.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>grade.js</span><button data-copy>نسخ</button></div>
+<pre><code>const input = document.getElementById("score");
+const btn = document.getElementById("check");
+const out = document.getElementById("result");
+
+btn.addEventListener("click", function () {
+  const value = Number(input.value);   // نحوّل النص إلى رقم
+
+  if (input.value === "") {
+    out.textContent = "اكتب رقمًا أولًا";
+  } else if (value >= 50) {
+    out.textContent = "ناجح";
+  } else {
+    out.textContent = "لم تنجح بعد — أعد المحاولة";
+  }
+});</code></pre>
+  </div>
+
+  <div class="callout idea">
+    <b>لماذا Number(…)؟</b>
+    <p>
+      كل ما يكتبه المستخدم في خانة هو <b>نص</b>، حتى لو كتب أرقامًا. فقبل أن تقارن،
+      حوّله إلى رقم. وإن كتب حروفًا، فالنتيجة <code>NaN</code> أي «ليس رقمًا» —
+      وسنعالج هذه الحالة في الدرس القادم.
+    </p>
+  </div>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> استخدام <code>=</code> بدل <code>===</code> في الشرط: الأولى تُسنِد قيمة، والثانية تسأل.</li>
+    <li><span>!</span> نسيان الأقواس <code>{ }</code>، فيُنفّذ سطر واحد فقط بدل الكتلة.</li>
+    <li><span>!</span> مقارنة نص برقم بلا <code>Number()</code>.</li>
+    <li><span>!</span> تسمية المتغيّر باسم من كلمات محفوظة مثل <code>let</code> أو <code>class</code>.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>١٢ دقيقة · بلا مشاهدة حل</b>
+    <p>
+      اصنع آلة عمر: خانة يكتب فيها المستخدم عمره، وزر، ونتيجة تقول: «طفل» إن كان
+      أقل من ١٣، و«مراهق» من ١٣ إلى ١٩، و«بالغ» فوق ذلك. وإن كتب شيئًا ليس رقمًا،
+      فاطبع «اكتب عمرًا بالأرقام».
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>age.js</span><button data-copy>نسخ</button></div>
+<pre><code>const input = document.getElementById("age");
+const btn = document.getElementById("go");
+const out = document.getElementById("out");
+
+btn.addEventListener("click", function () {
+  const value = Number(input.value);
+
+  if (input.value === "" || isNaN(value)) {
+    out.textContent = "اكتب عمرًا بالأرقام";
+  } else if (value < 13) {
+    out.textContent = "طفل";
+  } else if (value < 20) {
+    out.textContent = "مراهق";
+  } else {
+    out.textContent = "بالغ";
+  }
+});</code></pre>
+      </div>
+      <p>
+        انتبه إلى ترتيب الشروط: لم نكتب «من ١٣ إلى ١٩» لأن الشرط الثاني لا يُفحص إلا
+        إن فشل الأول. فحين نصل إليه نعرف أن العمر ١٣ أو أكثر. هذا تفكير يوفّر عليك
+        كتابة وشروطًا متشابكة.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين <code>12</code> و<code>"12"</code>، ولماذا يهمّ؟</li>
+      <li>لماذا نستخدم <code>===</code> لا <code>==</code>؟</li>
+      <li>لماذا نرتّب الشروط من الأصعب إلى الأسهل؟</li>
+      <li>ما وظيفة <code>Number()</code> هنا؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="18"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="17-js-first-step.html"><small>السابق</small>أول سطر JavaScript</a>
+  <a href="19-js-functions.html"><small>التالي</small>الدوال والمصفوفات والحلقات</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

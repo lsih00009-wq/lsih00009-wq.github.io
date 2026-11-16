@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="1">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>هيكل الصفحة: من doctype إلى body — فاصلة</title>
+<meta name="description" content="الدرس الثاني: لماذا نبدأ بـ doctype، وما الفرق بين head وbody، وما الذي يراه الزائر وما لا يراه." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/02-document-structure.html" />
+<meta property="og:title" content="هيكل الصفحة: من doctype إلى body — فاصلة" />
+<meta property="og:description" content="الدرس الثاني: لماذا نبدأ بـ doctype، وما الفرق بين head وbody، وما الذي يراه الزائر وما لا يراه." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="03-headings-and-text.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الأولى · الهيكل</div>
+    <h1>هيكل الصفحة: من doctype إلى body</h1>
+    <p class="lead">
+      كل صفحة في العالم، من أقصر مدونة إلى أكبر موقع، تبدأ بنفس العمود الفقري.
+      هذا الدرس يشرح كل سطر منه: لماذا هو موجود، وماذا يحدث إن حذفته.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 02</span><span>مبتدئ</span><span>15 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>كل صفحة ويب لها «ظرف» ثابت: أول سطر يقول للمتصفح نوع الصفحة، ثم رأس فيه معلومات لا تُرى، ثم جسم فيه كل ما يراه الزائر. مثل رسالة: ظرف وعنوان، ثم ورقة بداخله.</p>
+  </div>
+
+
+  <h2 id="full">الصفحة كاملة، ثم نشرحها</h2>
+  <p>
+    اقرأ هذا الملف كاملًا مرة واحدة، ولا تحاول حفظه. بعد قليل ستفهم كل سطر
+    فيه، ولن تحتاج حفظًا.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>index.html — الهيكل الكامل</span><button data-copy>نسخ</button><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;صفحتي الأولى&lt;/title&gt;
+    &lt;meta name="description" content="صفحة تجربة أولى."&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;أهلًا بك&lt;/h1&gt;
+    &lt;p&gt;هذا أول نص يظهر للزائر.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال» لترى النتيجة.</div></div>
+
+  <h2 id="doctype">١) <code>&lt;!doctype html&gt;</code> — إعلان الولاء</h2>
+  <p>
+    هذا السطر ليس عنصرًا، ولا يُغلق، ولا يراه أحد. وظيفته أن يخبر المتصفح:
+    «اعرض هذه الصفحة بالنمط القياسي الحديث، لا بالنمط القديم المتسامح».
+  </p>
+  <p>
+    لماذا يهم؟ لأن المتصفحات تحتفظ بسلوك قديم من تسعينيات القرن الماضي
+    لتُعرض صفحات قديمة كما كانت. إن حذفت هذا السطر، قد يدخل المتصفح في ذلك
+    النمط، فتصبح حسابات العرض (المسافات، الأبعاد، ترتيب الصندوق) مختلفة
+    اختلافًا يربكك ويجعلك تظن أن كودك خطأ وهو سليم.
+  </p>
+
+  <div class="callout warn">
+    <b>الخطأ الشائع</b>
+    <p>
+      كتابة نسخة قديمة طويلة مثل <code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" ...&gt;</code>.
+      لا حاجة لها اليوم. السطر القصير <code>&lt;!doctype html&gt;</code> هو المعيار.
+      كذلك: يجب أن يكون أول سطر في الملف، حتى قبل أي مسافة أو تعليق.
+    </p>
+  </div>
+
+  <h2 id="html">٢) <code>&lt;html&gt;</code> — الصندوق الأكبر</h2>
+  <p>
+    كل شيء في الصفحة يوضع داخله: الرأس والجسم. وهو أيضًا المكان الذي نحمل فيه
+    معلومتين مهمتين جدًّا:
+  </p>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>lang="ar"</code>
+      <p>
+        لغة المحتوى. تفيد قارئ الشاشة في نطق الكلمات بالصوت الصحيح، وتفيد
+        محرك البحث في تحديد لغة الصفحة، وتفيد المتصفح في اختيار علامات الترقيم
+        والخط المناسب.
+      </p>
+    </div>
+    <div class="anatomy-row">
+      <code>dir="rtl"</code>
+      <p>
+        اتجاه الكتابة: من اليمين إلى اليسار. بدونه تُعرض العربية بحروف صحيحة
+        لكن بترتيب ونقاط ترقيم في الأطراف الخطأ، خصوصًا عند خلط أرقام أو كلمات
+        إنجليزية.
+      </p>
+    </div>
+  </div>
+
+  <h3>جرّب الفرق بنفسك</h3>
+  <p>
+    المثال الأول بلا <code>dir</code>، والثاني به. لاحظ موضع النقطة في نهاية
+    الجملة التي تحتوي رقمًا إنجليزيًّا:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>بلا dir</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;p&gt;أدرس HTML منذ 3 أشهر.&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <div class="code-block">
+    <div class="code-head"><span>مع dir="rtl"</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;div dir="rtl"&gt;
+  &lt;p&gt;أدرس HTML منذ 3 أشهر.&lt;/p&gt;
+  &lt;p&gt;أدرس HTML منذ 3 أشهر.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <h2 id="head">٣) <code>&lt;head&gt;</code> — ما لا يراه الزائر</h2>
+  <p>
+    كل ما في الرأس معلومات <strong>عن</strong> الصفحة، لا محتوى الصفحة.
+    لا يظهر منها شيء في مساحة العرض، لكنها تؤثر في كل شيء: ترميز الحروف،
+    عنوان التبويب، شكل الصفحة على الهاتف، ومقتطف نتيجة البحث.
+  </p>
+
+  <h3>الترميز: <code>&lt;meta charset="UTF-8"&gt;</code></h3>
+  <p>
+    الحاسوب لا يخزّن حروفًا، بل أرقامًا. والترميز هو جدول يربط كل رقم بحرفه.
+    <code>UTF-8</code> هو الجدول الذي يحتوي العربية واليونانية والصينية
+    والإيموجي معًا. إن غاب هذا السطر أو كان جدولًا قديمًا، ظهرت العربية
+    رموزًا مثل <span dir="ltr">Ø£Ù‡Ù„Ø§</span>.
+  </p>
+
+  <h3>الهاتف: <code>&lt;meta name="viewport" ...&gt;</code></h3>
+  <p>
+    الهواتف تعرض صفحة سطح المكتب مصغّرة افتراضيًا كي تُرى كاملة. هذا السطر
+    يقول: «لا تصغّرها، اجعل عرض الصفحة بعرض شاشة الهاتف الحقيقي». بدونه،
+    يظهر موقعك كصورة صغيرة تحتاج تكبيرًا بالأصابع — وهو أول سبب يهرب منه
+    الزائر.
+  </p>
+
+  <h3>عنوان التبويب: <code>&lt;title&gt;</code></h3>
+  <p>
+    يظهر في تبويب المتصفح، وفي نتائج البحث كعنوان أزرق، وفي قائمة المفضلة.
+    اكتبه كجملة مفيدة لا كاسم ملف: <strong>«دورة HTML من الصفر — فاصلة»</strong>
+    أفضل من <strong>«index»</strong>. وهو أيضًا أهم عنصر في تحسين الظهور
+    في محركات البحث.
+  </p>
+
+  <h3>الوصف: <code>&lt;meta name="description"&gt;</code></h3>
+  <p>
+    الجملة التي تظهر تحت العنوان في نتيجة البحث. ليست عنصرًا مرئيًّا في
+    الصفحة، لكنها تدعو الزائر للنقر أو تصرفه. اجعلها جملة واحدة صادقة تشرح
+    ما يجده القارئ.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>head كامل ومفهوم</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;دورة HTML من الصفر — فاصلة&lt;/title&gt;
+  &lt;meta name="description" content="١٦ درسًا عربيًّا لتعلّم HTML وCSS بفهم لا بحفظ."&gt;
+  &lt;link rel="stylesheet" href="assets/style.css"&gt;
+&lt;/head&gt;</code></pre>
+  </div>
+
+  <h2 id="body">٤) <code>&lt;body&gt;</code> — ما يراه الزائر</h2>
+  <p>
+    هنا فقط: النصوص، الصور، الأزرار، والروابط. أي شيء تكتبه خارج
+    <code>&lt;body&gt;</code> وخارج <code>&lt;head&gt;</code> قد يعمل، لكنه
+    يعمل بالمصادفة، لا بالمعيار.
+  </p>
+
+  <div class="callout idea">
+    <b>قاعدة عملية</b>
+    <p>
+      اسأل نفسك عند كل سطر: هل سيراه الزائر على الشاشة؟ إن كان الجواب نعم،
+      فمكانه <code>body</code>. وإن كان لا، فمكانه <code>head</code>.
+      هذا السؤال وحده يمنع ثمانين بالمئة من أخطاء المبتدئين.
+    </p>
+  </div>
+
+  <h2 id="order">هل ترتيب العناصر مهم؟</h2>
+  <p>
+    داخل <code>body</code> نعم، الترتيب هو الترتيب الذي يراه الزائر ويقرأه
+    قارئ الشاشة. أما داخل <code>head</code> فالترتيب مرن، ما عدا
+    <code>charset</code> الذي يُفضّل أن يكون في أول الرأس لأن المتصفح يحتاجه
+    قبل أن يقرأ بقية النص.
+  </p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> وضع <code>&lt;h1&gt;</code> داخل <code>&lt;head&gt;</code> — لن يظهر شيء، لأن الرأس لا يُعرض.</li>
+    <li><span>!</span> وضع <code>&lt;title&gt;</code> داخل <code>&lt;body&gt;</code> — يعمل أحيانًا، لكنه خارج المعيار ويُربك الأدوات.</li>
+    <li><span>!</span> نسيان <code>charset</code> ثم اتهام الملف نفسه بأنه «لا يدعم العربية».</li>
+    <li><span>!</span> نسيان <code>viewport</code> ثم الاستغراب من أن الموقع يبدو مصغّرًا على الهاتف.</li>
+    <li><span>!</span> تكرار <code>&lt;html&gt;</code> أو <code>&lt;body&gt;</code> مرتين في ملف واحد.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٥ دقائق</b>
+    <p>
+      اكتب صفحة كاملة من الصفر، بلا نسخ من الدرس. شروطها: لغة عربية واتجاه
+      صحيح، عنوان تبويب يحمل اسمك، وصف في سطر واحد، ثم في الجسم: عنوان رئيسي،
+      وفقرة من ثلاثة أسطر عن شيء تعلّمته اليوم.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>index.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;يومياتي في تعلّم الويب — سالم&lt;/title&gt;
+    &lt;meta name="description" content="صفحة صغيرة أسجّل فيها ما أتعلمه كل يوم."&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;أول يوم&lt;/h1&gt;
+    &lt;p&gt;تعلّمت اليوم أن الصفحة ملف نصي، وأن المتصفح يقرؤه ويحوّله إلى شكل.&lt;/p&gt;
+    &lt;p&gt;وأهم شيء فهمته: أنني إذا نسيت إغلاق وسم، لن يشتكي أحد، بل سأرى نتيجة غريبة وأضيّع ساعة في البحث عن سببها.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <p>
+        لاحظ أن كل سطر في هذا الحل له سبب. لو حذفت سطرًا، تغيّر شيء في
+        النتيجة. وهذا اختبارك الحقيقي: هل تعرف ماذا يحذف كل سطر؟
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ماذا يحدث إن حذفت <code>&lt;!doctype html&gt;</code>؟</li>
+      <li>لماذا نضع <code>lang</code> و<code>dir</code> على <code>&lt;html&gt;</code> لا على <code>&lt;body&gt;</code>؟</li>
+      <li>ما ثلاثة أشياء في <code>head</code> تراها أنت أو يراها محرك البحث؟</li>
+      <li>ما وظيفة <code>viewport</code> بكلماتك؟</li>
+    </ol>
+  </div>
+
+
+  <div id="lessonQuiz" data-quiz="2"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="01-what-is-html.html"><small>السابق</small>ما هو HTML؟</a>
+  <a href="03-headings-and-text.html"><small>التالي</small>العناوين والفقرات والنص</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

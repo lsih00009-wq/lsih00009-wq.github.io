@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="6">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الأحداث: الصفحة تسمع — فاصلة</title>
+<meta name="description" content="الدرس الثالث والعشرون: addEventListener وكائن الحدث وpreventDefault، وشرح لماذا لا نكتب onclick في HTML، وكيف يسمع زرّ واحد لقائمة كاملة." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/23-js-events.html" />
+<meta property="og:title" content="الأحداث: الصفحة تسمع — فاصلة" />
+<meta property="og:description" content="الدرس الثالث والعشرون: addEventListener وكائن الحدث وpreventDefault، وشرح لماذا لا نكتب onclick في HTML، وكيف يسمع زرّ واحد لقائمة كاملة." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../practice.html">تدريب</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة السادسة · الإتقان</div>
+    <h1>الأحداث: كيف تسمع الصفحة ما يفعله الزائر</h1>
+    <p class="lead">
+      حتى الآن صفحتك تتكلّم ولا تسمع. هذا الدرس يقلب ذلك: نقول للمتصفح «حين يضغط
+      أحد هذا الزر، نفّذ هذه الدالة» — ثم نتعامل مع ما أرسله الحدث نفسه.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 23</span><span>متوسط</span><span>24 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>
+      الحدث شيء يقع في الصفحة: ضغطة، كتابة حرف، انتهاء تحميل. والاستماع هو أن
+      تسجّل دالة تقول «حين يقع هذا، نفّذني». المتصفح ينادي دالتك، ويعطيك معها
+      تفاصيل ما وقع: مَن ضغط، وأيّ زر، وأين.
+    </p>
+  </div>
+
+  <h2 id="why">لماذا لا نكتب onclick في HTML</h2>
+  <p>
+    سترى في أمثلة قديمة <code>&lt;button onclick="doIt()"&gt;</code>. تعمل، لكنها
+    تخلط ثلاث لغات في سطر واحد: بنية الصفحة، وسلوكها، وأسلوبها. والنتيجة أنك
+    تبحث عن الكود في مكانين، وتصعب عليك إضافة مستمع ثانٍ للزر نفسه.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>bad.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;!-- لا تفعل هذا: السلوك داخل البنية --&gt;
+&lt;button onclick="alert('تم')"&gt;اضغط&lt;/button&gt;</code></pre>
+  </div>
+
+  <p>
+    البديل سطر في JavaScript، والعنصر في HTML يبقى عنصرًا فقط:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>good.js</span><button data-copy>نسخ</button></div>
+<pre><code>const btn = document.querySelector("#save");
+
+btn.addEventListener("click", function () {
+  console.log("تمّ الحفظ");
+});</code></pre>
+  </div>
+
+  <p>
+    ثلاثة أجزاء: العنصر، واسم الحدث، والدالة. والدالة هنا بلا اسم — تُسمّى
+    «دالة مجهولة»، ولا تُنادى منك: المتصفح هو من يناديها حين يقع الحدث.
+  </p>
+
+  <h2 id="event">الحدث يحمل معه معلومات</h2>
+  <p>
+    المتصفح لا ينادي دالتك فارغة اليدين؛ يمرّر لها كائنًا اسمه <code>event</code>
+    فيه ما وقع وأين:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>event.js</span><button data-copy>نسخ</button></div>
+<pre><code>document.querySelector("#save").addEventListener("click", function (e) {
+  console.log(e.type);       // "click"
+  console.log(e.target);     // العنصر الذي ضُغط فعلًا
+  e.preventDefault();        // امنع السلوك الافتراضي إن وُجد
+});</code></pre>
+  </div>
+
+  <ul>
+    <li><code>e.type</code> — اسم الحدث. مفيد حين تخدم دالة واحدة عدة أحداث.</li>
+    <li><code>e.target</code> — مصدر الحدث. هو مفتاح الحيلة في نهاية الدرس.</li>
+    <li><code>e.preventDefault()</code> — يوقف ما يفعله المتصفح تلقائيًّا: إرسال نموذج، أو فتح رابط.</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>لماذا يختفي ما كتبته عند الضغط على إرسال؟</b>
+    <p>
+      لأن النموذج يعيد تحميل الصفحة بسلوكه الافتراضي، فتضيع حالتك كلها. الحل ليس
+      حذف الزر، بل <code>e.preventDefault()</code> في أوّل دالتك — ثم تُرسل أنت
+      ما تريد متى أردت.
+    </p>
+  </div>
+
+  <h2 id="form">قراءة ما كتبه الزائر</h2>
+  <p>
+    في النماذج نقرأ <code>value</code> من الخانة. والحدث الأنسب هو <code>submit</code>
+    على النموذج نفسه، لا <code>click</code> على الزر — لأن الزائر قد يُرسل بمفتاح
+    Enter، وعندها لا ضغطة زر أصلًا.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>form.js</span><button data-copy>نسخ</button></div>
+<pre><code>const form = document.querySelector("#todo");
+const input = document.querySelector("#task");
+const list = document.querySelector("#list");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();                 // أوقف إعادة التحميل
+
+  const text = input.value.trim();    // اقرأ واقتطع الفراغات
+  if (!text) return;                  // لا تُضف فراغًا
+
+  const li = document.createElement("li");
+  li.textContent = text;
+  list.appendChild(li);
+
+  input.value = "";                   // فرّغ الخانة للكتابة التالية
+  input.focus();                      // أعد المؤشّر إليها
+});</code></pre>
+  </div>
+
+  <p>
+    لاحظ السطر <code>if (!text) return;</code>. الحدّ الفاصل بين تمرين يعمل وأداة
+    يستعملها أحد: امنع المدخل الفارغ قبل أن يصل إلى الشاشة.
+  </p>
+
+  <h2 id="types">أحداث ستستعملها كثيرًا</h2>
+  <ul>
+    <li><code>click</code> — ضغطة أو نقرة. الأشهر.</li>
+    <li><code>submit</code> — إرسال نموذج. على <code>form</code> لا على الزر.</li>
+    <li><code>input</code> — كل تغيّر في خانة كتابة، حرفًا بحرف. للتصفية الفورية.</li>
+    <li><code>keydown</code> — ضغط مفتاح. فيه <code>e.key</code> مثل <code>"Escape"</code>.</li>
+    <li><code>change</code> — تغيّر في قائمة اختيار أو مربّع اختيار.</li>
+  </ul>
+
+  <h2 id="delegate">حيلة واحدة تُغنيك عن عشرين مستمعًا</h2>
+  <p>
+    لو أضفت قائمة فيها ثلاثون عنصرًا، هل تضع مستمعًا لكل عنصر؟ لا. تضع مستمعًا
+    واحدًا على الأب، ثم تسأل: من الجزء الذي وقع عليه الحدث؟
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>delegate.js</span><button data-copy>نسخ</button></div>
+<pre><code>const list = document.querySelector("#list");
+
+list.addEventListener("click", function (e) {
+  if (e.target.tagName !== "LI") return;   // تجاهل ما ليس عنصر قائمة
+  e.target.classList.toggle("done");       // بدّل حالة العنصر المضغوط
+});</code></pre>
+  </div>
+
+  <p>
+    هذه الطريقة تسمّى «تفويض الحدث». ميزتها الحقيقية ليست الاختصار، بل أن العناصر
+    التي ستُضاف لاحقًا تعمل بلا سطر إضافي — لأن المستمع على الأب لا على الأبناء.
+  </p>
+
+  <h2 id="mistakes">أخطاء تتكرّر</h2>
+  <ul>
+    <li><strong>المستمع قبل وجود العنصر:</strong> لو كان السكربت في <code>head</code> بلا <code>defer</code>، فالعنصر لم يُخلق بعد و<code>querySelector</code> تُعيد <code>null</code>.</li>
+    <li><strong>استدعاء الدالة بنفسك:</strong> <code>addEventListener("click", save())</code> تُنفّذ <code>save</code> فورًا. المطلوب تمرير الاسم: <code>save</code> بلا قوسين.</li>
+    <li><strong>نقل الكود داخل الدالة:</strong> الدالة تُنفّذ في كل ضغطة؛ ما لا يتغيّر يبقى خارجها.</li>
+  </ul>
+
+  <h2 id="practice">تمرين: عدّاد بثلاثة أزرار</h2>
+  <p>
+    في المختبر: رقم يبدأ من صفر، وثلاثة أزرار: زيادة، إنقاص، تصفير. زر الزيادة
+    يتوقّف عند ١٠ ويُخفي نفسه، وزر الإنقاص يتوقّف عند صفر. ثم أضف مفتاح Enter
+    ليزيد أيضًا.
+  </p>
+
+  <div class="callout">
+    <b>حلّ مقترح — افتحه بعد المحاولة</b>
+    <details>
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>counter.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;p id="out"&gt;٠&lt;/p&gt;
+&lt;button id="plus"&gt;+&lt;/button&gt;
+&lt;button id="minus"&gt;−&lt;/button&gt;
+&lt;button id="reset"&gt;تصفير&lt;/button&gt;</code></pre>
+      </div>
+      <div class="code-block">
+        <div class="code-head"><span>counter.js</span><button data-copy>نسخ</button></div>
+<pre><code>const out = document.querySelector("#out");
+const plus = document.querySelector("#plus");
+const minus = document.querySelector("#minus");
+let n = 0;
+
+function paint() {
+  out.textContent = n;
+  plus.hidden = n >= 10;
+  minus.disabled = n <= 0;
+}
+
+plus.addEventListener("click", function () { if (n < 10) n++; paint(); });
+minus.addEventListener("click", function () { if (n > 0) n--; paint(); });
+document.querySelector("#reset").addEventListener("click", function () { n = 0; paint(); });
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") { if (n < 10) n++; paint(); }
+});
+
+paint();</code></pre>
+      </div>
+      <p style="margin:8px 0 0;font-size:13.5px;color:var(--ink-soft)">
+        لاحظ <code>paint()</code> في النهاية: نرسم الحالة الحقيقية عند التحميل، لا
+        نفترض أن الشاشة تساوي ما في المتغيّر.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين <code>click</code> و<code>submit</code> في النماذج؟</li>
+      <li>ماذا يفعل <code>preventDefault</code> ومتى تحتاجه؟</li>
+      <li>لماذا نضع المستمع على الأب في القوائم الطويلة؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="23"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="22-motion.html"><small>السابق</small>حركة بلا مكتبات</a>
+  <a href="../index.html"><small>النهاية</small>خريطة الدورة</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>كيف يفكّر المبرمج — قبل أن تمسك الكود</title>
+<meta name="description" content="صفحة بلا كود تقريبًا: كيف يخزّن الحاسوب قيمة، كيف يقرأ سطرًا سطرًا، وكيف يتّخذ قرارًا ويكرّر — وهي الأفكار الثلاث التي تُبنى عليها كل اللغات." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .think { max-width: 760px; margin: 0 auto; padding: 26px 16px 14px; }
+  .think p { font-size: 15px; line-height: 2.05; color: var(--ink); }
+  .think h2 { font-size: 20px; margin: 34px 0 10px; }
+  .think h2 .n {
+    display:inline-grid; place-items:center;
+    width: 26px; height: 26px; border-radius: 8px;
+    background: var(--bg); color: var(--accent);
+    font-family: var(--mono); font-size: 13px;
+    margin-inline-end: 8px; vertical-align: middle;
+  }
+  .analogy {
+    background: var(--surface); border: 1px solid var(--line-ink);
+    border-inline-start: 4px solid var(--accent-deep);
+    border-radius: 12px; padding: 14px 16px; margin: 14px 0;
+  }
+  .analogy b { display:block; font-size: 12.5px; color:var(--accent-deep); margin-bottom: 5px; }
+  .analogy p { margin: 0; font-size: 14px; line-height: 1.95; color: var(--ink-soft); }
+  .think code {
+    font-family: var(--mono); font-size: 13px; direction: ltr;
+    display: inline-block; background: var(--surface-3); padding: 1px 6px; border-radius: 5px;
+  }
+  /* كتلة الفكرة الكبرى: خلفية داكنة في الوضعين، فلا تنقلب */
+  .big-idea {
+    background: var(--bg); color: var(--on-dark); border-radius: 16px;
+    padding: 20px 22px; margin: 26px 0;
+    border: 1px solid var(--line);
+  }
+  .big-idea p { color: var(--on-dark); margin: 0; font-size: 15px; line-height: 2; }
+  .big-idea strong { color: var(--accent); }
+  .checklist { display: grid; gap: 8px; margin: 14px 0; }
+  .checklist div {
+    border: 1px solid var(--line-ink); border-radius: 11px;
+    background:var(--surface); padding: 11px 14px; font-size: 14px; line-height: 1.85;
+  }
+</style>
+<script src="assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/thinking.html" />
+<meta property="og:title" content="كيف يفكّر المبرمج — قبل أن تمسك الكود" />
+<meta property="og:description" content="صفحة بلا كود تقريبًا: كيف يخزّن الحاسوب قيمة، كيف يقرأ سطرًا سطرًا، وكيف يتّخذ قرارًا ويكرّر — وهي الأفكار الثلاث التي تُبنى عليها كل اللغات." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="glossary.html">القاموس</a>
+      <a href="lab.html">المختبر</a>
+      <a href="challenges.html">تحديات</a>
+      <a href="start.html">البداية</a>
+      <a class="nav-cta" href="lessons/01-what-is-html.html">الدرس 01</a>
+    </nav>
+  </div>
+</header>
+
+<main class="think">
+
+  <span class="eyebrow">قبل الكود · 12 دقيقة</span>
+  <h1 style="font-size:clamp(23px,3.2vw,32px);line-height:1.4;margin:8px 0 12px">
+    كيف يفكّر المبرمج؟
+  </h1>
+  <p>
+    هذه الصفحة فيها ثلاثة أسطر كود فقط، ومع ذلك هي أهم صفحة في الموقع. لأن كل مشكلة
+    ستقابلك بعد اليوم — صفحة لا تظهر، زر لا يعمل، رقم غريب يطلع في الشاشة — سببها
+    في الأغلب أن أحدًا لم يفهم إحدى الأفكار الثلاث التي هنا.
+  </p>
+
+  <h2><span class="n">١</span>الحاسوب لا يفهم، بل ينفّذ</h2>
+  <p>
+    أول فكرة، وأصعبها على النفس: الحاسوب ليس ذكيًّا. هو أسرع منك في التنفيذ، وأبطأ
+    منك في الفهم إلى درجة لا تُقارن. لو كتبت له «اضرب الرقم سبعة» سيبحث عن متغيّر
+    اسمه سبعة، ولم يجد، فيتوقف. لا يقول: «أظنّه يعني 7». لا يظنّ أصلًا.
+  </p>
+  <div class="analogy">
+    <b>تشبيه</b>
+    <p>
+      تخيّل عاملاً ماهرًا لا يعرف العربية إلا كلمات قليلة، ولا يسأل عن شيء أبدًا.
+      لو قلت له «هات الحاجة اللي جنب الباب» سيقف عاجزًا. ولو قلت «افتح الدرج الأيمن،
+      خذ المفتاح الفضي، أغلقه» سيفعلها في ثانية. البرمجة كلها: أن تتعلّم كيف تُعطي
+      أوامر لا تحتمل التأويل.
+    </p>
+  </div>
+  <p>
+    ولهذا حين لا يعمل كودك، فالسبب الأول دائمًا: أنت تعرف ما تريد، والحاسوب ينفّذ
+    ما كتبت. والفرق بينهما هو العطل.
+  </p>
+
+  <h2><span class="n">٢</span>الذاكرة: صناديق لها أسماء</h2>
+  <p>
+    لو طلبت منك أن تحفظ رقم ٤٢ في رأسك، ثم سألتك عنه بعد دقيقة، ستجيبه. الحاسوب يفعل
+    الشيء نفسه لكن بطريقة صريحة: يضع القيمة في صندوق، ويكتب على الصندوق اسمًا.
+  </p>
+  <div class="analogy">
+    <b>تشبيه</b>
+    <p>
+      متغيّر = صندوق مكتوب عليه اسم. <code>let score = 42</code> معناها: أحضر صندوقًا،
+      اكتب عليه <code>score</code>، وضع فيه ٤٢. وكلما ناديت <code>score</code> فتحتُ
+      الصندوق وأعطيتك ما فيه. ولو كتبت فيه قيمة أخرى، اختفت الأولى — الصندوق واحد،
+      لا يتذكّر تاريخه.
+    </p>
+  </div>
+  <p>
+    هذا يفسّر شيئًا يحصل لك كثيرًا: تغيّر قيمة ثم تتعجّب من ظهور القيمة القديمة. الجواب
+    دائمًا: أنت تنظر إلى صندوق آخر، أو إلى وقت قبل التغيير.
+  </p>
+
+  <h2><span class="n">٣</span>الترتيب: يقرأ من أعلاه إلى أسفله</h2>
+  <p>
+    يقرأ الحاسوب أسطرك بالترتيب، سطرًا واحدًا بعد الآخر، ولا يقفز ولا يرجع. هذا يبدو
+    بديهيًّا، لكنه يفسّر أعطالًا لا تُحصى: تستخدم متغيّرًا قبل أن تُنشئه، أو تستدعي
+    دالة قبل أن تكتبها.
+  </p>
+  <p>
+    وتذكّر ما فعلناه في الدرس السابع عشر: وضعنا <code>script</code> في نهاية
+    <code>body</code> لا في بدايته. السبب ليس عادة ولا تفضيلًا، بل هذا القانون: البحث
+    عن زر قبل أن يُخلق الزر لا يُنتج إلا «لا شيء».
+  </p>
+
+  <h2><span class="n">٤</span>القرار: «إن… وإلا…»</h2>
+  <p>
+    الحاسوب لا يفكّر، لكنه يستطيع أن يقارن. يقارن رقمين، أو نصّين، أو يعرف أن قيمة
+    ليست فارغة. وحين تعطيه شرطًا، يسلك طريقًا واحدًا فقط ويترك الآخر.
+  </p>
+  <div class="analogy">
+    <b>تشبيه</b>
+    <p>
+      بوابة بمفتاح: إن كان معك المفتاح مررت، وإلا وقفت. والباب لا «يقدّر ظروفك».
+      لهذا نكتب الشروط بحساب: من فاته شرط واحد لم يدخل، ولا حجّة ولا استثناء.
+    </p>
+  </div>
+  <p>
+    وهذا سبب ضرورة الترتيب في الشروط: المتصفح يقف عند أول شرط يتحقّق. لو وضعت الشرط
+    السهل أولًا، ابتلع كل الحالات ولن يصل إلى ما بعده.
+  </p>
+
+  <h2><span class="n">٥</span>التكرار: أن تكلّف مرة فتُنفَّذ مئة</h2>
+  <p>
+    أرخص ما يفعله الحاسوب هو أن يعيد العمل. وأغلى ما تفعله أنت أن تعيد الكتابة.
+    الحلقة هي العقد بينكما: تكتب الخطوات مرة، وتطلب التكرار.
+  </p>
+  <p>
+    وفي كل حلقة ثلاثة أشياء لا رابع لها: من أين تبدأ، ومتى تتوقف، وكيف تتقدّم. من
+    نسي «كيف تتقدّم» صنع حلقة لا تنتهي، فتجمّد المتصفح — وهذا أول عطل حقيقي سيقع
+    لك، ولن يكون الأخير.
+  </p>
+
+  <h2><span class="n">٦</span>التجريد: الدالة وصفة باسم</h2>
+  <p>
+    بعد أن تُكرّر خطوات ثلاث مرات، يظهر سؤال: لماذا أكتبها ثلاثًا؟ الحل: أعطها اسمًا.
+    الاسم اختصار يحمل التفاصيل. وهذا ليس ترفًا جماليًّا: هو الفرق بين كود من عشرين
+    سطرًا تفهمه بعد شهر، وكود من مئتين لا تفهمه بعد يوم.
+  </p>
+  <div class="analogy">
+    <b>تشبيه</b>
+    <p>
+      «اصنع لي شايًا» جملة من كلمتين، تخفي تحتها سبع خطوات. أنت لا تشرحها كل صباح
+      لأحد، لأن الاسم يكفي. البرمجة تنمو بهذه الطريقة: أسماء تحمل تفاصيل، ثم أسماء
+      تحمل أسماء.
+    </p>
+  </div>
+
+  <div class="big-idea">
+    <p>
+      لو خرجت من هذه الصفحة بجملة واحدة، فلتكن:
+      <strong>البرمجة ليست كتابة رموز، بل تفكيك مشكلة كبيرة إلى خطوات صغيرة لا تحتمل
+      التأويل، ثم ترتيبها.</strong> واللغات الثلاث ليست إلا ثلاث لهجات لقول الشيء نفسه:
+      HTML تصف الوجود، CSS تصف الهيئة، JavaScript تصف السلوك.
+    </p>
+  </div>
+
+  <h2><span class="n">٧</span>جرّب تفكيكًا الآن، بلا حاسوب</h2>
+  <p>
+    التمرين الحقيقي ليس كتابة كود، بل أن تأخذ عملًا تعرفه وتحوّله إلى خطوات. خذ «اصنع
+    شايًا» وحاول تفكيكه:
+  </p>
+  <div class="checklist">
+    <div>١) املأ الكوب بالماء — كيف تعرف أنه امتلأ؟ <b>هذا شرط.</b></div>
+    <div>٢) ضع الكوب على النار — إلى متى؟ <b>هذا شرط آخر.</b></div>
+    <div>٣) ضع كيس الشاي — كم كيسًا؟ <b>هذه قيمة.</b></div>
+    <div>٤) انتظر ثلاث دقائق — <b>هذا قدر ثابت.</b></div>
+    <div>٥) أزل الكيس — ماذا لو نسيته؟ <b>هذه حالة يجب أن تعرّفها.</b></div>
+  </div>
+  <p>
+    لاحظ ما حدث: «اصنع شايًا»، وهي جملة واحدة، صارت خمس خطوات، وفيها شرطان وقيمة
+    وحالة استثنائية. هذا بالضبط ما ستفعله في كل مشروع: تُخرج ما تعرفه بالفطرة إلى
+    خطوات مكتوبة. ومن لا يفعل هذا يكتب كودًا يعمل معه وحده، ولا يعمل لغيره.
+  </p>
+
+  <h2><span class="n">٨</span>ثلاث عادات تفصل التعلّم الحقيقي</h2>
+  <div class="checklist">
+    <div><b>اكتب بيدك، لا تنقل بعينك.</b> من يقرأ الكود ويظنّ أنه فهم، سيكتشف العكس عند أول سطر يكتبه من ذاكرته.</div>
+    <div><b>لا تسأل «لماذا لا يعمل؟» بل «ماذا نفّذ الحاسوب فعلًا؟».</b> السؤال الثاني يؤدي إلى الجواب، والأول يؤدي إلى إعادة الكتابة.</div>
+    <div><b>افهم الخطأ قبل أن تُصلحه.</b> من يصلح بلا فهم يكرّر الخطأ بشكل آخر بعد أسبوع.</div>
+  </div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 0">
+    <a class="btn" href="lessons/01-what-is-html.html" style="text-decoration:none">إلى الدرس الأول</a>
+    <a class="btn ghost" href="lab.html" style="text-decoration:none">افتح المختبر وجرّب</a>
+    <a class="btn ghost" href="start.html" style="text-decoration:none">خريطة البداية</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="privacy.html">سياسة الخصوصية</a></span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script src="assets/progress.js"></script>
+</body>
+</html>

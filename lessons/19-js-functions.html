@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="5">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الدوال والمصفوفات والحلقات — فاصلة</title>
+<meta name="description" content="الدرس التاسع عشر: كيف تكتب وصفة مرة وتستخدمها مئة مرة، وكيف تحفظ قائمة، وكيف تكرّر بلا تكرار في الكتابة." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/19-js-functions.html" />
+<meta property="og:title" content="الدوال والمصفوفات والحلقات — فاصلة" />
+<meta property="og:description" content="الدرس التاسع عشر: كيف تكتب وصفة مرة وتستخدمها مئة مرة، وكيف تحفظ قائمة، وكيف تكرّر بلا تكرار في الكتابة." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="20-js-dom.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الخامسة · الحركة</div>
+    <h1>الدوال والمصفوفات والحلقات</h1>
+    <p class="lead">
+      حتى الآن يكتب كودك سطرًا ينفّذ مرة واحدة. هذه الأدوات الثلاث هي التي تجعله
+      يعمل عشر مرات، ومئة، وألف — بلا أن تكتب أكثر.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 19</span><span>متوسط</span><span>26 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>الدالة وصفة: تكتب خطواتها مرة، وتطلبها باسمها كلما احتجت. والمصفوفة قائمة: تحفظ فيها أشياء كثيرة تحت اسم واحد. والحلقة تقول: «كرّر هذا على كل عنصر في القائمة». الثلاثة معًا تعني أنك لم تعد تكتب الكود، بل تُدير العمل.</p>
+  </div>
+
+  <h2 id="fn">الدالة: وصفة لها اسم</h2>
+  <p>
+    تخيّل أنك تشرح لصديق كيف يصنع شايًا. لو شرحتها له كل صباح، ستتعب. الحل: تقول
+    «اصنع الشاي» فيعرف. الدالة هي هذه العبارة القصيرة التي تحمل خطوات مخفيّة.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>functions.js</span><button data-copy>نسخ</button></div>
+<pre><code>function sayHello(name) {
+  console.log("مرحبًا " + name);
+}
+
+sayHello("سالم");    // مرحبًا سالم
+sayHello("أحمد");    // مرحبًا أحمد</code></pre>
+  </div>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>function</code>
+      <p>الكلمة التي تقول: «سأكتب وصفة».</p>
+    </div>
+    <div class="anatomy-row">
+      <code>sayHello</code>
+      <p>اسم الوصفة. اختيارك، لكن اجعله فعلًا واضحًا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>(name)</code>
+      <p>المدخل: ما تحتاجه الوصفة لتعمل. يُسمّى «معاملًا»، وهو متغيّر داخلها فقط.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>{ … }</code>
+      <p>الخطوات نفسها. تُنفَّذ فقط حين تُطلب الوصفة.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>sayHello("سالم")</code>
+      <p>«نفّذ الوصفة الآن». ويُسمّى «نداءً» أو «استدعاءً».</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>فرق يُربك كل مبتدئ</b>
+    <p>
+      كتابة <code>sayHello</code> بلا أقواس تعني «هذه الوصفة» (نشير إليها ولا ننفّذها).
+      وكتابة <code>sayHello()</code> تعني «نفّذها الآن». ستقع في هذا الفرق مئة مرة،
+      وخاصة حين تربط دالة بحدث: تكتب اسم الدالة بلا أقواس.
+    </p>
+  </div>
+
+  <h2 id="return">الإرجاع: حين تُعيد الوصفة نتيجة</h2>
+  <p>
+    بعض الوصفات لا تُعيد شيئًا، فقط تفعل. وبعضها تُعيد قيمة نستخدمها بعدها:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>return.js</span><button data-copy>نسخ</button></div>
+<pre><code>function add(a, b) {
+  return a + b;
+}
+
+const total = add(3, 4);   // 7
+console.log(total * 2);    // 14
+
+// اختصار مفيد للدوال القصيرة
+const double = (n) =&gt; n * 2;
+console.log(double(5));    // 10</code></pre>
+  </div>
+
+  <ul>
+    <li><code>return</code> تُخرج النتيجة وتُنهي الدالة فورًا. أي سطر بعدها لا يُنفَّذ.</li>
+    <li>دالة بلا <code>return</code> تُعيد <code>undefined</code>، أي «لا شيء». وهذا سبب شائع لظهور <code>undefined</code> في صفحتك.</li>
+    <li>السطر <code>const double = (n) =&gt; n * 2</code> يُسمّى دالة سهمية: نفس الشيء بكتابة أقصر.</li>
+  </ul>
+
+  <h2 id="array">المصفوفة: قائمة في صندوق واحد</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>arrays.js</span><button data-copy>نسخ</button></div>
+<pre><code>const fruits = ["تفاح", "موز", "عنب"];
+
+console.log(fruits.length);   // 3 — العدد
+console.log(fruits[0]);       // تفاح — العدّ يبدأ من صفر!
+console.log(fruits[2]);       // عنب
+
+fruits.push("مانجو");          // أضف في النهاية
+console.log(fruits.length);   // 4</code></pre>
+  </div>
+
+  <div class="callout idea">
+    <b>العدّ يبدأ من صفر</b>
+    <p>
+      أول عنصر رقمه <code>0</code> لا <code>1</code>. هذا ليس تعقيدًا بلا سبب: العنصر
+      الأول يبعد صفر خطوات عن البداية. احفظها مرة، وستتجنّب أشهر خطأ في الحلقات:
+      أن تبدأ من ١ فتضيع أول عنصر.
+    </p>
+  </div>
+
+  <h2 id="loop">الحلقة: كرّر بلا كتابة</h2>
+  <p>
+    لو أردت طباعة كل اسم في قائمة فيها ثلاثون اسمًا، هل تكتب ثلاثين سطرًا؟ الحلقة
+    تكتبها مرة وتقول: «افعل هذا مع كل عنصر».
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>loops.js</span><button data-copy>نسخ</button></div>
+<pre><code>const names = ["سالم", "أحمد", "سارة"];
+
+// ١) الطريقة الحديثة والأسهل
+names.forEach(function (name) {
+  console.log("مرحبًا " + name);
+});
+
+// ٢) الحلقة التقليدية: عداد يبدأ من صفر
+for (let i = 0; i &lt; names.length; i++) {
+  console.log(i + " - " + names[i]);
+}</code></pre>
+  </div>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>let i = 0</code>
+      <p>ابدأ العدّ من صفر.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>i &lt; names.length</code>
+      <p>استمر ما دام العدد أقل من طول القائمة. حين يصبح مساويًا، توقف.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>i++</code>
+      <p>زد واحدًا في كل دورة. بلا هذا السطر تدور الحلقة إلى الأبد ويتجمّد المتصفح.</p>
+    </div>
+  </div>
+
+  <h2 id="map">map و filter: أقوى أداتين لقائمة</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>map-filter.js</span><button data-copy>نسخ</button></div>
+<pre><code>const prices = [100, 250, 60, 400];
+
+// map: حوّل كل عنصر إلى شيء آخر
+const withTax = prices.map(function (p) {
+  return p * 1.15;
+});
+console.log(withTax);   // [115, 287.5, 69, 460]
+
+// filter: احتفظ بالعناصر التي تحقق شرطًا
+const big = prices.filter(function (p) {
+  return p &gt; 100;
+});
+console.log(big);       // [250, 400]</code></pre>
+  </div>
+
+  <p>
+    الاثنتان لا تُغيّران القائمة الأصلية، بل تُعيدان قائمة جديدة. وهذا فرق مهم:
+    الأصل يبقى سليمًا، وأنت تبنى منه نسخة معالجة. الفكرة نفسها ستقابلك في كل مكان
+    بعد اليوم.
+  </p>
+
+  <h2 id="compose">تجميع الثلاثة: جدول من قائمة</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>students.js</span><button data-copy>نسخ</button></div>
+<pre><code>const students = [
+  { name: "سالم", score: 82 },
+  { name: "أحمد", score: 45 },
+  { name: "سارة", score: 91 }
+];
+
+// من نجح فقط، بأسمائهم
+const passed = students
+  .filter(function (s) { return s.score &gt;= 50; })
+  .map(function (s) { return s.name; });
+
+console.log(passed);   // ["سالم", "سارة"]
+
+// متوسط الدرجات
+let sum = 0;
+students.forEach(function (s) {
+  sum = sum + s.score;
+});
+console.log(sum / students.length);   // 72.6</code></pre>
+  </div>
+
+  <p>
+    لاحظ أن <code>{ name: "سالم", score: 82 }</code> كائن: مجموعة صفات لشيء واحد.
+    والقائمة كائنات تعني «جدول بيانات» — وهذا هو الشكل الذي ستستخدمه في كل تطبيق
+    حقيقي: قائمة مهام، قائمة منتجات، قائمة رسائل.
+  </p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> نسيان <code>return</code> داخل <code>map</code>، فتصبح كل القيم <code>undefined</code>.</li>
+    <li><span>!</span> بدء الحلقة من ١ بدل ٠.</li>
+    <li><span>!</span> نسيان <code>i++</code>، فال حلقة لا تنتهي ويتوقف المتصفح.</li>
+    <li><span>!</span> الاعتقاد أن <code>filter</code> تحذف من الأصل — هي تُعيد قائمة جديدة.</li>
+    <li><span>!</span> اسم دالة يبدأ برقم أو يحتوي شرطة: <code>my-func</code> خطأ، <code>myFunc</code> صحيح.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>١٢ دقيقة · بلا مشاهدة حل</b>
+    <p>
+      عندك قائمة مشتريات: <code>["خبز", "لبن", "جبن", "شاي"]</code>. اطبع كل عنصر
+      مع رقمه بدءًا من ١، ثم اطبع فقط العناصر التي تحتوي حرف «ش»، ثم اطبع العدد الكلي.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>shopping.js</span><button data-copy>نسخ</button></div>
+<pre><code>const items = ["خبز", "لبن", "جبن", "شاي"];
+
+// ١) مرقّمة من واحد
+items.forEach(function (item, index) {
+  console.log((index + 1) + ". " + item);
+});
+
+// ٢) التي تحتوي حرف الشين
+const withSheen = items.filter(function (item) {
+  return item.includes("ش");
+});
+console.log(withSheen);   // ["شاي"]
+
+// ٣) العدد
+console.log(items.length);  // 4</code></pre>
+      </div>
+      <p>
+        لاحظ <code>index + 1</code> في الطباعة: الفهرس يبدأ من صفر، والبشر يبدأون من
+        واحد، فنضيف واحدًا عند العرض فقط. هذه عادة ستتكرّر معك كثيرًا.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين <code>sayHello</code> و<code>sayHello()</code>؟</li>
+      <li>ماذا تُعيد دالة بلا <code>return</code>؟</li>
+      <li>لماذا يبدأ العدّ في المصفوفة من صفر؟</li>
+      <li>ما الفرق بين <code>map</code> و<code>filter</code>؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="19"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="18-js-variables.html"><small>السابق</small>المتغيّرات والشروط</a>
+  <a href="20-js-dom.html"><small>التالي</small>DOM والتخزين</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

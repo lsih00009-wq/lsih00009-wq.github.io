@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="6">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>حركة بلا مكتبات: transition وtransform — فاصلة</title>
+<meta name="description" content="الدرس الثاني والعشرون: transition و transform لصناعة حركة خفيفة داخل الصفحة، ومتى تكون الحركة ضررًا، واحترام تقليل الحركة." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/22-motion.html" />
+<meta property="og:title" content="حركة بلا مكتبات: transition وtransform — فاصلة" />
+<meta property="og:description" content="الدرس الثاني والعشرون: transition و transform لصناعة حركة خفيفة داخل الصفحة، ومتى تكون الحركة ضررًا، واحترام تقليل الحركة." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../practice.html">تدريب</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة السادسة · الإتقان</div>
+    <h1>حركة بلا مكتبات: transition وtransform</h1>
+    <p class="lead">
+      الحركة الجيّدة لا تُرى؛ تُحسّ. زرّ يهدأ بدل أن يقفز، وبطاقة ترتفع درجتين تحت
+      المؤشّر. كلها سطران في CSS، بلا مكتبة ولا ملف يُحمَّل.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 22</span><span>متوسط</span><span>20 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>
+      <code>transition</code> تقول: حين تتغيّر هذه الخاصية، لا تغيّرها فجأة — امشِ
+      إليها في نصف ثانية. و<code>transform</code> تحرّك العنصر أو تكبّره أو تُدوّره
+      دون أن تدفع ما حوله.
+    </p>
+  </div>
+
+  <h2 id="why">الحركة ليست زينة</h2>
+  <p>
+    لما يظهر شيء جديد فجأة، يفقد الزائر مكانه: هل انزلقت الصفحة؟ هل ضغط شيئًا؟
+    الحركة القصيرة تجيب عن هذا السؤال بلا كلمة. لكن الحركة نفسها تصير ضررًا إذا
+    طالت أو تكرّرت في كل شيء — القاعدة: احرّك ما تغيّر، لا كل ما تراه.
+  </p>
+
+  <h2 id="transition">transition: من قيمة إلى قيمة</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>transition.css</span><button data-copy>نسخ</button></div>
+<pre><code>.btn {
+  background: #2f6f4f;
+  transition: background-color .2s ease;
+}
+
+.btn:hover {
+  background: #245740;
+}</code></pre>
+  </div>
+
+  <p>
+    أربعة أجزاء في السطر: الخاصية، والمدّة، ومنحنى السرعة، والتأخير (اختياري).
+    و<code>ease</code> تعني «ابدأ سريعًا واهدأ في النهاية» — وهي الأنسب لأغلب الحالات.
+  </p>
+
+  <ul>
+    <li><code>transition: all</code> — مريحة لكنها تُشغّل حركة على كل خاصية، حتى التي لا تقصدها. اذكر الخاصية.</li>
+    <li>المدّة: بين <code>.15s</code> و<code>.3s</code> للأزرار. أطول من ذلك يبدو بطيئًا.</li>
+    <li><code>linear</code> تبدو آلية؛ <code>ease-out</code> هي الأقرب للطبيعة.</li>
+  </ul>
+
+  <h2 id="transform">transform: حركة لا تزحزح أحدًا</h2>
+  <p>
+    لو حرّكت عنصرًا بـ<code>margin</code> فسيدفع ما حوله. أما <code>transform</code>
+    فيحرّكه في مكانه، بلا أن يتأثّر التخطيط — ولهذا هي الأسرع أيضًا.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>transform.css</span><button data-copy>نسخ</button></div>
+<pre><code>.card {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(23, 35, 31, .08);
+}
+
+.icon { transform: rotate(180deg); }
+.zoom { transform: scale(1.05); }</code></pre>
+  </div>
+
+  <p>
+    لاحظ <code>-3px</code> بالسالب: في المحور الرأسي، القيمة السالبة ترفع العنصر
+    للأعلى. والفرق بين الرفع درجتين والرفع عشرين أنه في الأول يُحسّ، وفي الثاني
+    يُرى — والأول هو المطلوب.
+  </p>
+
+  <div class="callout idea">
+    <b>أيّهما أسرع فعلًا؟</b>
+    <p>
+      تغيير <code>width</code> أو <code>top</code> يجبر المتصفح على إعادة حساب
+      التخطيط في كل إطار. أما <code>transform</code> و<code>opacity</code> فيرسمهما
+      المعالج الرسومي وحده. لهذا الحركة الناعمة تبدأ من هاتين الخاصيتين.
+    </p>
+  </div>
+
+  <h2 id="respect">الحركة ليست لك وحدك</h2>
+  <p>
+    بعض الناس يُصابون بالدوار من الحركة، وقد ضبطوا في أجهزتهم «تقليل الحركة».
+    احترام ذلك سطر واحد:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>a11y.css</span><button data-copy>نسخ</button></div>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}</code></pre>
+  </div>
+
+  <h2 id="mistakes">ثلاثة أخطاء تتكرّر</h2>
+  <ul>
+    <li><strong>الحركة على عنصر لا يظهر:</strong> <code>display: none</code> لا يمكن تحريكه — لا وجود له أصلًا. حرّك <code>opacity</code> و<code>transform</code> بدلًا منه.</li>
+    <li><strong>transform على عنصر سطري:</strong> <code>span</code> بلا <code>display: inline-block</code> لا يقبل التحويل.</li>
+    <li><strong>حركة في كل مكان:</strong> إن تحرّك كل شيء، لم يعد لشيء معنى. حرّك ما يستجيب للمستخدم فقط.</li>
+  </ul>
+
+  <h2 id="practice">تمرين: زرّ يهدأ</h2>
+  <p>
+    في المختبر، اصنع زرًّا يغمق لونه عند المرور، ويصغر قليلًا عند الضغط
+    (<code>:active</code>)، ويعود بنعومة. ثم أضف قاعدة «تقليل الحركة» وأغلقها
+    لتتأكد أن الزرّ يبقى يعمل.
+  </p>
+
+  <div class="callout">
+    <b>حلّ مقترح — افتحه بعد المحاولة</b>
+    <details>
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>press.css</span><button data-copy>نسخ</button></div>
+<pre><code>.btn {
+  background: #2f6f4f;
+  color: #fff;
+  border: 0;
+  padding: 9px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background-color .18s ease, transform .12s ease;
+}
+
+.btn:hover  { background: #245740; }
+.btn:active { transform: scale(.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:active { transform: none; }
+}</code></pre>
+      </div>
+      <p style="margin:8px 0 0;font-size:13.5px;color:var(--ink-soft)">
+        جرّب أن ترفع المدّة إلى ثانية كاملة ثم إلى <code>.12s</code>: ستشعر بالفرق
+        قبل أن تقيسه.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ماذا تفعل <code>transition</code> بالضبط؟</li>
+      <li>لماذا <code>transform</code> أسرع من تغيير <code>margin</code>؟</li>
+      <li>لماذا نكتب قاعدة <code>prefers-reduced-motion</code>؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="22"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="21-css-variables.html"><small>السابق</small>متغيّرات CSS</a>
+  <a href="23-js-events.html"><small>التالي</small>الأحداث</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

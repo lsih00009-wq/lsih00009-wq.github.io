@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="3">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flexbox: صفوف وأعمدة بلا معاناة — فاصلة</title>
+<meta name="description" content="الدرس الحادي عشر: display flex، المحوران، justify-content وalign-items وgap، وخمس خصائص تكفي لمعظم التخطيطات." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/11-flexbox.html" />
+<meta property="og:title" content="Flexbox: صفوف وأعمدة بلا معاناة — فاصلة" />
+<meta property="og:description" content="الدرس الحادي عشر: display flex، المحوران، justify-content وalign-items وgap، وخمس خصائص تكفي لمعظم التخطيطات." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="12-grid.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثالثة · المظهر</div>
+    <h1>Flexbox: صفوف وأعمدة بلا معاناة</h1>
+    <p class="lead">
+      قبل Flexbox كان توسيط عنصر رأسيًّا مسألة تُسأل في المقابلات. الآن سطران.
+      هذا الدرس يعطيك خمس خصائص تُنجز بها معظم ما ستحتاجه.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 11</span><span>متوسط</span><span>25 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>Flexbox طريقة تقول للصندوق: «رتّب أولادك في سطر، ووزّع بينهم المسافة». بدل أن تحسب مكان كل واحد بيدك.</p>
+  </div>
+
+
+  <h2 id="idea">الفكرة: حاوية تحكم أبناءها</h2>
+  <p>
+    تُعلن الحاوية <code>display: flex</code>، فتصبح كل عناصرها المباشرة صفًّا واحدًا
+    يوزّع المساحة بينها. أنت لا تحرّك الأبناء واحدًا واحدًا، بل تقول للحاوية كيف
+    ترتّبهم — وهذا هو الفرق الذهني كله.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>flex.css</span><button data-copy>نسخ</button></div>
+<pre><code>.row {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-head"><span>page.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;div class="row"&gt;
+  &lt;h2&gt;العنوان&lt;/h2&gt;
+  &lt;a href="/more"&gt;المزيد&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p>
+    ثلاثة أسطر، فصار العنوان والرابط على طرفَي السطر، متوسّطين رأسيًّا، وبينهما فراغ.
+    لا حساب هوامش، ولا عرض صريح.
+  </p>
+
+  <h2 id="axes">المحوران: أصل كل حيرة</h2>
+  <p>
+    Flexbox له محور رئيسي ومحور عرضي، وخصائصه تُسمّى بحسبهما لا بحسب «أفقي ورأسي».
+    لأن الاتجاه قابل للتبديل.
+  </p>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>flex-direction: row</code>
+      <p>الافتراضي. المحور الرئيسي أفقي، فـ<code>justify-content</code> توزّع أفقيًّا و<code>align-items</code> رأسيًّا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>flex-direction: column</code>
+      <p>المحور الرئيسي رأسي، فينعكس الدور: <code>justify-content</code> توزّع رأسيًّا.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>لحظة الخلاص</b>
+    <p>
+      إن وضعت <code>justify-content: center</code> فلم يتوسّط العنصر رأسيًّا، فالسبب
+      أن المحور الرئيسي أفقي لا رأسي. تدرّب على السؤال: «أين محوري الآن؟» وستحلّ
+      تسعة من عشرة مواقف بلا حفظ.
+    </p>
+  </div>
+
+  <h2 id="five">خمس خصائص تكفي</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>the-five.css</span><button data-copy>نسخ</button></div>
+<pre><code>.row {
+  display: flex;
+  flex-wrap: wrap;              /* ١) ينزل لسطر جديد عند الضيق */
+  gap: 16px;                    /* ٢) فراغ بين العناصر بلا هوامش */
+  justify-content: space-between; /* ٣) توزيع على المحور الرئيسي */
+  align-items: center;          /* ٤) محاذاة على المحور العرضي */
+}
+
+.row .item {
+  flex: 1;                      /* ٥) كل عنصر يأخذ نصيبًا متساويًا */
+}</code></pre>
+  </div>
+
+  <ul>
+    <li><code>gap</code> — أفضل من <code>margin</code> لأنه لا يضيف فراغًا على الأطراف، ولا ينهار.</li>
+    <li><code>justify-content</code> — <code>flex-start</code>، <code>center</code>، <code>space-between</code>، <code>space-around</code>.</li>
+    <li><code>align-items</code> — <code>stretch</code> (الافتراضي)، <code>center</code>، <code>flex-start</code>، <code>flex-end</code>.</li>
+    <li><code>flex: 1</code> — العنصر يتمدّد ليأخذ المساحة الحرة. و<code>flex: 0 0 200px</code> يعني: لا تتمدد ولا تنكمش، خذ ٢٠٠.</li>
+  </ul>
+
+  <h2 id="center">التوسيط الكامل في سطرين</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>center.css</span><button data-copy>نسخ</button></div>
+<pre><code>.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}</code></pre>
+  </div>
+
+  <p>
+    لاحظ <code>min-height</code> لا <code>height</code>: لو زاد المحتوى على الشاشة
+    الصغيرة، يتمدّد الصندوق ولا يفيض النص خارجه. الفرق بينهما هو الفرق بين تصميم
+    يعمل وتصميم ينكسر في الهاتف.
+  </p>
+
+  <h2 id="wrap">الالتفاف: حين تكفي المساحة لبعض العناصر</h2>
+  <p>
+    بلا <code>flex-wrap</code>، سيتقلّص الأبناء إلى ما لا يُقرأ بدل أن ينزلوا سطرًا.
+    معه، ينزل الزائد إلى سطر جديد — وهذا هو أساس كل شبكة بطاقات بسيطة:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>cards.css</span><button data-copy>نسخ</button></div>
+<pre><code>.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.cards > * {
+  flex: 1 1 240px;  /* لا يقلّ عن ٢٤٠، ويتمدّد إن كان هناك متّسع */
+}</code></pre>
+  </div>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> وضع <code>display: flex</code> على العنصر الذي تريد توسيطه بدل حاويته.</li>
+    <li><span>!</span> استخدام <code>margin</code> بين أبناء Flexbox بدل <code>gap</code>، فتحصل على فراغ زائد على الطرف.</li>
+    <li><span>!</span> توقّع أن <code>justify-content</code> تعمل رأسيًّا في صف أفقي.</li>
+    <li><span>!</span> نسيان <code>flex-wrap</code> ثم الاستغراب من انضغاط البطاقات على الهاتف.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٧ دقائق · بلا مشاهدة حل</b>
+    <p>
+      ابنِ شريط تنقّل: شعار على اليمين، وثلاثة روابط على اليسار، وكلها متوسّطة رأسيًّا،
+      وبينها فراغ. ثم جرّبه بعرض ٣٦٠ بكسل وتأكد أنه لا ينكسر.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>nav.css</span><button data-copy>نسخ</button></div>
+<pre><code>.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dfe5d9;
+}
+
+.bar nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}</code></pre>
+      </div>
+      <p>
+        لاحظ أن الحاوية الخارجية Flex، وأن <code>nav</code> نفسها Flex أيضًا.
+        هذا طبيعي وشائع: الحاويات تتداخل، وكل واحدة لها محورها.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>أين يوضع <code>display: flex</code>؟</li>
+      <li>في صف أفقي، أي خاصية توزّع أفقيًّا وأيها يحاذي رأسيًّا؟</li>
+      <li>لماذا <code>gap</code> أفضل من <code>margin</code> هنا؟</li>
+      <li>ماذا يعني <code>flex: 1 1 240px</code> بكلماتك؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="11"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="10-box-model.html"><small>السابق</small>صندوق العنصر</a>
+  <a href="12-grid.html"><small>التالي</small>Grid: شبكة حقيقية للصفحة</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

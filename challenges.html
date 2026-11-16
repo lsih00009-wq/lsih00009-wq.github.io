@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>التحديّات — اكتب الكود، ويُفحص أمامك</title>
+<meta name="description" content="اثنان وعشرون تحديًا عمليًّا تقابل الدروس: اكتب الكود في المحرّر، ويُفحص تلقائيًّا داخل متصفحك بلا خادم." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .ch-wrap { max-width: 1180px; margin: 0 auto; padding: 24px 14px 40px; }
+  .ch-head h1 { font-size: clamp(21px, 2.8vw, 28px); margin: 6px 0 8px; }
+  .ch-head p { margin: 0 0 18px; font-size: 14px; line-height: 1.9; color: var(--ink-soft); max-width: 66ch; }
+
+  .ch-list { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+  .ch-list button {
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 8px 12px; border-radius: 9px; cursor: pointer;
+    border: 1px solid rgba(23,35,31,.16); background: var(--surface); color: var(--ink-soft);
+  }
+  .ch-list button[aria-selected="true"] { background: var(--ink); color: var(--accent); border-color: transparent; }
+
+  .ch-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 14px; align-items: start; }
+  .ch-card {
+    border: 1px solid rgba(23,35,31,.14); border-radius: 14px; background: var(--surface); overflow: hidden;
+  }
+  .ch-card .hd { padding: 11px 14px; border-bottom: 1px solid var(--line-ink); background: var(--surface-2); font-size: 12.5px; color: var(--ink-muted); display: flex; justify-content: space-between; gap: 10px; }
+  .ch-card .hd b { color: var(--ink); font-size: 13px; }
+  .ch-body { padding: 14px; }
+  .ch-body p { font-size: 13.8px; line-height: 1.9; margin: 0 0 10px; color: var(--ink-soft); }
+  .ch-body ol { margin: 0 0 12px; padding-inline-start: 20px; font-size: 13.5px; line-height: 1.95; color: var(--ink-soft); }
+  .ch-body li { margin-bottom: 5px; }
+
+  .ch-ta {
+    width: 100%; min-height: 210px; border: 1px solid var(--line-ink); border-radius: 10px;
+    padding: 12px; font-family: var(--mono); font-size: 12.5px; line-height: 1.7;
+    direction: ltr; text-align: left; resize: vertical; tab-size: 2; outline: none;
+  }
+  .ch-ta + .ch-ta { margin-top: 8px; }
+  .ch-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .ch-actions button, .ch-actions a {
+    font-family: inherit; font-size: 13px; font-weight: 600; padding: 10px 16px;
+    border-radius: 9px; cursor: pointer; text-decoration: none; border: 1px solid rgba(23,35,31,.16);
+    background: var(--surface); color: var(--ink);
+  }
+  .ch-actions button.primary { background: var(--lime); border-color: transparent; color: var(--accent-ink); }
+
+  .ch-prev { width: 100%; height: 260px; border: 1px solid var(--line-ink); border-radius: 10px; background: var(--surface); }
+  .res { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+  .res li { font-size: 13px; line-height: 1.7; padding: 8px 11px; border-radius: 9px; border: 1px solid var(--line-ink); background: var(--surface-2); }
+  .res li.ok { border-color: #9ec97f; background: #f4fbe9; color: var(--accent-deep); }
+  .res li.no { border-color: #d9a49b; background: #fdf2ef; color: #8a3b31; }
+  .verdict { font-size: 13.5px; font-weight: 600; margin-top: 10px; }
+  .verdict.ok { color: var(--accent-deep); }
+  .verdict.no { color: #8a3b31; }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  @media (max-width: 900px) {
+    .ch-grid { grid-template-columns: 1fr; }
+    .ch-ta { min-height: 170px; }
+    .ch-prev { height: 220px; }
+  }
+</style>
+<script src="assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/challenges.html" />
+<meta property="og:title" content="التحديّات — اكتب الكود، ويُفحص أمامك" />
+<meta property="og:description" content="اثنان وعشرون تحديًا عمليًّا تقابل الدروس: اكتب الكود في المحرّر، ويُفحص تلقائيًّا داخل متصفحك بلا خادم." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="glossary.html">القاموس</a>
+      <a href="lab.html">المختبر</a>
+      <a href="challenges.html">تحديات</a>
+      <a href="start.html">البداية</a>
+      <a class="nav-cta" href="lessons/01-what-is-html.html">الدرس 01</a>
+    </nav>
+  </div>
+</header>
+
+<main class="ch-wrap">
+
+  <div class="ch-head">
+    <span class="eyebrow">تحديات عملية · الدروس ١–٢١</span>
+    <h1>اكتب الكود، ويُفحص أمامك</h1>
+    <p>
+      الاختيار من متعدد يقيس ما تعرفه، والكتابة تقيس ما تستطيعه. هنا تكتب فعلًا،
+      ويُفحص كودك تلقائيًّا داخل متصفحك — لا خادم ولا حساب، ولا أحد يرى خطأك.
+      لكل تحدي شروط مكتوبة: حقّقها وسترى علامة النجاح خضراء.
+    </p>
+    <p class="ch-run" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 4px;font-size:13px;color:var(--ink-soft)">
+      <span>أنجزت <b data-done-count>٠ من ٢٢</b> تحديًا.</span>
+      <span style="color:var(--ink-muted)">يُحفظ عندك في هذا الجهاز فقط.</span>
+    </p>
+  </div>
+
+  <div class="ch-list" role="tablist" id="chList"></div>
+
+  <div class="ch-grid">
+    <div class="ch-card">
+      <div class="hd"><b id="chTitle">—</b><span id="chDiff">—</span></div>
+      <div class="ch-body">
+        <p id="chBrief"></p>
+        <ol id="chReqs"></ol>
+        <textarea class="ch-ta" id="ta-html" spellcheck="false" dir="ltr" aria-label="كود HTML"></textarea>
+        <textarea class="ch-ta" id="ta-css" spellcheck="false" dir="ltr" aria-label="كود CSS"></textarea>
+        <textarea class="ch-ta" id="ta-js" spellcheck="false" dir="ltr" aria-label="كود JavaScript"></textarea>
+        <div class="ch-actions">
+          <button class="primary" id="checkBtn">افحص كودي</button>
+          <button id="resetBtn">أعِد البداية</button>
+          <a href="lab.html">افتحه في المختبر</a>
+        </div>
+        <ul class="res" id="results"></ul>
+        <div class="verdict" id="verdict"></div>
+      </div>
+    </div>
+
+    <div class="ch-card">
+      <div class="hd"><b>ما يراه الزائر</b><span>معاينة حيّة</span></div>
+      <div class="ch-body">
+        <iframe class="ch-prev" id="prev" title="معاينة" sandbox="allow-scripts"></iframe>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="privacy.html">سياسة الخصوصية</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  var BASE_CSS = "body{font-family:'Segoe UI',Tahoma,sans-serif;line-height:1.8;margin:0;padding:16px}";
+
+  /* كل تحدي: وصف، متطلبات معروضة، كود بداية، وسكربت اختبار يعمل داخل الإطار */
+  var TASKS = [
+    {
+      n: "١", title: "صفحتك الأولى", diff: "الدرس 01",
+      brief: "اكتب صفحة فيها عنوان رئيسي وفقرة واحدة. هذا كل شيء — لكن بيدك لا بالنسخ.",
+      reqs: ["عنوان h1 فيه كلام", "فقرة p فيها كلام"],
+      html: "<!-- اكتب هنا -->\n",
+      css: "", js: "",
+      test: [
+        ["عنوان h1 فيه كلام", "var h=document.querySelector('h1'); return h && h.textContent.trim().length>0;"],
+        ["فقرة p فيها كلام", "var p=document.querySelector('p'); return p && p.textContent.trim().length>0;"]
+      ]
+    },
+    {
+      n: "٢", title: "هيكل الصفحة", diff: "الدرس 02",
+      brief: "اجعل صفحتك كاملة الهيكل: ترميز، عنوان في التبويب، وسطر viewport حتى تعمل على الهاتف.",
+      reqs: ["عنوان الصفحة (title) غير فارغ", "موجود meta viewport", "وجود body"],
+      html: "",
+      css: "", js: "",
+      full: true,
+      starter: '<!doctype html>\n<html lang="ar" dir="rtl">\n<head>\n  <meta charset="utf-8">\n  <!-- أضف هنا ما ينقص -->\n</head>\n<body>\n  <h1>عنوان</h1>\n</body>\n</html>',
+      test: [
+        ["عنوان الصفحة (title) غير فارغ", "return document.title.trim().length>0;"],
+        ["موجود meta viewport", "return !!document.querySelector('meta[name=\"viewport\"]');"],
+        ["وجود body", "return !!document.body;"]
+      ]
+    },
+    {
+      n: "٣", title: "عناوين ونص", diff: "الدرس 03",
+      brief: "استخدم ثلاثة مستويات عناوين متدرّجة، وجعل كلمة واحدة مهمة بـstrong.",
+      reqs: ["h1 ثم h2 ثم h3", "كلمة داخل strong", "فقرة p"],
+      html: "<h1>عنوان</h1>\n\n",
+      css: "", js: "",
+      test: [
+        ["h1 ثم h2 ثم h3 (متدرّجة)", "var a=document.querySelectorAll('h1,h2,h3'); if(a.length<3) return false; return a[0].tagName==='H1' && a[1].tagName==='H2' && a[2].tagName==='H3';"],
+        ["كلمة داخل strong", "return !!document.querySelector('strong');"],
+        ["فقرة p", "return !!document.querySelector('p');"]
+      ]
+    },
+    {
+      n: "٤", title: "رابط وصورة", diff: "الدرس 04",
+      brief: "أضف رابطًا إلى موقع خارجي يُفتح في تبويب جديد، وصورة لها وصف alt حقيقي.",
+      reqs: ["رابط href يبدأ بـhttp", "الرابط target=_blank مع rel=noopener", "صورة لها alt غير فارغ"],
+      html: "",
+      css: "", js: "",
+      test: [
+        ["رابط href يبدأ بـhttp", "var a=document.querySelector('a[href^=\"http\"]'); return !!a;"],
+        ["الرابط target=_blank مع rel=noopener", "var a=document.querySelector('a[href^=\"http\"]'); return a && a.getAttribute('target')==='_blank' && (a.getAttribute('rel')||'').indexOf('noopener')>-1;"],
+        ["صورة لها alt غير فارغ", "var i=document.querySelector('img'); return i && (i.getAttribute('alt')||'').trim().length>0;"]
+      ]
+    },
+    {
+      n: "٥", title: "قوائم", diff: "الدرس 05",
+      brief: "قائمة غير مرتّبة فيها ثلاثة عناصر، وداخلها قائمة فرعية، ثم قائمة مرتّبة من خطوتين.",
+      reqs: ["ul فيها ٣ عناصر li", "قائمة فرعية داخل li", "ol فيها خطوتان"],
+      html: "",
+      css: "", js: "",
+      test: [
+        ["ul فيها ٣ عناصر li", "var u=document.querySelector('ul'); return u && u.querySelectorAll(':scope > li').length>=3;"],
+        ["قائمة فرعية داخل li", "return !!document.querySelector('li > ul');"],
+        ["ol فيها خطوتان", "var o=document.querySelector('ol'); return o && o.querySelectorAll(':scope > li').length>=2;"]
+      ]
+    },
+    {
+      n: "٦", title: "جدول بيانات", diff: "الدرس 06",
+      brief: "جدول مقارنة بسيط: عنوان للجدول، صف رأس بخلايا th، وصف بيانات.",
+      reqs: ["caption موجود", "صف رأس فيه th", "كل th له scope", "صف بيانات فيه td"],
+      html: "",
+      css: "", js: "",
+      test: [
+        ["caption موجود", "return !!document.querySelector('table caption');"],
+        ["صف رأس فيه th", "var t=document.querySelector('th'); return !!t;"],
+        ["كل th له scope", "var t=document.querySelectorAll('th'); if(!t.length) return false; for (var i=0;i<t.length;i++){ var sc=t[i].getAttribute('scope'); if(sc!=='col' && sc!=='row') return false; } return true;"],
+        ["صف بيانات فيه td", "return !!document.querySelector('td');"]
+      ]
+    },
+    {
+      n: "٧", title: "نموذج", diff: "الدرس 07",
+      brief: "نموذج فيه حقل بريد بـlabel مربوط به وname، وزر إرسال. جرّب أن ترسل بلا كتابة: سيمنعك المتصفح.",
+      reqs: ["form موجود", "label مربوط بـfor = id الحقل", "الحقل له name وtype=email", "الحقل required"],
+      html: "",
+      css: "", js: "",
+      test: [
+        ["form موجود", "return !!document.querySelector('form');"],
+        ["label مربوط بـfor = id الحقل", "var l=document.querySelector('label[for]'); if(!l) return false; return !!document.getElementById(l.getAttribute('for'));"],
+        ["الحقل له name وtype=email", "var i=document.querySelector('input[name]'); if(!i) return false; return i.getAttribute('name').length>0 && i.type==='email';"],
+        ["الحقل required", "var i=document.querySelector('input[type=\"email\"]'); return i && i.hasAttribute('required');"]
+      ]
+    },
+    {
+      n: "٨", title: "هيكل دلالي", diff: "الدرس 08",
+      brief: "ابنِ صفحة عناصرها بأسمائها: رأس فيه تنقّل، محتوى أساسي واحد، وتذييل.",
+      reqs: ["header فيه nav، وفيه رابطان على الأقل", "main واحد فقط", "footer موجود", "main فيه article أو section"],
+      html: "",
+      css: "", js: "",
+      test: [
+        ["header فيه nav، وفيه رابطان على الأقل", "var h=document.querySelector('header'); if(!h) return false; var n=h.querySelector('nav'); return !!n && n.querySelectorAll('a').length>=2;"],
+        ["main واحد فقط", "return document.querySelectorAll('main').length===1;"],
+        ["footer موجود", "return !!document.querySelector('footer');"],
+        ["main فيه article أو section", "return !!document.querySelector('main article, main section');"]
+      ]
+    },
+    {
+      n: "٩", title: "أول قاعدة CSS", diff: "الدرس 09",
+      brief: "خاطب عنصرًا بالصنف، وآخر بالمعرّف، وغيّر مسافة السطر. ثم لوّن الرابط عند مرور المؤشر.",
+      reqs: ["العنصر .note له خلفية غير شفافة", "العنصر #title له حجم خط أكبر من 24px", "line-height مضبوط", "a:hover موجودة"],
+      html: '<h1 id="title">عنوان</h1>\n<p class="note">فقرة بتنبيه</p>\n<p>فقرة عادية</p>\n<a href="#">رابط</a>',
+      css: "/* اكتب قواعدك هنا */\n",
+      js: "",
+      test: [
+        ["العنصر .note له خلفية غير شفافة", "var e=document.querySelector('.note'); if(!e) return false; var c=getComputedStyle(e).backgroundColor; return c && c!=='rgba(0, 0, 0, 0)' && c!=='transparent';"],
+        ["العنصر #title له حجم خط أكبر من 24px", "var e=document.getElementById('title'); if(!e) return false; return parseFloat(getComputedStyle(e).fontSize)>24;"],
+        ["line-height مضبوط", "var e=document.querySelector('p'); if(!e) return false; var lh=getComputedStyle(e).lineHeight; return lh!=='normal';"],
+        ["a:hover موجودة", "var found=false; for (var i=0;i<document.styleSheets.length;i++){ var r; try{ r=document.styleSheets[i].cssRules; }catch(e){ continue; } for (var j=0;j<r.length;j++){ if(r[j].selectorText && r[j].selectorText.indexOf(':hover')>-1) found=true; } } return found;"]
+      ]
+    },
+    {
+      n: "١٠", title: "صندوق العنصر", diff: "الدرس 10",
+      brief: "اصنع بطاقة: عرض 300، حشو 20، إطار 1px، وbox-sizing: border-box حتى لا يتجاوز عرضها 300.",
+      reqs: ["العنصر .card له عرض 300px فعلًا", "الحشو 20px", "الإطار 1px", "box-sizing = border-box"],
+      html: '<div class="card">محتوى البطاقة</div>',
+      css: "/* اكتب قواعدك هنا */\n",
+      js: "",
+      test: [
+        ["العنصر .card له عرض 300px فعلًا", "var e=document.querySelector('.card'); return e && Math.round(e.getBoundingClientRect().width)===300;"],
+        ["الحشو 20px", "var e=document.querySelector('.card'); return e && parseFloat(getComputedStyle(e).paddingLeft)===20;"],
+        ["الإطار 1px", "var e=document.querySelector('.card'); return e && parseFloat(getComputedStyle(e).borderTopWidth)===1;"],
+        ["box-sizing = border-box", "var e=document.querySelector('.card'); return e && getComputedStyle(e).boxSizing==='border-box';"]
+      ]
+    },
+    {
+      n: "١١", title: "شريط مرن", diff: "الدرس 11",
+      brief: "رتّب شريط تنقّل بـflex: الروابط في صف واحد، بعضها في البداية وبعضها في النهاية، ومتوسّطة رأسيًّا.",
+      reqs: ["display: flex على .nav", "justify-content: space-between", "align-items: center", "الروابط في صف واحد فعلًا"],
+      html: '<nav class="nav"><a href="#">الرئيسية</a><a href="#">الدروس</a><a href="#">عن</a></nav>',
+      css: ".nav { /* اكتب هنا */ }\n",
+      js: "",
+      test: [
+        ["display: flex على .nav", "var e=document.querySelector('.nav'); return e && getComputedStyle(e).display==='flex';"],
+        ["justify-content: space-between", "var e=document.querySelector('.nav'); return e && getComputedStyle(e).justifyContent==='space-between';"],
+        ["align-items: center", "var e=document.querySelector('.nav'); return e && getComputedStyle(e).alignItems==='center';"],
+        ["الروابط في صف واحد فعلًا", "var a=document.querySelectorAll('.nav a'); if(a.length<2) return false; return Math.abs(a[0].getBoundingClientRect().top-a[1].getBoundingClientRect().top)<2;"]
+      ]
+    },
+    {
+      n: "١٢", title: "شبكة ثلاثية", diff: "الدرس 12",
+      brief: "ضع ستة عناصر في شبكة من ثلاث أعمدة متساوية، بمسافة 12px بينها.",
+      reqs: ["display: grid على .grid", "ثلاثة أعمدة", "الأعمدة متساوية العرض", "المسافة 12px"],
+      html: '<div class="grid">\n  <div>١</div><div>٢</div><div>٣</div>\n  <div>٤</div><div>٥</div><div>٦</div>\n</div>',
+      css: ".grid { /* اكتب هنا */ }\n",
+      js: "",
+      test: [
+        ["display: grid على .grid", "var e=document.querySelector('.grid'); return e && getComputedStyle(e).display==='grid';"],
+        ["ثلاثة أعمدة", "var e=document.querySelector('.grid'); if(!e) return false; var t=getComputedStyle(e).gridTemplateColumns.split(' ').filter(function(x){return x!=='';}); return t.length===3;"],
+        ["الأعمدة متساوية العرض", "var e=document.querySelector('.grid'); if(!e) return false; var t=getComputedStyle(e).gridTemplateColumns.split(' ').filter(function(x){return x!=='';}).map(function(x){return Math.round(parseFloat(x));}); return t.length===3 && t[0]===t[1] && t[1]===t[2];"],
+        ["المسافة 12px", "var e=document.querySelector('.grid'); if(!e) return false; return Math.round(parseFloat(getComputedStyle(e).columnGap))===12;"]
+      ]
+    },
+    {
+      n: "١٣", title: "لا تمرير أفقي", diff: "الدرس 13",
+      brief: "هناك عنصر عريض (900px) يسبّب تمريرًا أفقيًّا على الهاتف. أصلحه بلا حذف عرضه الأصلي، وأضف قاعدة @media.",
+      reqs: ["لا تمرير أفقي في الصفحة", "العنصر .wide لا يتجاوز عرض الصفحة", "توجد قاعدة @media فيها max-width"],
+      html: '<div class="wide">عنصر عريض</div>\n<p>نص عادي تحت العنصر.</p>',
+      css: ".wide { width: 900px; background: #eef2e6; }\n\n/* أضف max-width ثم @media */\n",
+      js: "",
+      test: [
+        ["لا تمرير أفقي في الصفحة", "return document.documentElement.scrollWidth <= window.innerWidth + 1;"],
+        ["العنصر .wide لا يتجاوز عرض الصفحة", "var e=document.querySelector('.wide'); if(!e) return false; return e.getBoundingClientRect().width <= window.innerWidth - 8;"],
+        ["توجد قاعدة @media فيها max-width", "var found=false; for (var i=0;i<document.styleSheets.length;i++){ var r; try{ r=document.styleSheets[i].cssRules; }catch(e){ continue; } for (var j=0;j<r.length;j++){ var ct=r[j].conditionText||''; if((r[j].type===4||r[j].media) && ct.indexOf('max-width')>-1) found=true; } } return found;"]
+      ]
+    },
+    {
+      n: "١٤", title: "الوحدات النسبية", diff: "الدرس 14",
+      brief: "اجعل حجم خط الجذر 18px، ثم استخدم rem في الباقي: 1.5rem للعنوان و0.875rem للنص الصغير.",
+      reqs: ["حجم خط html = 18px", ".t حجمه 1.5rem أي 27px", ".s حجمه 0.875rem"],
+      html: '<h1 class="t">عنوان</h1>\n<p class="s">نص صغير</p>',
+      css: "/* اكتب هنا */\n",
+      js: "",
+      test: [
+        ["حجم خط html = 18px", "return Math.round(parseFloat(getComputedStyle(document.documentElement).fontSize))===18;"],
+        [".t حجمه 1.5rem أي 27px", "var e=document.querySelector('.t'); if(!e) return false; return Math.abs(parseFloat(getComputedStyle(e).fontSize)-27)<0.5;"],
+        [".s حجمه 0.875rem", "var e=document.querySelector('.s'); if(!e) return false; return Math.abs(parseFloat(getComputedStyle(e).fontSize)-15.75)<0.5;"]
+      ]
+    },
+    {
+      n: "١٥", title: "بطاقة مشروع", diff: "الدرس 15",
+      brief: "ابنِ قطعة صفحة كاملة: رأس، صفّ من ثلاث بطاقات، وتذييل. هذه هي أول قطعة تصلح لصفحة حقيقية.",
+      reqs: ["header فيه h1", "صفّ .row بثلاث بطاقات .card", "كل بطاقة فيها p", "footer فيه رابط"],
+      html: "",
+      css: "",
+      js: "",
+      test: [
+        ["header فيه h1", "var h=document.querySelector('header h1'); return !!h && h.textContent.trim().length>0;"],
+        ["صفّ .row بثلاث بطاقات .card", "var r=document.querySelector('.row'); if(!r) return false; return r.querySelectorAll('.card').length===3;"],
+        ["كل بطاقة فيها p", "var c=document.querySelectorAll('.card'); if(c.length!==3) return false; for(var i=0;i<c.length;i++){ if(!c[i].querySelector('p')) return false; } return true;"],
+        ["footer فيه رابط", "var f=document.querySelector('footer'); return f && !!f.querySelector('a');"]
+      ]
+    },
+    {
+      n: "١٦", title: "رأس صفحة محترم", diff: "الدرس 16",
+      brief: "اضبط ما لا يراه الزائر: لغة الصفحة، ووصفًا يظهر في نتائج البحث، وعنوانًا دقيقًا، وأيقونة.",
+      reqs: ["lang='ar' على html", "meta description غير فارغ", "meta og:title", "meta og:description", "link rel=icon"],
+      html: "",
+      css: "",
+      js: "",
+      full: true,
+      starter: '<!doctype html>\n<html lang="ar" dir="rtl">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>صفحتي</title>\n  <!-- أضف وسوم head هنا -->\n</head>\n<body>\n  <h1>صفحتي</h1>\n</body>\n</html>',
+      test: [
+        ["lang=\'ar\' على html", "return document.documentElement.lang==='ar';"],
+        ["meta description غير فارغ", "var m=document.querySelector('meta[name=\\'description\\']'); return m && (m.getAttribute('content')||'').trim().length>10;"],
+        ["meta og:title", "var m=document.querySelector('meta[property=\\'og:title\\']'); return m && (m.getAttribute('content')||'').trim().length>0;"],
+        ["meta og:description", "var m=document.querySelector('meta[property=\\'og:description\\']'); return m && (m.getAttribute('content')||'').trim().length>10;"],
+        ["link rel=icon", "return !!document.querySelector('link[rel=\\'icon\\']');"]
+      ]
+    },
+    {
+      n: "١٧", title: "أول سطر JavaScript", diff: "الدرس 17",
+      brief: "اجعل الزر يغيّر نصّ الفقرة عند الضغط فقط. لا قبل الضغط — هذا هو الفرق بين ما يُنفَّذ عند التحميل وما يُنفَّذ عند الحدث.",
+      reqs: ["لا يتغيّر النص قبل الضغط", "اضغط الزر فيصير النص «تم»"],
+      html: '<p id="out">بانتظار الضغط</p>\n<button id="btn">اضغط</button>',
+      css: "",
+      js: "// اكتب هنا\n",
+      test: [
+        ["لا يتغيّر النص قبل الضغط", "var o=document.getElementById('out'); return o && o.textContent.trim()!=='تم';"],
+        ["اضغط الزر فيصير النص «تم»", "var o=document.getElementById('out'), b=document.getElementById('btn'); if(!o||!b) return false; b.click(); return o.textContent.trim()==='تم';"]
+      ]
+    },
+    {
+      n: "١٨", title: "حساب بالسعر والكمية", diff: "الدرس 18",
+      brief: "اقرأ قيمتي الحقلين، احسب الإجمالي، واكتبه في #total، ثم أضف ضريبة 15% في #withTax.",
+      reqs: ["#total = 30", "#withTax = 34.5"],
+      html: '<label>السعر <input id="price" value="15"></label>\n<label>الكمية <input id="qty" value="2"></label>\n<p id="total">—</p>\n<p id="withTax">—</p>',
+      css: "",
+      js: "// اكتب هنا\n",
+      test: [
+        ["#total = 30", "var e=document.getElementById('total'); if(!e) return false; return Math.abs(parseFloat(e.textContent.replace(/[^0-9.\\-]/g,''))-30)<0.001;"],
+        ["#withTax = 34.5", "var e=document.getElementById('withTax'); if(!e) return false; return Math.abs(parseFloat(e.textContent.replace(/[^0-9.\\-]/g,''))-34.5)<0.001;"]
+      ]
+    },
+    {
+      n: "١٩", title: "دالتان", diff: "الدرس 19",
+      brief: "اكتب دالتين: add(a,b) للجمع، وavg(list) للمعدّل. ثم استدعهما واطبع الناتجين في الصفحة.",
+      reqs: ["add دالة ترجع 5 لـadd(2,3)", "avg دالة ترجع 4 لـavg([2,4,6])", "#r1 يعرض 5", "#r2 يعرض 4"],
+      html: '<p id="r1">—</p>\n<p id="r2">—</p>',
+      css: "",
+      js: "function add(a, b) {\n  // ...\n}\n\n// ثم استدعِ الدالتين واكتب الناتج في العنصرين\n",
+      test: [
+        ["add دالة ترجع 5 لـadd(2,3)", "return typeof add==='function' && add(2,3)===5;"],
+        ["avg دالة ترجع 4 لـavg([2,4,6])", "return typeof avg==='function' && avg([2,4,6])===4;"],
+        ["#r1 يعرض 5", "var e=document.getElementById('r1'); return e && e.textContent.indexOf('5')>-1;"],
+        ["#r2 يعرض 4", "var e=document.getElementById('r2'); return e && e.textContent.indexOf('4')>-1;"]
+      ]
+    },
+    {
+      n: "٢٠", title: "قائمة من مصفوفة", diff: "الدرس 20",
+      brief: "أنشئ عناصر القائمة بحلقة من مصفوفة الأسماء، ثم اجعل الزر يضيف صنف done إلى الاسم الأول.",
+      reqs: ["#list فيه ثلاثة li من المصفوفة", "النصوص هي الأسماء نفسها", "الضغط على #toggle يضيف done للأول"],
+      html: '<ul id="list"></ul>\n<button id="toggle">أنجز الأول</button>',
+      css: ".done { text-decoration: line-through; }\n",
+      js: "var names = ['محمّد', 'سارة', 'علي'];\n\n// اكتب حلقة تبني العناصر\n",
+      test: [
+        ["#list فيه ثلاثة li من المصفوفة", "var u=document.getElementById('list'); return u && u.querySelectorAll('li').length===3;"],
+        ["النصوص هي الأسماء نفسها", "var u=document.getElementById('list'); if(!u) return false; var t=Array.prototype.map.call(u.querySelectorAll('li'),function(l){return l.textContent.trim();}); return t.join('|')==='محمّد|سارة|علي';"],
+        ["الضغط على #toggle يضيف done للأول", "var b=document.getElementById('toggle'), u=document.getElementById('list'); if(!b||!u||!u.firstElementChild) return false; b.click(); return u.firstElementChild.classList.contains('done');"]
+      ]
+    },
+    {
+      n: "٢١", title: "لون واحد لكل شيء", diff: "الدرس 21",
+      brief: "عرّف متغيّرًا اسمه --brand في :root، واجعل لون العنوان وخلفية الزرّ منه. ثم لا تكرّر اللون في أي قاعدة.",
+      reqs: ["المتغيّر --brand معرّف", "رأس h1 لونه هو نفسه", "خلفية .btn هي نفس اللون"],
+      html: '<h1>لون واحد</h1>\n<button class="btn">زر</button>',
+      css: "/* اكتب هنا: عرّف --brand ثم استعمله */\n",
+      js: "",
+      test: [
+        ["المتغيّر --brand معرّف", "var v=getComputedStyle(document.documentElement).getPropertyValue('--brand'); return v && v.trim().length>0;"],
+        ["رأس h1 لونه هو نفسه", "var v=getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(); var el=document.querySelector('h1'); if(!v||!el) return false; function rgb(h){h=h.replace('#','').trim(); if(h.length===3) h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2]; var n=parseInt(h,16); if(isNaN(n)) return h; return 'rgb('+((n>>16)&255)+', '+((n>>8)&255)+', '+(n&255)+')';} var c=getComputedStyle(el).color; return c===rgb(v) || c===v;"],
+        ["خلفية .btn هي نفس اللون", "var v=getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(); var el=document.querySelector('.btn'); if(!v||!el) return false; function rgb(h){h=h.replace('#','').trim(); if(h.length===3) h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2]; var n=parseInt(h,16); if(isNaN(n)) return h; return 'rgb('+((n>>16)&255)+', '+((n>>8)&255)+', '+(n&255)+')';} var c=getComputedStyle(el).backgroundColor; return c===rgb(v) || c===v;"]
+      ]
+    },
+    {
+      n: "٢٢", title: "بطاقة تهدأ", diff: "الدرس 22",
+      brief: "أعطِ .card انتقالًا قصيرًا على transform، واجعلها ترتفع قليلًا عند المرور، ولا تنسَ من ضبط جهازه على تقليل الحركة.",
+      reqs: ["لـ .card مدة انتقال أقل من نصف ثانية", "قاعدة :hover فيها transform", "قاعدة prefers-reduced-motion موجودة"],
+      html: '<div class="card">مرّر المؤشّر فوقي</div>',
+      css: "/* اكتب هنا */\n",
+      js: "",
+      test: [
+        ["لـ .card مدة انتقال أقل من نصف ثانية", "var el=document.querySelector('.card'); if(!el) return false; var d=getComputedStyle(el).transitionDuration; if(!d) return false; var v=parseFloat(d.split(',')[0]); return v>0 && v<=0.5;"],
+        ["قاعدة :hover فيها transform", "var found=false; for(var i=0;i<document.styleSheets.length;i++){var r; try{r=document.styleSheets[i].cssRules;}catch(e){continue;} for(var j=0;j<r.length;j++){var st=r[j]; if(st.selectorText && st.selectorText.indexOf(':hover')>-1 && st.style && st.style.transform) found=true; for(var k=0;st.cssRules&&k<st.cssRules.length;k++){var s2=st.cssRules[k]; if(s2.selectorText && s2.selectorText.indexOf(':hover')>-1 && s2.style && s2.style.transform) found=true;}}} return found;"],
+        ["قاعدة prefers-reduced-motion موجودة", "var found=false; for(var i=0;i<document.styleSheets.length;i++){var r; try{r=document.styleSheets[i].cssRules;}catch(e){continue;} for(var j=0;j<r.length;j++){var st=r[j]; var ct=st.conditionText||st.media&&st.media.mediaText||''; if(ct && ct.indexOf('prefers-reduced-motion')>-1) found=true;}} return found;"]
+      ]
+    }
+  ];
+
+  var current = 0;
+  var KEY = "masar.chal.v1";
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { store = {}; }
+
+  function saveTask() {
+    store[current] = { html: $("ta-html").value, css: $("ta-css").value, js: $("ta-js").value };
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+  }
+
+  function buildDoc(extraScript) {
+    var html = $("ta-html").value;
+    if (TASKS[current].full) {
+      // الكود كامل: نحقن الستايل والاختبار قبل إغلاق head/body إن أمكن
+      var doc = html;
+      var style = "<style>" + BASE_CSS + $("ta-css").value + "</style>";
+      var script = "<script>" + $("ta-js").value + "<\/script>" + (extraScript || "");
+      if (doc.indexOf("</head>") > -1) doc = doc.replace("</head>", style + "</head>");
+      else if (doc.indexOf("<head>") > -1) doc = doc.replace("<head>", "<head>" + style);
+      else doc = style + doc;
+      if (doc.indexOf("</body>") > -1) doc = doc.replace("</body>", script + "</body>");
+      else doc = doc + script;
+      return doc;
+    }
+    return "<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\">" +
+      "<style>" + BASE_CSS + $("ta-css").value + "</style></head><body>" + html +
+      "<script>" + $("ta-js").value + "<\/script>" + (extraScript || "") + "</body></html>";
+  }
+
+  function preview() {
+    var frame = $("prev");
+    frame.srcdoc = buildDoc("");
+  }
+
+  var pending = null;
+
+  function runTests() {
+    var list = $("results");
+    list.innerHTML = "";
+    $("verdict").textContent = "يُفحص…";
+    $("verdict").className = "verdict";
+    if (pending) { clearTimeout(pending); }
+    pending = setTimeout(function () {
+      pending = null;
+      var v = $("verdict");
+      if (v.textContent !== "يُفحص…") return;
+      v.textContent = "لم يصل الفحص. تأكّد أن كودك يحتوي <head> و<body> — أو اضغط «افحص كودي» مرة أخرى.";
+      v.className = "verdict no";
+    }, 3500);
+
+    var tests = TASKS[current].test;
+    var code = "window.addEventListener('load', function(){ setTimeout(function(){ var out=[];\n";
+    tests.forEach(function (t, i) {
+      code += "try { out.push([" + JSON.stringify(t[0]) + ", !!" + "(function(){ " + t[1] + " })()]); } catch(e) { out.push([" + JSON.stringify(t[0]) + ", false]); }\n";
+    });
+    code += "parent.postMessage({masarCheck:true, results:out}, '*'); }, 120); });";
+
+    $("prev").srcdoc = buildDoc("<script>" + code + "<\/script>");
+  }
+
+  window.addEventListener("message", function (e) {
+    var d = e.data;
+    if (!d || !d.masarCheck) return;
+    if (pending) { clearTimeout(pending); pending = null; }
+    var list = $("results");
+    list.innerHTML = "";
+    var pass = 0;
+    d.results.forEach(function (r) {
+      var li = document.createElement("li");
+      li.className = r[1] ? "ok" : "no";
+      li.textContent = (r[1] ? "✓ " : "✗ ") + r[0];
+      list.appendChild(li);
+      if (r[1]) pass++;
+    });
+    var v = $("verdict");
+    if (pass === d.results.length) {
+      v.textContent = "نجحت كلها — أحسنت. حُفظ إنجاز هذا الدرس عندك. مرّ إلى التحدي التالي.";
+      v.className = "verdict ok";
+      if (window.MasarDone) window.MasarDone.mark(current + 1);
+    } else {
+      v.textContent = "نجحت " + pass + " من " + d.results.length + ". اقرأ الشرط الأحمر وأصلح شيئًا واحدًا فقط في كل مرة.";
+      v.className = "verdict no";
+    }
+  });
+
+  function loadTask(i) {
+    current = i;
+    var t = TASKS[i];
+    document.querySelectorAll("#chList button").forEach(function (b) {
+      b.setAttribute("aria-selected", String(Number(b.dataset.i) === i));
+    });
+    $("chTitle").textContent = "تحدي " + t.n + " — " + t.title;
+    $("chDiff").textContent = t.diff;
+    $("chBrief").textContent = t.brief;
+    var ol = $("chReqs");
+    ol.innerHTML = "";
+    t.reqs.forEach(function (r) {
+      var li = document.createElement("li");
+      li.textContent = r;
+      ol.appendChild(li);
+    });
+
+    var saved = store[i];
+    $("ta-html").value = saved ? saved.html : (t.full ? t.starter : t.html);
+    $("ta-css").value = saved ? saved.css : t.css;
+    $("ta-js").value = saved ? saved.js : t.js;
+    $("results").innerHTML = "";
+    $("verdict").textContent = "";
+    preview();
+  }
+
+  /* بناء أزرار التحديات */
+  TASKS.forEach(function (t, i) {
+    var b = document.createElement("button");
+    var tick = document.createElement("span");
+    tick.className = "tick";
+    b.appendChild(tick);
+    b.appendChild(document.createTextNode(t.n + " · " + t.title));
+    b.dataset.chLink = String(i + 1);
+    b.dataset.i = String(i);
+    b.setAttribute("role", "tab");
+    b.addEventListener("click", function () { saveTask(); loadTask(i); });
+    $("chList").appendChild(b);
+  });
+
+  $("checkBtn").addEventListener("click", function () { saveTask(); runTests(); });
+  $("resetBtn").addEventListener("click", function () {
+    var t = TASKS[current];
+    $("ta-html").value = t.full ? t.starter : t.html;
+    $("ta-css").value = t.css;
+    $("ta-js").value = t.js;
+    saveTask();
+    $("results").innerHTML = "";
+    $("verdict").textContent = "";
+    preview();
+  });
+
+  ["ta-html", "ta-css", "ta-js"].forEach(function (id) {
+    $(id).addEventListener("input", function () { saveTask(); });
+  });
+
+  loadTask(0);
+})();
+</script>
+<script src="assets/app.js"></script>
+<script src="assets/progress.js"></script>
+</body>
+</html>

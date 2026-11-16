@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>القاموس — كل مصطلح بجملة واحدة تفهمها — فاصلة</title>
+<meta name="description" content="قاموس مبسّط لمصطلحات HTML وCSS: وسوم، خصائص، محدِّدات، صندوق العنصر — كل كلمة بجملة واحدة بلا مصطلحات." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/glossary.html" />
+<meta property="og:title" content="القاموس — كل مصطلح بجملة واحدة تفهمها — فاصلة" />
+<meta property="og:description" content="قاموس مبسّط لمصطلحات HTML وCSS: وسوم، خصائص، محدِّدات، صندوق العنصر — كل كلمة بجملة واحدة بلا مصطلحات." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="lab.html">المختبر</a>
+      <a href="challenges.html">تحديات</a>
+      <a href="start.html">البداية</a>
+      <a href="index.html">الرئيسية</a>
+      <a class="nav-cta" href="lessons/01-what-is-html.html">ابدأ الدرس 01</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page-shell" style="padding-top:28px">
+
+  <div style="max-width:720px;margin:0 auto 24px">
+    <span class="eyebrow">قاموس · 6 دقائق</span>
+    <h1 style="font-size:clamp(23px,3vw,31px);line-height:1.45;margin:8px 0 10px">
+      كل مصطلح، بجملة واحدة تفهمها
+    </h1>
+    <p style="font-size:15px;line-height:1.9;color:var(--ink-soft);margin:0">
+      هذه الصفحة ليست درسًا. هي المكان الذي تعود إليه حين تصادف كلمة لا تعرفها.
+      كل تعريف مكتوب بما يفهمه من عمره عشر سنوات — ولو كان أكبر، فلن يضرّه.
+    </p>
+  </div>
+
+  <div style="max-width:720px;margin:0 auto">
+    <div class="callout idea" style="border:1px solid rgba(23,35,31,.14);border-radius:14px;padding:16px 18px;background:var(--surface)">
+      <b>تشبيه واحد يشرح كل شيء</b>
+      <p style="margin:8px 0 0;font-size:14px;line-height:1.95;color:var(--ink-soft)">
+        تخيّل أنك تبني بيتًا. <b>HTML</b> هي الطوب والجدران: يقول «هنا غرفة، هنا باب».
+        <b>CSS</b> هي الدهان والأثاث: يقول «هذه الغرفة بيضاء، وهذا الباب خشبي».
+        <b>JavaScript</b> هي الكهرباء والمفاتيح: يقول «حين تضغط هذا الزر يُضيء النور».
+        البيت بلا طوب لا وجود له، وبلا دهان قبيح، وبلا كهرباء ميّت.
+      </p>
+    </div>
+  </div>
+
+  <h2 style="max-width:720px;margin:30px auto 12px;font-size:19px">كلمات HTML</h2>
+
+  <div class="glossary" style="max-width:720px;margin:0 auto;display:grid;gap:8px">
+    <div class="term"><b>وسم (Tag)</b><span>علامة مكتوبة بين &lt; و &gt; تخبر المتصفح بمعنى قطعة من الكلام. مثل &lt;p&gt; تعني «هذه فقرة».</span></div>
+    <div class="term"><b>عنصر (Element)</b><span>الوسم كاملًا: الفتح + الكلام + الإغلاق. &lt;p&gt;مرحبًا&lt;/p&gt; = عنصر واحد.</span></div>
+    <div class="term"><b>خاصية (Attribute)</b><span>معلومة إضافية داخل وسم الفتح. مثل href تقول «إلى أين يذهب هذا الرابط».</span></div>
+    <div class="term"><b>وسم فارغ</b><span>وسم لا يحتوي شيئًا ولا يُغلق. مثل &lt;br&gt; أي «انزل سطرًا»، و &lt;img&gt; أي «ضع صورة».</span></div>
+    <div class="term"><b>head</b><span>رأس الملف: معلومات عن الصفحة لا يراها الزائر، مثل عنوانها في تبويب المتصفح.</span></div>
+    <div class="term"><b>body</b><span>جسم الصفحة: كل ما يراه الزائر بعينه.</span></div>
+    <div class="term"><b>doctype</b><span>أول سطر في الملف، يقول للمتصفح: «هذه صفحة حديثة، اعرضها بالطريقة الصحيحة».</span></div>
+    <div class="term"><b>دلالي (Semantic)</b><span>وسم يشرح معناه بنفسه. header يعني «رأس صفحة»، div يعني «صندوق لا معنى له».</span></div>
+    <div class="term"><b>مسار نسبي</b><span>عنوان ملف يُحسب من مكان الملف الذي تكتب فيه. مثل «../» أي «اصعد مجلدًا واحدًا».</span></div>
+    <div class="term"><b>alt</b><span>كلام يصف الصورة. يُقرأ لمن لا يرى، ويظهر مكانها إن فشلت.</span></div>
+  </div>
+
+  <h2 style="max-width:720px;margin:30px auto 12px;font-size:19px">كلمات CSS</h2>
+
+  <div class="glossary" style="max-width:720px;margin:0 auto;display:grid;gap:8px">
+    <div class="term"><b>قاعدة (Rule)</b><span>سطر يقول «هذا الشيء، هذه صفاته». مثل: p { color: red } أي كل الفقرات حمراء.</span></div>
+    <div class="term"><b>محدِّد (Selector)</b><span>الجزء الأول من القاعدة: مَن أخاطب؟ عنصر؟ صنف؟ معرّف؟</span></div>
+    <div class="term"><b>تصريح (Declaration)</b><span>سطر واحد داخل القاعدة: خاصية ثم نقطتان ثم قيمة ثم فاصلة منقوطة.</span></div>
+    <div class="term"><b>صنف (class)</b><span>اسم تضعُه على أي عنصر بـclass="note"، وتخاطبه في CSS بنقطة: .note — ويصلح لعناصر كثيرة.</span></div>
+    <div class="term"><b>معرّف (id)</b><span>اسم لعنصر واحد فقط في الصفحة، يُخاطب في CSS بعلامة #. مثله مثل رقم الهوية.</span></div>
+    <div class="term"><b>أولوية (Specificity)</b><span>حين تتعارض قاعدتان، يفوز الأقوى: المعرّف أقوى من الصنف، والصنف أقوى من اسم العنصر.</span></div>
+    <div class="term"><b>صندوق العنصر</b><span>كل عنصر صندوق: محتواه في القلب، ثم حشو، ثم إطار، ثم هامش خارجي.</span></div>
+    <div class="term"><b>padding (حشو)</b><span>مسافة داخلية بين الكلام والإطار. مثل الهامش الأبيض في صفحة الكتاب.</span></div>
+    <div class="term"><b>margin (هامش)</b><span>مسافة خارجية بين هذا الصندوق والصندوق الذي بجانبه. مثل المسافة بين كتابين على الرف.</span></div>
+    <div class="term"><b>border (إطار)</b><span>الخط المحيط بالصندوق.</span></div>
+    <div class="term"><b>box-sizing</b><span>سطر يجعلك تحسب العرض كما تراه بعينك: شاملًا للحشو والإطار. أنصح به دائمًا.</span></div>
+    <div class="term"><b>Flexbox</b><span>طريقة لترتيب الأشياء في سطر واحد وتوزيع المسافة بينها. للصفوف.</span></div>
+    <div class="term"><b>Grid</b><span>طريقة لترتيب الأشياء في شبكة لها صفوف وأعمدة. للتخطيطات الكبيرة.</span></div>
+    <div class="term"><b>fr</b><span>«جزء من المساحة الباقية». 1fr 1fr = نصفين، 2fr 1fr = ثلثين وثلث.</span></div>
+    <div class="term"><b>gap</b><span>المسافة بين الأشياء داخل Flexbox أو Grid.</span></div>
+    <div class="term"><b>rem</b><span>وحدة حجم تُقاس على حجم الخط الأساسي. 1rem = 16 عادةً.</span></div>
+    <div class="term"><b>media query</b><span>قاعدة تقول «طبّق هذا فقط إن كانت الشاشة أعرض من كذا».</span></div>
+    <div class="term"><b>viewport</b><span>سطر يُخبر الهاتف: عرض الصفحة = عرض شاشتك، فلا تصغّرها.</span></div>
+  </div>
+
+  <h2 style="max-width:720px;margin:30px auto 12px;font-size:19px">كلمات JavaScript</h2>
+
+  <div class="glossary" style="max-width:720px;margin:0 auto;display:grid;gap:8px">
+    <div class="term"><b>متغيّر (let)</b><span>صندوق صغير تضع فيه قيمة وتغيّرها وقتما شئت: <code>let age = 12</code>.</span></div>
+    <div class="term"><b>ثابت (const)</b><span>مثل المتغيّر لكنه لا يتغيّر بعده أبدًا.</span></div>
+    <div class="term"><b>console.log</b><span>«اطبع لي» — تكتب رسالة في لوحة المطوّر لتتأكد أن شيئًا حدث.</span></div>
+    <div class="term"><b>دالة (function)</b><span>وصفة محفوظة: تكتب الخطوات مرة، وتطلبها بمئة مرة باسمها.</span></div>
+    <div class="term"><b>حدث (event)</b><span>شيء يحدث في الصفحة: ضغطة، كتابة، تحميل. وأنت تربطها بعمل.</span></div>
+    <div class="term"><b>DOM</b><span>شجرة العناصر كما يراها المتصفح. JavaScript تستطيع أن تمسك أي عنصر فيها وتغيّره.</span></div>
+    <div class="term"><b>شرط (if)</b><span>«إن كان كذا فافعل كذا، وإلا فافعل غيره».</span></div>
+    <div class="term"><b>حلقة (loop)</b><span>«كرّر هذا العمل عشر مرات» بدل أن تكتبه عشر مرات.</span></div>
+    <div class="term"><b>مصفوفة (array)</b><span>قائمة مرتّبة من القيم داخل قوسين مربّعين: [1, 2, 3].</span></div>
+    <div class="term"><b>كائن (object)</b><span>مجموعة أزواج اسم وقيمة: {name: "أحمد", age: 12}.</span></div>
+  </div>
+
+  <div style="max-width:720px;margin:26px auto 0;display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn" href="lessons/01-what-is-html.html" style="text-decoration:none">ابدأ من الدرس الأول</a>
+    <a class="btn ghost" href="index.html" style="text-decoration:none">خريطة الدورة</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="privacy.html">سياسة الخصوصية</a></span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script src="assets/progress.js"></script>
+</body>
+</html>

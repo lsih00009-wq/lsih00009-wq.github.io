@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="1">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>العناوين والفقرات والنص — فاصلة</title>
+<meta name="description" content="الدرس الثالث: h1 إلى h6، ولماذا التشابه البصري يكذب، وstrong مقابل b، وem مقابل i." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/03-headings-and-text.html" />
+<meta property="og:title" content="العناوين والفقرات والنص — فاصلة" />
+<meta property="og:description" content="الدرس الثالث: h1 إلى h6، ولماذا التشابه البصري يكذب، وstrong مقابل b، وem مقابل i." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="04-links-and-images.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الأولى · الهيكل</div>
+    <h1>العناوين والفقرات والنص</h1>
+    <p class="lead">
+      أكثر ما ستكتبه في حياتك هو نص. والفرق بين صفحة مفهومة وصفحة فوضى ليس
+      في الشكل، بل في أن كل نص وُضع تحت العنصر الذي يعبّر عن وظيفته.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 03</span><span>مبتدئ</span><span>18 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>العنوان يشبه لوحة كبيرة على باب غرفة: يدلّ على ما داخلها. الفقرة كلام عادي. الخط العريض يعني «هذه الكلمة مهمة».</p>
+  </div>
+
+
+  <h2 id="headings">العناوين: ست درجات، لا ستة أحجام</h2>
+  <p>
+    عندك <code>&lt;h1&gt;</code> حتى <code>&lt;h6&gt;</code>. وهي ليست
+    «ستة أحجام للخط» كما يظن البعض، بل <strong>هرم للمعنى</strong>: الدرجة
+    الأولى عنوان الصفحة، والثانية عنوان قسم داخلها، والثالثة عنوان فرع
+    داخل القسم، وهكذا.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>outline.html</span><button data-copy>نسخ</button><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;h1&gt;دورة HTML&lt;/h1&gt;
+&lt;p&gt;مقدمة قصيرة عن الدورة.&lt;/p&gt;
+
+&lt;h2&gt;الوحدة الأولى: الهيكل&lt;/h2&gt;
+&lt;p&gt;ماذا ستتعلم فيها.&lt;/p&gt;
+
+&lt;h3&gt;الدرس الأول&lt;/h3&gt;
+&lt;p&gt;تفاصيل الدرس.&lt;/p&gt;
+
+&lt;h2&gt;الوحدة الثانية: التنظيم&lt;/h2&gt;
+&lt;p&gt;ماذا ستتعلم فيها.&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال» لترى شكل الهرم.</div></div>
+
+  <h3>لماذا هذا التدرّج مهم فعلًا؟</h3>
+  <ul>
+    <li><strong>للقارئ:</strong> عينه تعرف أين تقع، وتستطيع القفز إلى ما يهمه.</li>
+    <li><strong>لقارئ الشاشة:</strong> الكفيف يتنقّل بين العناوين كأنها فهرس؛ فإن كانت كلها <code>h1</code> فقد الفهرس معناه.</li>
+    <li><strong>لمحرك البحث:</strong> يفهم موضوع الصفحة وأقسامها، فيعرضها لمن يبحث عن هذه الأقسام.</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>الخطأ الأكبر في هذا الدرس</b>
+    <p>
+      اختيار العنوان حسب حجمه. «أريد هذا النص صغيرًا فسأستخدم <code>h6</code>».
+      هذا خلط بين المعنى والشكل، ونتيجته صفحة تبدو جيدة ولا يفهمها إلا من
+      يراها. الحجم يُضبط بـ CSS، والمعنى يُحدّده HTML.
+    </p>
+  </div>
+
+  <h3>قواعد عملية للعناوين</h3>
+  <ul>
+    <li><code>&lt;h1&gt;</code> واحد في الصفحة، يعبّر عن موضوعها كله.</li>
+    <li>لا تتخطَّ درجة: بعد <code>h2</code> يأتي <code>h3</code>، لا <code>h4</code>.</li>
+    <li>لا تستخدم العنوان لتكبير نص؛ استخدم <code>&lt;p&gt;</code> مع تنسيق لاحقًا.</li>
+  </ul>
+
+  <h2 id="paragraphs">الفقرات: الوحدة الأساسية للقراءة</h2>
+  <p>
+    <code>&lt;p&gt;</code> ليست «نصًّا مع سطر جديد». هي <strong>فكرة واحدة
+    مترابطة</strong>. القاعدة الصحفية القديمة تنفع هنا: فكرة واحدة لكل فقرة،
+    وإن طالت الفقرة عن خمسة أسطر فقد تحتاج تقسيمًا.
+  </p>
+  <p>
+    والمتصفح يتجاهل ما تكتبه من مسافات وأسطر داخل الكود. إن ضغطت Enter عشر
+    مرات داخل الفقرة، فسيظهر بينها مسافة واحدة فقط. لماذا؟ لأن المسافات
+    جزء من التنسيق لا من المحتوى، وتُضبط بـ CSS.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>whitespace.html</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;p&gt;هذه الجملة
+كتبتها على
+ثلاثة أسطر، وستظهر في سطر واحد.&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <h3>وماذا لو أردت سطرًا جديدًا فعلًا؟</h3>
+  <p>
+    <code>&lt;br&gt;</code> يكسر السطر داخل نفس الفقرة. استخدمه في حالات
+    محدودة: عنوان بريدي، أو سطر شعر. أما لو كان عندك موضوعان مختلفان، فالأصح
+    فقرتان منفصلتان لا فقرة فيها <code>&lt;br&gt;</code>.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>address.html</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;p&gt;القاهرة، مصر&lt;br&gt;
+شارع النيل، مبنى ١٢&lt;br&gt;
+الرمز البريدي: ١١٥١١&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <h2 id="inline">التأكيد داخل النص: أزواج يخطئ فيها الجميع</h2>
+  <p>
+    هنا يظهر الفرق الحقيقي بين من يفهم HTML ومن يحفظه. عندك زوجان متشابهان
+    بصريًّا ومختلفان معنويًّا:
+  </p>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>&lt;strong&gt;</code>
+      <p>أهمية قوية. «هذا مهم، لا تتجاهله». يظهر عريضًا افتراضيًّا، وقارئ الشاشة يرفع صوته عنده.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>&lt;b&gt;</code>
+      <p>عريض بصريًّا فقط، بلا دلالة أهمية. استخدمه حين تريد الشكل وحده، وهو نادر.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>&lt;em&gt;</code>
+      <p>تشديد وتغيير في نبرة الجملة. «لم أقل ذلك» تختلف عن «لم أ<em>قل</em> ذلك».</p>
+    </div>
+    <div class="anatomy-row">
+      <code>&lt;i&gt;</code>
+      <p>مائل بصريًّا: اسم كتاب، مصطلح أجنبي، أو كلمة بلغة أخرى. ليس تشديدًا.</p>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-head"><span>emphasis.html</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;p&gt;احفظ الملف قبل أن تُغلق المحرّر، &lt;strong&gt;وإلا فقدت عملك&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;لم أقل إن الحفظ التلقائي &lt;em&gt;يكفي&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;قرأت كتاب &lt;i&gt;The Pragmatic Programmer&lt;/i&gt; مرتين.&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <h2 id="quotes">الاقتباس والكود</h2>
+  <p>
+    لو نقلت كلامًا من مصدر آخر، فله عناصره الخاصة. وهذا مهم لأمرين:
+    الأمانة، وفهم القارئ أن هذا ليس كلامك.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>quote.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;blockquote cite="https://example.com"&gt;
+  &lt;p&gt;البساطة شرط أساسي للاعتمادية.&lt;/p&gt;
+  &lt;footer&gt;— إزجر ديكسترا&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;استخدم &lt;code&gt;const&lt;/code&gt; بدل &lt;code&gt;var&lt;/code&gt;.&lt;/p&gt;</code></pre>
+  </div>
+
+  <ul>
+    <li><code>&lt;blockquote&gt;</code> لاقتباس طويل مستقل بفقرة.</li>
+    <li><code>&lt;q&gt;</code> لاقتباس قصير داخل سطر.</li>
+    <li><code>&lt;code&gt;</code> لقطعة كود داخل نص.</li>
+    <li><code>&lt;pre&gt;</code> لنص تحفظ مسافاته وأسطره كما هي.</li>
+  </ul>
+
+  <h2 id="entities">الحروف المحجوزة: لماذا أكتب <code>&amp;lt;</code>؟</h2>
+  <p>
+    المتصفح يعرف أن <code>&lt;</code> يبدأ وسمًا. فماذا لو أردت أن تعرض
+    الرمز نفسه على الشاشة؟ تكتبه بترميز خاص يُسمّى «كيان»:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>entities.html</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;p&gt;لكتابة وسم ظاهر أكتب: &amp;lt;p&amp;gt; فيظهر هكذا: &lt;p&gt;&lt;/p&gt;
+&lt;p&gt;رمز العلامة التجارية: &amp;copy; — والمسافة غير القابلة للكسر: &amp;nbsp;&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <p>أكثر أربعة ستستخدمها: <code>&amp;lt;</code> و<code>&amp;gt;</code> و<code>&amp;amp;</code> و<code>&amp;quot;</code>.</p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> أكثر من <code>h1</code> في الصفحة، أو تخطّي درجات العنوان.</li>
+    <li><span>!</span> استخدام <code>&lt;br&gt;&lt;br&gt;</code> لصناعة فاصل بين فقرتين — استخدم فقرتين.</li>
+    <li><span>!</span> تغليف كل سطر في <code>&lt;p&gt;</code> منفصل حتى يصبح النص مقطّعًا لا يُقرأ.</li>
+    <li><span>!</span> كتابة <code>&lt;</code> داخل النص دون ترميز، فيختفي جزء من كلامك.</li>
+    <li><span>!</span> استخدام <code>&lt;b&gt;</code> و<code>&lt;i&gt;</code> للتأكيد الدلالي بدل <code>strong</code> و<code>em</code>.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>١٠ دقائق · تمرين حقيقي</b>
+    <p>
+      اكتب صفحة «عن نفسي» بعنوان رئيسي واحد، وقسمين بعنوانين من الدرجة
+      الثانية، وفقرة واحدة على الأقل تحت كل قسم. ضمّن: جملة مهمة بـ
+      <code>strong</code>، وكلمة تشديد بـ <code>em</code>، واقتباسًا من شخص
+      تحبّه داخل <code>blockquote</code>، وسطر عنوان بريدي فيه
+      <code>br</code>.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>about.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h1&gt;سالم&lt;/h1&gt;
+&lt;p&gt;أكتب برامج صغيرة، وأتعلّم الويب لأنني أريد أن أفهم ما أراه على الشاشة.&lt;/p&gt;
+
+&lt;h2&gt;ما أفعله الآن&lt;/h2&gt;
+&lt;p&gt;أبني تطبيقًا للمهام، وأدرس HTML كل صباح قبل الجامعة.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;القاعدة التي لا أكسرها:&lt;/strong&gt; لا أحفظ شيئًا لم أفهمه.&lt;/p&gt;
+
+&lt;h2&gt;كلمة أحبها&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;البساطة شرط أساسي للاعتمادية.&lt;/p&gt;
+  &lt;footer&gt;— إزجر ديكسترا&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ولذلك أحذف من كل مشروع أكثر مما أضيف.&lt;/p&gt;
+
+&lt;h2&gt;كيف تصل إليّ&lt;/h2&gt;
+&lt;p&gt;القاهرة، مصر&lt;br&gt;
+صندوق بريد: ١٢٣٤٥&lt;/p&gt;</code></pre>
+      </div>
+      <p>
+        راجع حلك بسؤال واحد: لو حذفت كل تنسيق من الصفحة، هل يبقى المعنى
+        مفهومًا؟ إن كان نعم، فأنت كتبت HTML صحيحًا.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين <code>h2</code> و<code>h4</code> غير الحجم؟</li>
+      <li>لماذا يتجاهل المتصفح أسطري الفارغة داخل الفقرة؟</li>
+      <li>متى أستخدم <code>strong</code> ومتى <code>b</code>؟</li>
+      <li>كيف أعرض الرمز <code>&lt;</code> على الشاشة كنص؟</li>
+    </ol>
+  </div>
+
+
+  <div id="lessonQuiz" data-quiz="3"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="02-document-structure.html"><small>السابق</small>هيكل الصفحة</a>
+  <a href="04-links-and-images.html"><small>التالي</small>الروابط والصور</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

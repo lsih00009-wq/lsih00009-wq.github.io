@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="3">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>أول قاعدة CSS: من يخاطب من؟ — فاصلة</title>
+<meta name="description" content="الدرس التاسع: كيف تكتب أول قاعدة CSS، وأنواع المحدِّدات، وأين تُكتب القاعدة، ولماذا الملف الخارجي هو الصواب." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/09-first-css.html" />
+<meta property="og:title" content="أول قاعدة CSS: من يخاطب من؟ — فاصلة" />
+<meta property="og:description" content="الدرس التاسع: كيف تكتب أول قاعدة CSS، وأنواع المحدِّدات، وأين تُكتب القاعدة، ولماذا الملف الخارجي هو الصواب." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="10-box-model.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثالثة · المظهر</div>
+    <h1>أول قاعدة CSS: من يخاطب من؟</h1>
+    <p class="lead">
+      CSS ليست «تزيينًا». هي نظام قواعد: كل قاعدة تقول «هذه الفئة من العناصر،
+      هذه صفاتها». أول ما تحتاجه ليس الألوان، بل أن تعرف كيف تصل القاعدة إلى عنصرها.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 09</span><span>مبتدئ</span><span>20 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>CSS قواعد: «كل الفقرات، خطّها كذا». نكتب القاعدة مرة، فتطيعها كل الفقرات. ونضعها في ملف منفصل حتى نغيّر شكل الموقع كله من مكان واحد.</p>
+  </div>
+
+
+  <h2 id="shape">شكل القاعدة</h2>
+  <p>كل CSS، بلا استثناء، مكوّنة من ثلاث قطع:</p>
+
+  <div class="code-block">
+    <div class="code-head"><span>style.css</span><button data-copy>نسخ</button></div>
+<pre><code>p {
+  color: #24352c;
+  font-size: 16px;
+}</code></pre>
+  </div>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>p</code>
+      <p>المحدِّد (selector): مَن أخاطب؟ هنا: كل فقرة في الصفحة.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>{ }</code>
+      <p>كتلة التصريحات: كل ما سأقوله عن هذا العنصر يوضع بينهما.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>color: #24352c;</code>
+      <p>تصريح واحد: خاصية، ثم نقطتان، ثم قيمة، ثم فاصلة منقوطة. لا تنسَ الفاصلة المنقوطة، فهي أكثر سبب للأخطاء الصامتة.</p>
+    </div>
+  </div>
+
+  <h2 id="where">أين تُكتب؟ ثلاث طرق، واحدة صحيحة</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>ثلاث طرق</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;!-- ١) داخلي: داخل وسم الفتح --&gt;
+&lt;p style="color: red"&gt;نص&lt;/p&gt;
+
+&lt;!-- ٢) في الصفحة: داخل head --&gt;
+&lt;style&gt;
+  p { color: red; }
+&lt;/style&gt;
+
+&lt;!-- ٣) ملف خارجي: في head --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+  </div>
+
+  <ul>
+    <li><strong>الداخلي (inline)</strong> — أقوى في الأولوية، وأسوأ في كل شيء آخر: يخلط المعنى بالشكل، ويكرّر نفسه، ويستحيل تعديله في عشر صفحات.</li>
+    <li><strong>داخل الصفحة (style)</strong> — مقبول لتجربة سريعة، أو لصفحة واحدة خاصة.</li>
+    <li><strong>ملف خارجي</strong> — الصواب في كل مشروع حقيقي: المتصفح يحمّله مرة واحدة ويزوره من الذاكرة في بقية الصفحات، وتُعدّل التصميم كله من ملف واحد.</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>قاعدة عملية</b>
+    <p>
+      إن وجدت نفسك تكتب <code>style="..."</code> في HTML، اسأل: هل هذه الحالة استثناء
+      واحد في الدنيا؟ إن لم يكن، فمكانه الملف الخارجي. الكود الذي يسهل تعديله
+      هو الكود الذي يعيش.
+    </p>
+  </div>
+
+  <h2 id="selectors">المحدِّدات: كيف تخاطب عنصرًا بعينه</h2>
+  <p>ثلاثة أنواع تكفي في ٩٥٪ من عملك:</p>
+
+  <div class="code-block">
+    <div class="code-head"><span>selectors.css</span><button data-copy>نسخ</button></div>
+<pre><code>/* ١) باسم العنصر: كل الفقرات */
+p { line-height: 1.9; }
+
+/* ٢) بالصنف: أي عنصر كتبت فيه class="note" */
+.note { background: #f4f8ec; }
+
+/* ٣) بالمعرّف: عنصر واحد فقط في الصفحة */
+#site-title { font-size: 28px; }
+
+/* ٤) بالحالة: الرابط عند مرور المؤشر */
+a:hover { color: #3f6b2a; }</code></pre>
+  </div>
+
+  <p>وفي HTML يُكتب الصنف هكذا:</p>
+
+  <div class="code-block">
+    <div class="code-head"><span>index.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;p class="note"&gt;هذه فقرة بتنبيه.&lt;/p&gt;
+&lt;h1 id="site-title"&gt;عنوان الموقع&lt;/h1&gt;</code></pre>
+  </div>
+
+  <div class="callout idea">
+    <b>الصنف هو أداتك الأساسية</b>
+    <p>
+      <code>class</code> يُكتب مرة ويُستخدم مئة مرة، ويمكن أن يحمله عنصر واحد أو أكثر،
+      ويمكن للعنصر أن يحمل عدة أصناف: <code>class="note small"</code>.
+      ابدأ دائمًا بالصنف، واستخدم المعرّف فقط حين يكون العنصر واحدًا فعلًا.
+    </p>
+  </div>
+
+  <h2 id="cascade">لماذا لا تُطبَّق قاعدتي؟ (الأولوية)</h2>
+  <p>
+    حين تتعارض قاعدتان على العنصر نفسه، يفوز الأقوى. الترتيب المبسّط:
+  </p>
+  <ol>
+    <li><code>style</code> داخل الوسم — الأقوى.</li>
+    <li>المعرّف <code>#id</code>.</li>
+    <li>الصنف <code>.class</code> وحالات مثل <code>:hover</code>.</li>
+    <li>اسم العنصر <code>p</code>.</li>
+  </ol>
+  <p>
+    وإن تساوت القوتان، يفوز <em>الأخير في الترتيب</em>. هذا هو معنى «Cascading» في
+    الاسم: الشلال. وأشهر حيرة عند المبتدئ سببها أنه لم يرَ قاعدة أقوى في مكان آخر.
+  </p>
+
+  <h2 id="units">الخصائص التي ستستخدمها كل يوم</h2>
+  <ul>
+    <li><code>color</code> — لون النص. و<code>background</code> — لون الخلفية.</li>
+    <li><code>font-size</code> — الحجم، ونفضّل <code>rem</code> على <code>px</code> للنصوص.</li>
+    <li><code>line-height</code> — ارتفاع السطر. للنص العربي: لا تقلّ عن <code>1.8</code>.</li>
+    <li><code>font-family</code> — نوع الخط. ضع خطًّا احتياطيًّا دائمًا.</li>
+    <li><code>text-align</code> — المحاذاة. في العربية الافتراضي يمين، فلا تغيّره بلا سبب.</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>ملاحظة عربية تستحق الانتباه</b>
+    <p>
+      الخطوط العربية تحتاج مساحة رأسية أكبر من اللاتينية لأن حروفها فيها نزول وصعود
+      أكثر. إذا نسخت تصميمًا أجنبيًّا بـ<code>line-height: 1.3</code> فسيلتصق النص
+      ويتنفّس بصعوبة. <code>1.8</code> إلى <code>1.9</code> مريح للقراءة الطويلة.
+    </p>
+  </div>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> نسيان الفاصلة المنقوطة، فتُدمج خاصيتان وتُهمل إحداهما بصمت.</li>
+    <li><span>!</span> كتابة <code>.note</code> في CSS و<code>id="note"</code> في HTML — لا يتقابلان أبدًا.</li>
+    <li><span>!</span> استخدام المعرّفات لكل شيء، فتصبح الأنماط غير قابلة لإعادة الاستخدام.</li>
+    <li><span>!</span> نسيان ربط الملف: <code>href="style.css"</code> من داخل مجلد <code>lessons/</code> يشير إلى ملف غير موجود.</li>
+    <li><span>!</span> وضع <code>link</code> في نهاية الصفحة: ستظهر الصفحة بلا تنسيق لحظة ثم تقفز.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٦ دقائق · بلا مشاهدة حل</b>
+    <p>
+      أنشئ ملفين: <code>page.html</code> و<code>style.css</code>. في الصفحة عنوان
+      رئيسي بمعرّف، وفقرة عادية، وفقرة بصنف <code>note</code>، ورابط. اربط الملف،
+      ثم اجعل: النص كله بخط واضح، الفقرات بارتفاع سطر مريح، فقرة note بخلفية فاتحة،
+      والرابط يتغيّر لونه عند مرور المؤشر.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>style.css</span><button data-copy>نسخ</button></div>
+<pre><code>body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  line-height: 1.9;
+  color: #24352c;
+}
+
+#site-title {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.note {
+  background: #f4f8ec;
+  padding: 12px 14px;
+}
+
+a {
+  color: #3f6b2a;
+}
+
+a:hover {
+  color: #111;
+  text-decoration: underline;
+}</code></pre>
+      </div>
+      <p>
+        ولاحظ أن <code>.note</code> لم يتعارض مع <code>p</code>: الأول أعطى خلفية،
+        والثاني أعطى حجم خط. القاعدتان اجتمعتا لأن الصفات مختلفة — التعارض لا يحدث
+        إلا حين تتكلم قاعدتان عن الصفة نفسها.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الأجزاء الثلاثة لأي قاعدة CSS؟</li>
+      <li>لماذا الملف الخارجي أفضل من <code>style</code> داخل الوسم؟</li>
+      <li>ما الفرق بين الصنف والمعرّف، وأيّهما تبدأ به؟</li>
+      <li>قاعدتان تخاطبان الفقرة نفسها: الأولى بـ<code>.note</code> والأخرى بـ<code>p</code>. أيّهما تفوز في اللون؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="9"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="08-semantics.html"><small>السابق</small>العناصر الدلالية</a>
+  <a href="10-box-model.html"><small>التالي</small>صندوق العنصر</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

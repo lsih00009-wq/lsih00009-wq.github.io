@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="3">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>صندوق العنصر: الحشو والحدود والهامش — فاصلة</title>
+<meta name="description" content="الدرس العاشر: نموذج الصندوق، ترتيب الطبقات، box-sizing، انهيار الهوامش، ولماذا لا يتحرك العنصر حيث تريد." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/10-box-model.html" />
+<meta property="og:title" content="صندوق العنصر: الحشو والحدود والهامش — فاصلة" />
+<meta property="og:description" content="الدرس العاشر: نموذج الصندوق، ترتيب الطبقات، box-sizing، انهيار الهوامش، ولماذا لا يتحرك العنصر حيث تريد." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="11-flexbox.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثالثة · المظهر</div>
+    <h1>صندوق العنصر: الحشو والحدود والهامش</h1>
+    <p class="lead">
+      ٩٠٪ من حيرتك القادمة سببها هذا الدرس. كل عنصر في الصفحة صندوق بأربع طبقات،
+      ومن لا يعرف ترتيبها يقضي ساعات في تخمين «لماذا هذا أوسع من ذاك؟».
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 10</span><span>مبتدئ</span><span>22 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>كل عنصر صندوق له حدود. بين الكلام والحدود مسافة اسمها حشو، وخارج الحدود مسافة اسمها هامش. من يفهم هذا يفهم لماذا تتحرك الأشياء.</p>
+  </div>
+
+
+  <h2 id="model">أربع طبقات، من الداخل إلى الخارج</h2>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>content</code>
+      <p>المحتوى نفسه: النص أو الصورة. تعطيه عرضًا وارتفاعًا صريحين أو يحدّدهما محتواه.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>padding</code>
+      <p>الحشو: مسافة داخلية بين المحتوى والحدود. تأخذ لون الخلفية، لأنها جزء من الصندوق.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>border</code>
+      <p>الحدود: خط يحيط بالحشو. له سُمك ونوع ولون.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>margin</code>
+      <p>الهامش: مسافة خارجية بين هذا العنصر وجيرانه. شفافة دائمًا، ولا تأخذ لون الخلفية.</p>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-head"><span>box.css</span><button data-copy>نسخ</button></div>
+<pre><code>.card {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid #d8dfd0;
+  margin: 16px;
+  background: #ffffff;
+}</code></pre>
+  </div>
+
+  <div class="callout warn">
+    <b>الخدعة التي تفاجئ الجميع</b>
+    <p>
+      بالسلوك الافتراضي، العرض <code>300px</code> هو عرض المحتوى فقط، لا الصندوق كله!
+      العرض الحقيقي على الشاشة = ٣٠٠ + ٤٠ (حشو يمين ويسار) + ٤ (حدود) = <strong>٣٤٤px</strong>.
+      هذا سبب انكسار أكثر تخطيطات المبتدئين.
+    </p>
+  </div>
+
+  <h2 id="boxsizing">الحل: box-sizing</h2>
+  <p>
+    سطر واحد يجعل <code>width</code> تعني عرض الصندوق كاملًا، فيدخل الحشو والحدود
+    داخله بدل أن يُضافا إليه:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>reset.css</span><button data-copy>نسخ</button></div>
+<pre><code>*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}</code></pre>
+  </div>
+
+  <p>
+    هذا السطر تجده في أول كل ملف CSS احترافي. بعده، عمود بعرض <code>33.33%</code>
+    يبقى <code>33.33%</code> مهما أضفت من حشو — وهذا ما يجعل التخطيطات تتوقف عن الانهيار.
+  </p>
+
+  <h2 id="shorthand">الاختصار: قيمة أو أربع قيم</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>padding.css</span><button data-copy>نسخ</button></div>
+<pre><code>/* الأربع جهات متساوية */
+padding: 20px;
+
+/* رأسي ثم أفقي */
+padding: 10px 20px;
+
+/* أعلى، أفقي، أسفل */
+padding: 10px 20px 14px;
+
+/* أعلى، يمين، أسفل، يسار — باتجاه عقارب الساعة */
+padding: 10px 20px 14px 6px;</code></pre>
+  </div>
+
+  <p>
+    وترتيب الأربع قيم يبدأ من الأعلى ويدور مع عقارب الساعة. وبما أن الاتجاه عندنا
+    من اليمين إلى اليسار، فالقيمة الثانية هي اليمين. لا تفكّر كثيرًا: احفظ الترتيب
+    وستصبح تلقائية بعد أسبوع.
+  </p>
+
+  <h2 id="collapse">انهيار الهوامش: السلوك الذي يبدو خطأً</h2>
+  <p>
+    حين يلتقي هامش سفلي لعنصر بهامش علوي للعنصر التالي، لا يُجمعان، بل يأخذ المتصفح
+    <strong>الأكبر منهما فقط</strong>. فقرة بهامش ٣٠ تليها فقرة بهامش ٢٠: المسافة
+    بينهما ٣٠ لا ٥٠.
+  </p>
+
+  <div class="callout idea">
+    <b>متى يحدث؟</b>
+    <p>
+      بين عناصر في التدفّق العادي رأسيًّا فقط. ولا يحدث مع الحشو، ولا داخل Flexbox
+      أو Grid. وهذه إحدى راحات النظامين في الوحدة نفسها: يلغيان الانهيار تمامًا،
+      فتصبح المسافات متوقّعة.
+    </p>
+  </div>
+
+  <h2 id="chaos">أربعة أسئلة تُغنيك عن التخمين</h2>
+  <ol>
+    <li>هل العنصر أوسع مما أريد؟ افحص <code>padding</code> و<code>border</code> ثم <code>box-sizing</code>.</li>
+    <li>هل المسافة بين عنصرين أكبر من المتوقّع؟ هذا انهيار الهوامش، لا خطأ.</li>
+    <li>هل النص ملتصق بالحافة؟ أضف <code>padding</code>، لا <code>margin</code>.</li>
+    <li>هل العنصر لا يتوسّط؟ <code>margin-inline: auto</code> مع عرض محدّد، أو Flexbox.</li>
+  </ol>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> إضافة <code>width: 100%</code> مع حشو ثم الاستغراب من تجاوز الحاوية.</li>
+    <li><span>!</span> استخدام <code>margin</code> بدل <code>padding</code> لتباعد النص عن حدوده، فتتضاءل مساحة الضغط.</li>
+    <li><span>!</span> ضبط ارتفاع ثابت للنصوص، فينكسر التصميم عند تكبير الخط.</li>
+    <li><span>!</span> نسيان أن <code>margin: 0 auto</code> لا يعمل بلا عرض محدّد.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٦ دقائق · بلا مشاهدة حل</b>
+    <p>
+      اصنع بطاقة: عرض ٣٢٠ بكسل، حشو ١٨، حدود ١ بكسل رمادية، هامش ١٢، وخلفية بيضاء.
+      ثم أضف <code>box-sizing: border-box</code> وتأكد أن عرضها الكلي ٣٢٠ لا ٣٥٨.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>card.css</span><button data-copy>نسخ</button></div>
+<pre><code>* { box-sizing: border-box; }
+
+.card {
+  width: 320px;
+  padding: 18px;
+  border: 1px solid #d8dfd0;
+  margin: 12px;
+  background: #fff;
+  border-radius: 10px;
+}</code></pre>
+      </div>
+      <p>
+        كيف تتأكد؟ افتح أدوات المطوّر (F12) ومرّر على العنصر: المتصفح يرسم لك
+        الصندوق طبقات بأرقامه. هذه أسرع طريقة للتعلّم، وقد تكون أسرع من قراءة هذا الدرس.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>رتّب من الداخل إلى الخارج: margin، padding، content، border.</li>
+      <li>ما الذي يفعله <code>box-sizing: border-box</code> بالضبط؟</li>
+      <li>عنصران، هامشاهما ٣٠ و٢٠: ما المسافة بينهما ولماذا؟</li>
+      <li>النص ملتصق بحافة الصندوق — أتستخدم padding أم margin؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="10"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="09-first-css.html"><small>السابق</small>أول قاعدة CSS</a>
+  <a href="11-flexbox.html"><small>التالي</small>Flexbox: صفوف وأعمدة بلا معاناة</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>فاصلة — دورة HTML وCSS وJavaScript من الصفر، بالعربية</title>
+<meta name="description" content="دورة عربية من أول وسم: HTML وCSS وJavaScript، شرح مفصّل لكل عنصر، أمثلة تعمل داخل الصفحة، أخطاء شائعة، وتمارين بحلول — بلا حساب وبلا تثبيت." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ar_AR" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/" />
+<meta property="og:title" content="فاصلة — دورة HTML وCSS وJavaScript من الصفر، بالعربية" />
+<meta property="og:description" content="دورة عربية من أول وسم: HTML وCSS وJavaScript، شرح مفصّل لكل عنصر، أمثلة تعمل داخل الصفحة، أخطاء شائعة، وتمارين بحلول — بلا حساب وبلا تثبيت." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="tools.html">الأدوات</a>
+      <a href="glossary.html">القاموس</a>
+      <a href="lab.html">المختبر</a>
+      <a href="challenges.html">تحديات</a>
+      <a href="dialogues/01.html">حوارات</a>
+      <a href="practice.html">تدريب</a>
+      <a class="nav-cta" href="start.html">ابدأ هنا</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lede">
+  <div class="lede-inner">
+    <div>
+      <h1>من صفحة فارغة إلى موقع كامل — <em>بأصابعك.</em></h1>
+      <p>
+        بنهاية المسار تكون قادرًا على أن تبني صفحة من الصفر، وتنسّقها كما تريد،
+        وتُحرّكها بجافاسكربت، وتفتحها على هاتفك وحاسوبك. لا شهادة تُعلَّق على الحائط —
+        شيء تصنعه بنفسك وترى بعينك أنه يعمل.
+      </p>
+    </div>
+    <ul class="lede-goals">
+      <li>تبني صفحة كاملة من ملف فارغ</li>
+      <li>تعرف لماذا يعمل كل سطر، لا تحفظه</li>
+      <li>تجد خطأك وتصلحه داخل المتصفح</li>
+      <li>تعمل من هاتفك إن لم يكن عندك حاسوب</li>
+    </ul>
+  </div>
+</section>
+
+<div class="tape">
+  <div class="tape-inner">
+    <a href="#unit-1"><b>01</b>الهيكل</a>
+    <a href="#unit-2"><b>02</b>التنظيم</a>
+    <a href="#unit-3"><b>03</b>المظهر</a>
+    <a href="#unit-4"><b>04</b>البناء</a>
+    <a href="dialogues/01.html"><b>◉</b>حوارات</a>
+    <a href="practice.html"><b>✓</b>اختبار وبطاقات</a>
+    <a href="tools.html"><b>⌘</b>الأدوات</a>
+    <a href="#apply"><b>◈</b>جرّب الآن</a>
+  </div>
+</div>
+
+<main class="page-shell">
+  <!-- ══ الميزة الخاصة: لوحة تفكيك الوسم ══ -->
+  <section class="section" id="apply" style="padding:3px 0 8px">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">أول مهارة في البرمجة</span>
+        <h2>اضغط على أي رمز<br /><em>في هذا السطر.</em></h2>
+      </div>
+      <p>
+        أن ترى السطر قطعاتٍ لا كتلةً غامضة — هذه هي البداية. جرّب أن تضغط كل جزء،
+        واقرأ ما تحته، ثم اسأل نفسك: لو حذفته، ماذا ينكسر؟
+      </p>
+    </div>
+
+    <div class="anatomy-demo" data-anatomy>
+      <div class="demo-head">
+        <span>كود واحد، ستة أجزاء</span>
+        <span>اضغط أي جزء</span>
+      </div>
+      <div class="demo-line">
+        <button class="punct" data-t="&lt; — بداية وسم" data-b="يقول للمتصفح: انتبه، ما سيأتي هو اسم عنصر وليس نصًّا. هذا الرمز وحده هو ما يفصل الكود عن الكلام العادي.">&lt;</button>
+        <button class="name" data-t="p — اسم العنصر" data-b="p اختصار paragraph أي «فقرة». الاسم هنا يحدّد المعنى: هذه فقرة نص، لا عنوان ولا زر. أسماء العناصر محفوظة في معيار الويب، ولا تخترعها بنفسك.">p</button>
+        <button class="attr" data-t="class=&quot;note&quot; — خاصية" data-b="الخاصية معلومة إضافية تُكتب داخل وسم الفتح. class يضع العنصر في مجموعة، فتصبح كل العناصر التي تحمل الاسم نفسه قابلة للتنسيق مرة واحدة في CSS.">class="note"</button>
+        <button class="punct" data-t="&gt; — نهاية وسم الفتح" data-b="هذا الرمز يعلن انتهاء اسم العنصر وبداية المحتوى. لو نسيته، لن يفهم المتصفح أين ينتهي الوسم ويصبح السطر كله نصًّا ظاهرًا.">&gt;</button>
+        <button class="text" data-t="مرحبًا — المحتوى" data-b="هذا هو النص الذي يقرأه الزائر فعلًا. كل ما بين الفتح والإغلاق هو محتوى العنصر، وقد يكون نصًّا أو صورة أو عنصرًا آخر بداخله.">مرحبًا</button>
+        <button class="punct" data-t="&lt;/p&gt; — إغلاق" data-b="الشرطة المائلة تعني «انتهى هذا العنصر». من هنا يعرف المتصفح أن الفقرة أُغلقت، وأن ما يأتي بعدها عنصر جديد لا جزء منها.">&lt;/p&gt;</button>
+      </div>
+      <div class="demo-out" data-anatomy-out></div>
+    </div>
+  </section>
+
+
+  <div class="ad-slot" data-ad-slot="home-top"></div>
+
+  <section class="progress-card" aria-labelledby="pcTitle" style="margin:0 0 22px">
+    <div class="pc-top">
+      <strong id="pcTitle">تقدّمك في التحديات</strong>
+      <span class="pc-num" data-done-count>٠ من ٢٢</span>
+    </div>
+    <div class="progress-track"><span data-done-track></span></div>
+    <p>
+      كل تحدي تُنجزه يُحفظ في هذا الجهاز فقط — لا حساب ولا إرسال.
+      العلامة الخضراء بجانب «ابدأ» تعني أنك أنجزت تحدي ذلك الدرس.
+      <a href="challenges.html" style="text-decoration:underline">افتح التحديات</a>
+      <button type="button" data-done-reset
+        style="background:none;border:0;padding:0;margin-inline-start:8px;font:inherit;font-size:13px;color:var(--ink-muted);cursor:pointer;text-decoration:underline">
+        إعادة الضبط
+      </button>
+    </p>
+  </section>
+
+  <div id="lessons" aria-hidden="true"></div>
+
+  <!-- ══ الوحدة الأولى ══ -->
+  <div class="board">
+  <section class="section" id="unit-1" style="padding-bottom:22px">
+    <div class="unit-head">
+      <span>01</span>
+      <h3>الهيكل — من الملف الفارغ إلى صفحة تعمل</h3>
+      <small>4 دروس · جاهزة الآن</small>
+    </div>
+
+    <div class="lessons-list">
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">01</span>
+          <span class="lc-main">
+            <span class="lc-title">ما هو HTML؟ وما معنى «وسم»؟</span>
+            <span class="lc-sub">من أين جاءت الفكرة، ولماذا يحتاجها المتصفح أصلًا.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 12 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الفكرة في جملة واحدة</li>
+          <li>لماذا لا يكفي أن نكتب نصًّا فقط؟</li>
+          <li>ما هو الوسم بالضبط؟</li>
+          <li>تفكيك أول سطر: حرفًا حرفًا</li>
+          </ul>
+          <a class="go" href="lessons/01-what-is-html.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">02</span>
+          <span class="lc-main">
+            <span class="lc-title">هيكل الصفحة: من doctype إلى body</span>
+            <span class="lc-sub">الملف الصحيح الذي يبدأ منه كل شيء.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 15 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الصفحة كاملة، ثم نشرحها</li>
+          <li>١) &lt;!doctype html&gt; — إعلان الولاء</li>
+          <li>٢) &lt;html&gt; — الصندوق الأكبر</li>
+          <li>٣) &lt;head&gt; — ما لا يراه الزائر</li>
+          </ul>
+          <a class="go" href="lessons/02-document-structure.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">03</span>
+          <span class="lc-main">
+            <span class="lc-title">العناوين والفقرات والنص</span>
+            <span class="lc-sub">h1 إلى h6، ولماذا التشابه البصري يكذب.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 18 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>العناوين: ست درجات، لا ستة أحجام</li>
+          <li>الفقرات: الوحدة الأساسية للقراءة</li>
+          <li>التأكيد داخل النص: أزواج يخطئ فيها الجميع</li>
+          <li>الاقتباس والكود</li>
+          </ul>
+          <a class="go" href="lessons/03-headings-and-text.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">04</span>
+          <span class="lc-main">
+            <span class="lc-title">الروابط والصور: أول اتصال بالعالم</span>
+            <span class="lc-sub">href و src، والمسارات النسبية، والنص البديل.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 20 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الرابط: &lt;a href&gt;</li>
+          <li>أربعة أنواع من الوجهات</li>
+          <li>المسارات النسبية: مصدر نصف مشاكل المبتدئين</li>
+          <li>الصورة: &lt;img src alt&gt;</li>
+          </ul>
+          <a class="go" href="lessons/04-links-and-images.html">ابدأ الدرس</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══ الوحدة الثانية ══ -->
+  <section class="section" id="unit-2" style="padding-block:22px">
+    <div class="unit-head">
+      <span>02</span>
+      <h3>التنظيم — محتوى كبير بلا فوضى</h3>
+      <small>4 دروس · جاهزة</small>
+    </div>
+
+    <div class="lessons-list">
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">05</span>
+          <span class="lc-main">
+            <span class="lc-title">القوائم: ul و ol و dl</span>
+            <span class="lc-sub">ثلاث قوائم لثلاث حاجات مختلفة.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 14 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>ثلاث قوائم، لا واحدة</li>
+          <li>القوائم داخل القوائم</li>
+          <li>قائمة التعريف: dl و dt و dd</li>
+          <li>الخطأ الذي تراه في نصف المواقع</li>
+          </ul>
+          <a class="go" href="lessons/05-lists.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">06</span>
+          <span class="lc-main">
+            <span class="lc-title">الجداول: متى تصدق ومتى تكذب</span>
+            <span class="lc-sub">جدول للبيانات الحقيقية، لا لترتيب التصميم.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 16 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الشرط الوحيد لاستخدام جدول</li>
+          <li>الهيكل الأساسي</li>
+          <li>كل قطعة ولماذا</li>
+          <li>دمج الخلايا: colspan و rowspan</li>
+          </ul>
+          <a class="go" href="lessons/06-tables.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">07</span>
+          <span class="lc-main">
+            <span class="lc-title">النماذج: كيف يُدخل الإنسان بياناته</span>
+            <span class="lc-sub">input وأنواعه، label، وزر الإرسال.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 22 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>النموذج صندوق واحد</li>
+          <li>label ليس زينة</li>
+          <li>أنواع الحقول: HTML يعرف أكثر مما تظن</li>
+          <li>عناصر أخرى لا تقل أهمية</li>
+          </ul>
+          <a class="go" href="lessons/07-forms.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">08</span>
+          <span class="lc-main">
+            <span class="lc-title">العناصر الدلالية</span>
+            <span class="lc-sub">هيكل يفهمه الإنسان والآلة.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 18 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>المشكلة التي يحلّها هذا الدرس</li>
+          <li>خريطة الصفحة النموذجية</li>
+          <li>إذًا، متى أستخدم div؟</li>
+          <li>ما الذي تكسبه فعلًا</li>
+          </ul>
+          <a class="go" href="lessons/08-semantics.html">ابدأ الدرس</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══ الوحدة الثالثة ══ -->
+  <section class="section" id="unit-3" style="padding-block:22px">
+    <div class="unit-head">
+      <span>03</span>
+      <h3>المظهر — CSS</h3>
+      <small>4 دروس · جاهزة</small>
+    </div>
+
+    <div class="lessons-list">
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">09</span>
+          <span class="lc-main">
+            <span class="lc-title">أول قاعدة CSS: من يخاطب من؟</span>
+            <span class="lc-sub">المحدِّدات والأولوية وأين تُكتب القاعدة.</span>
+          </span>
+          <span class="lc-meta">متوسط · 20 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>شكل القاعدة</li>
+          <li>أين تُكتب؟ ثلاث طرق، واحدة صحيحة</li>
+          <li>المحدِّدات: كيف تخاطب عنصرًا بعينه</li>
+          <li>لماذا لا تُطبَّق قاعدتي؟ (الأولوية)</li>
+          </ul>
+          <a class="go" href="lessons/09-first-css.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">10</span>
+          <span class="lc-main">
+            <span class="lc-title">صندوق العنصر: الحشو والحدود والهامش</span>
+            <span class="lc-sub">لماذا لا يتحرك العنصر حيث تريد.</span>
+          </span>
+          <span class="lc-meta">متوسط · 22 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>أربع طبقات، من الداخل إلى الخارج</li>
+          <li>الحل: box-sizing</li>
+          <li>الاختصار: قيمة أو أربع قيم</li>
+          <li>انهيار الهوامش: السلوك الذي يبدو خطأً</li>
+          </ul>
+          <a class="go" href="lessons/10-box-model.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">11</span>
+          <span class="lc-main">
+            <span class="lc-title">Flexbox: صفوف وأعمدة بلا معاناة</span>
+            <span class="lc-sub">توزيع المساحة ومحاذاة العناصر.</span>
+          </span>
+          <span class="lc-meta">متوسط · 25 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الفكرة: حاوية تحكم أبناءها</li>
+          <li>المحوران: أصل كل حيرة</li>
+          <li>خمس خصائص تكفي</li>
+          <li>التوسيط الكامل في سطرين</li>
+          </ul>
+          <a class="go" href="lessons/11-flexbox.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">12</span>
+          <span class="lc-main">
+            <span class="lc-title">Grid: شبكة حقيقية للصفحة</span>
+            <span class="lc-sub">أعمدة وصفوف ومساحات مسمّاة.</span>
+          </span>
+          <span class="lc-meta">متوسط · 24 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>أيّهما أختار؟</li>
+          <li>أول شبكة: أعمدة بقيم ثابتة</li>
+          <li>repeat و minmax: الشبكات المتجاوبة بلا media query</li>
+          <li>تخطيط الصفحة بالاسم</li>
+          </ul>
+          <a class="go" href="lessons/12-grid.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ══ الوحدة الرابعة ══ -->
+  <section class="section" id="unit-4" style="padding-block:22px">
+    <div class="unit-head">
+      <span>04</span>
+      <h3>البناء — من الكود إلى صفحة حقيقية</h3>
+      <small>4 دروس · جاهزة</small>
+    </div>
+
+    <div class="lessons-list">
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">13</span>
+          <span class="lc-main">
+            <span class="lc-title">التجاوب: صفحة تعمل على كل شاشة</span>
+            <span class="lc-sub">media queries والأولوية من الهاتف أولًا.</span>
+          </span>
+          <span class="lc-meta">متوسط · 20 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>قبل كل شيء: هل صفحتك متجاوبة أصلًا؟</li>
+          <li>أولوية الهاتف: ابدأ من الأصعب</li>
+          <li>media query: شكلها ومعناها</li>
+          <li>مرونة بلا media query</li>
+          </ul>
+          <a class="go" href="lessons/13-responsive.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">14</span>
+          <span class="lc-main">
+            <span class="lc-title">الوحدات: px و rem و % و vh</span>
+            <span class="lc-sub">متى تستخدم كل وحدة ولماذا.</span>
+          </span>
+          <span class="lc-meta">متوسط · 16 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>نوعان: مطلق ونسبي</li>
+          <li>الوحدات التي تحتاجها فعلًا</li>
+          <li>قاعدتان تكفيان</li>
+          <li>حساب سريع في رأسك</li>
+          </ul>
+          <a class="go" href="lessons/14-units.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">15</span>
+          <span class="lc-main">
+            <span class="lc-title">مشروع كامل من الصفر</span>
+            <span class="lc-sub">صفحة هبوط كاملة: هيكل، تنسيق، وقائمة فحص.</span>
+          </span>
+          <span class="lc-meta">متوسط · 45 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>أولًا: على الورق، لا في المحرّر</li>
+          <li>ثانيًا: بنية الملفات</li>
+          <li>ثالثًا: الهيكل قبل أي لون</li>
+          <li>رابعًا: التنسيق على أربع مراحل</li>
+          </ul>
+          <a class="go" href="lessons/15-project.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">16</span>
+          <span class="lc-main">
+            <span class="lc-title">التصحيح: كيف تقرأ الخطأ وتجده</span>
+            <span class="lc-sub">أين يشتكي المتصفح، وكيف تختصر ساعات البحث إلى دقائق.</span>
+          </span>
+          <span class="lc-meta">أساسي · 20 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>أين يشتكي المتصفح؟</li>
+          <li>كيف تقرأ رسالة الخطأ</li>
+          <li>ثلاثة أخطاء تصنع معظم المشاكل</li>
+          <li>طريقة تُنهي البحث في دقائق</li>
+          </ul>
+          <a class="go" href="lessons/16-debug.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <div class="ad-slot" data-ad-slot="home-mid"></div>
+
+  <!-- ══ الوحدة الخامسة ══ -->
+  <section class="section" id="unit-5" style="padding-block:22px">
+    <div class="unit-head">
+      <span>05</span>
+      <h3>الحركة — JavaScript</h3>
+      <small>4 دروس · جاهزة</small>
+    </div>
+
+    <div class="lessons-list">
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">17</span>
+          <span class="lc-main">
+            <span class="lc-title">أول سطر JavaScript: زر يغيّر الكلام</span>
+            <span class="lc-sub">من صفحة تتكلّم إلى صفحة تسمع.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 18 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الفرق بين الصفحة والصفحة الحيّة</li>
+          <li>أين نكتب الكود؟</li>
+          <li>أول تجربة: لوحة الرسائل</li>
+          <li>الصناديق: let و const</li>
+          </ul>
+          <a class="go" href="lessons/17-js-first-step.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">18</span>
+          <span class="lc-main">
+            <span class="lc-title">المتغيّرات والشروط</span>
+            <span class="lc-sub">كيف تمنح صفحتك قرارًا.</span>
+          </span>
+          <span class="lc-meta">مبتدئ · 22 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>ثلاثة أنواع تكفي في البداية</li>
+          <li>إعلان المتغيّر وقواعده</li>
+          <li>المقارنة: كيف تسأل سؤالًا</li>
+          <li>القرار: if و else</li>
+          </ul>
+          <a class="go" href="lessons/18-js-variables.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">19</span>
+          <span class="lc-main">
+            <span class="lc-title">الدوال والمصفوفات والحلقات</span>
+            <span class="lc-sub">كيف تكتب مرة وتستخدم مئة مرة.</span>
+          </span>
+          <span class="lc-meta">متوسط · 26 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الدالة: وصفة لها اسم</li>
+          <li>الإرجاع: حين تُعيد الوصفة نتيجة</li>
+          <li>المصفوفة: قائمة في صندوق واحد</li>
+          <li>الحلقة: كرّر بلا كتابة</li>
+          </ul>
+          <a class="go" href="lessons/19-js-functions.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">20</span>
+          <span class="lc-main">
+            <span class="lc-title">DOM والحدث والتخزين</span>
+            <span class="lc-sub">صفحة تتذكّر ما فعله الزائر.</span>
+          </span>
+          <span class="lc-meta">متوسط · 30 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>ما DOM بالضبط؟</li>
+          <li>كيف تُمسك عنصرًا</li>
+          <li>كيف تُغيّر ما فيه</li>
+          <li>كيف تُنشئ عنصرًا جديدًا</li>
+          </ul>
+          <a class="go" href="lessons/20-js-dom.html">ابدأ الدرس</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══ الوحدة السادسة ══ -->
+  <section class="section" id="unit-6" style="padding-block:22px">
+    <div class="unit-head">
+      <span>06</span>
+      <h3>الإتقان — ما يفرق بين صفحة تعمل وصفحة تُحترم</h3>
+      <small>ثلاثة دروس · جاهزة الآن</small>
+    </div>
+
+    <div class="lessons-list">
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">21</span>
+          <span class="lc-main">
+            <span class="lc-title">متغيّرات CSS: لون واحد يغيّر الموقع</span>
+            <span class="lc-sub">اسم للقيمة بدل تكرارها أربعين مرة.</span>
+          </span>
+          <span class="lc-meta">متوسط · 22 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>المشكلة قبل الحل</li>
+          <li>كيف تُعلن متغيّرًا</li>
+          <li>الوضع الغامق: المتغيّر يفتح بابًا</li>
+          <li>قيمة احتياطية</li>
+          </ul>
+          <a class="go" href="lessons/21-css-variables.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">22</span>
+          <span class="lc-main">
+            <span class="lc-title">حركة بلا مكتبات</span>
+            <span class="lc-sub">transition وtransform، واحترام من يكره الحركة.</span>
+          </span>
+          <span class="lc-meta">متوسط · 20 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>الحركة ليست زينة</li>
+          <li>transition: من قيمة إلى قيمة</li>
+          <li>transform: حركة لا تزحزح أحدًا</li>
+          <li>الحركة ليست لك وحدك</li>
+          </ul>
+          <a class="go" href="lessons/22-motion.html">ابدأ الدرس</a>
+        </div>
+      </details>
+
+      <details class="lesson-block">
+        <summary>
+          <span class="lc-num">23</span>
+          <span class="lc-main">
+            <span class="lc-title">الأحداث: كيف تسمع الصفحة</span>
+            <span class="lc-sub">addEventListener وpreventDefault وتفويض الحدث.</span>
+          </span>
+          <span class="lc-meta">متوسط · 24 دقيقة</span>
+          <span class="lc-chev" aria-hidden="true"></span>
+        </summary>
+        <div class="lc-body">
+          <span class="lc-body-label">ما داخل الدرس</span>
+          <ul class="lc-list">
+          <li>لماذا لا نكتب onclick في HTML</li>
+          <li>الحدث يحمل معه معلومات</li>
+          <li>قراءة ما كتبه الزائر</li>
+          <li>أحداث ستستعملها كثيرًا</li>
+          </ul>
+          <a class="go" href="lessons/23-js-events.html">ابدأ الدرس</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
+    <!-- ══ نقطة البداية ══ -->
+  </div>
+
+  <section class="section" style="padding-block:22px">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">قبل أي درس</span>
+        <h2>صفحتان تُوفّران عليك أسابيع<br /><em>قبل أن تمسك الكود.</em></h2>
+      </div>
+      <p>الأولى تخبرك من أين تبدأ وكم يومًا تحتاج. والثانية تشرح كيف يعمل الحاسوب أصلًا — وهي أهم صفحة في الموقع.</p>
+    </div>
+
+    <div class="quick">
+      <a class="quick-row" href="start.html"><b>١</b><span>من أين أبدأ</span><em>خطة يوم بيوم، من أول وسم إلى مشروع كامل</em></a>
+      <a class="quick-row" href="thinking.html"><b>٢</b><span>كيف يفكّر المبرمج</span><em>أهم صفحة قبل أول سطر كود</em></a>
+    </div>
+  </section>
+
+<!-- ══ أدوات التثبيت ══ -->
+  <section class="section" style="padding-bottom:24px">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">لا تقرأ فقط</span>
+        <h2>أربعة أبواب<br /><em>تُثبّت ما قرأته.</em></h2>
+      </div>
+      <p>القراءة وحدها تُنسى. كل باب هنا يفتح ويعمل الآن.</p>
+    </div>
+
+    <div class="quick">
+      <a class="quick-row" href="challenges.html"><b>✎</b><span>تحديات تُصحَّح آليًّا</span><em>تكتب الكود، ويُفحص شرطًا شرطًا</em></a>
+      <a class="quick-row" href="lab.html"><b>▶</b><span>المختبر</span><em>تكتب وتنظر النتيجة فورًا</em></a>
+      <a class="quick-row" href="practice.html"><b>✓</b><span>اختبار وبطاقات</span><em>تُراجع ما نسيتَه في ثلاث دقائق</em></a>
+      <a class="quick-row" href="glossary.html"><b>◈</b><span>المصطلحات</span><em>٣٨ كلمة بشرح واحد</em></a>
+    </div>
+  </section>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span>
+      <a href="privacy.html">سياسة الخصوصية</a> ·
+      <a href="lessons/01-what-is-html.html">الدرس الأول</a>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script src="assets/progress.js"></script>
+</body>
+</html>

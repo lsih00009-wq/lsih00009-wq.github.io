@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>حوار 01 — لماذا يحتاج المتصفح وسومًا أصلًا؟</title>
+<meta name="description" content="حوار قصير بين متعلّم ومعلّم يشرح فكرة الوسم من أصلها: لماذا لا يكفي النص وحده، ولماذا لا يستطيع المتصفح التخمين." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/dialogues/01.html" />
+<meta property="og:title" content="حوار 01 — لماذا يحتاج المتصفح وسومًا أصلًا؟" />
+<meta property="og:description" content="حوار قصير بين متعلّم ومعلّم يشرح فكرة الوسم من أصلها: لماذا لا يكفي النص وحده، ولماذا لا يستطيع المتصفح التخمين." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html">الرئيسية</a>
+      <a class="nav-cta" href="../practice.html">اختبار وبطاقات</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page-shell" style="padding-top:28px">
+
+  <div style="max-width:760px;margin:0 auto 22px">
+    <span class="eyebrow">حوار · 5 دقائق</span>
+    <h1 style="font-size:clamp(22px,3vw,30px);line-height:1.45;margin:8px 0 10px">
+      لماذا يحتاج المتصفح وسومًا أصلًا؟
+    </h1>
+    <p style="font-size:14.5px;line-height:1.85;color:var(--ink-soft);margin:0">
+      اقرأ هذا قبل الدرس الأول إن أردت. لا كود فيه إلا سطرًا واحدًا، وهو ليس مطلوبًا أن تحفظه،
+      بل أن تفهم لماذا وُجد.
+    </p>
+  </div>
+
+  <div class="dialogue">
+    <div class="d-head">
+      <span>حوار 01 · المتعلّم والمعلّم</span>
+      <span>الهيكل</span>
+    </div>
+    <div class="d-body">
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          عندي سؤال يبدو ساذجًا: لو كتبتُ نصًّا في ملف، لماذا لا أرسله للمتصفح كما هو؟
+          لماذا أحتاج هذه الرموز المزعجة؟
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          تخيّل أنني أعطيتك ورقة فيها: «عين الجمل أحمر». ما هذه القطعة؟ فاكهة؟ عين حيوان؟
+          اسم؟ أنت ستحدّد من السياق لأنك تعرف العالم. المتصفح لا يعرف شيئًا عن العالم.
+        </div>
+      </div>
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          لكنه يعرف أن الكلمة نص، وأنها تُكتب على الشاشة. أليس هذا كافيًا؟
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          كافٍ لو كانت الصفحة جملة واحدة. لكن صفحة حقيقية فيها عنوان، وفقرة، رابط يُضغط،
+          صورة تُحمَّل من ملف آخر، جدول بيانات، حقل كتابة. لو وصلت كلها نصًّا مسطّحًا،
+          كيف يفرّق بين الكلمة التي تُضغط والكلمة التي تُقرأ؟
+        </div>
+      </div>
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          يميّزها بالتنسيق: الرابط أزرق ومُسطّر.
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          أمسكت بمشكلة عميقة. اللون والمظهر شيء، والوظيفة شيء آخر. لو كان التمييز بالشكل وحده،
+          لكان كل من جعل نصه أزرق رابطًا. والرابط ليس مظهرًا: هو أمر «اذهب إلى هناك».
+          ولذلك نُعلن الوظيفة بالكود، ونترك المظهر يتغيّر كيف نشاء.
+        </div>
+      </div>
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          إذًا الوسم يقول للمتصفح: هذه القطعة ليست كلامًا عاديًّا، هي من نوع كذا.
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          بالضبط. وانظر إلى السطر الوحيد في هذا الحوار:
+          <br /><code>&lt;p&gt;مرحبًا&lt;/p&gt;</code>
+          <br />حرفان فقط يحيطان بالكلمة: علامة أصغر، ثم حرف p، ثم علامة أكبر. هذا كل شيء.
+          <code>p</code> اختصار paragraph أي «فقرة». الكلمة «مرحبًا» محتوى، والوسمان يقولان: هذا محتوى من نوع فقرة.
+        </div>
+      </div>
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          والشرطة المائلة في الأخير؟
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          تعني «انتهى». لاحظ أن الفقرة لها بداية ونهاية لأن لها محتوى. يمكن أن تحتوي على عناصر
+          أخرى بداخلها، فيجب أن يعرف المتصفح أين تنتهي. أما الصورة فلا محتوى لها بين وسمَيها،
+          ولهذا لا تُغلق.
+        </div>
+      </div>
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          طيب، ولماذا لا يخمّن المتصفح ويُريحنا من الكتابة؟ لو رأى سطرًا قصيرًا افترض أنه عنوان؟
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          جرّب هو فعلًا. لو نسيت وسم الإغلاق، سيُصلحه ويُكمل. لكنه سيفعل ذلك <b>بتخمينه هو</b>،
+          وقد يخمّن غير ما أردت. والنتيجة أن صفحتك تعمل اليوم وتنكسر بعد أسبوع حين يتغيّر المتصفح
+          أو يزيد محتواك. الكتابة الدقيقة ليست إجراءً شكليًّا، بل هي الطريقة الوحيدة لتقول ما تريد
+          لا ما يفهمه غيرك.
+        </div>
+      </div>
+
+      <div class="turn s">
+        <span class="av">س</span>
+        <div class="say">
+          <span class="who">المتعلّم</span>
+          أظن أن المسألة كلها: أنا أضع المعنى، والمتصفح يرسم، والستايل يُجمّل.
+        </div>
+      </div>
+
+      <div class="turn t">
+        <span class="av">م</span>
+        <div class="say">
+          <span class="who">المعلّم</span>
+          وصلت إلى العمارة كلها في جملة. HTML يوصّف المعنى، CSS يُحدّد الشكل، JavaScript يُضيف
+          السلوك. من يخلط الثلاثة يكتب صفحة تعمل مرة، ومن يفصل بينها يكتب صفحة تعيش سنوات.
+          اذهب إلى الدرس الأول وتأكد أنك تفهم هذا قبل أي وسم آخر.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="max-width:760px;margin:18px auto 0;display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn" href="../lessons/01-what-is-html.html" style="text-decoration:none">ابدأ الدرس 01</a>
+    <a class="btn ghost" href="../practice.html" style="text-decoration:none">اختبر فهمك</a>
+    <a class="btn ghost" href="02.html" style="text-decoration:none">الحوار التالي: لماذا لا يعمل كودي؟</a>
+  </div>
+
+  <div class="ad-slot" data-ad-slot="dialogue-bottom"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../privacy.html">سياسة الخصوصية</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+</body>
+</html>

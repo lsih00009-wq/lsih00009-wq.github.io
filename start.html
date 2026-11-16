@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>من أين أبدأ — فاصلة</title>
+<meta name="description" content="خريطة البداية: ثلاث خطوات، ومسار مقترح لثلاثة وعشرين يومًا، وكيف تستخدم الدروس والمختبر والاختبارات معًا." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .start-wrap { max-width: 780px; margin: 0 auto; padding: 26px 16px 10px; }
+  .step {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 14px;
+    align-items: start;
+    border: 1px solid rgba(23,35,31,.13);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .step .n {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: grid; place-items: center;
+    background: var(--ink); color: var(--accent);
+    font-family: var(--mono); font-weight: 600; font-size: 17px;
+  }
+  .step h3 { margin: 2px 0 6px; font-size: 17px; }
+  .step p { margin: 0 0 8px; font-size: 14px; line-height: 1.9; color: var(--ink-soft); }
+  .step .go-link {
+    font-size: 13.5px; font-weight: 600; color: var(--accent-deep); text-decoration: none;
+    border-bottom: 1px solid rgba(63,107,42,.3);
+  }
+  .plan { display: grid; gap: 7px; margin: 16px 0 0; }
+  .plan-row {
+    display: grid; grid-template-columns: 92px 1fr; gap: 12px;
+    font-size: 13.5px; line-height: 1.85;
+    border-bottom: 1px dashed var(--line-ink); padding-bottom: 7px;
+  }
+  .plan-row b { font-family: var(--mono); font-size: 12px; color: var(--accent-deep); }
+  @media (max-width: 560px) {
+    .step { grid-template-columns: 1fr; }
+    .plan-row { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+<script src="assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/start.html" />
+<meta property="og:title" content="من أين أبدأ — فاصلة" />
+<meta property="og:description" content="خريطة البداية: ثلاث خطوات، ومسار مقترح لثلاثة وعشرين يومًا، وكيف تستخدم الدروس والمختبر والاختبارات معًا." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="glossary.html">القاموس</a>
+      <a href="lab.html">المختبر</a>
+      <a href="challenges.html">تحديات</a>
+      <a href="start.html">البداية</a>
+      <a class="nav-cta" href="lessons/01-what-is-html.html">ابدأ الدرس 01</a>
+    </nav>
+  </div>
+</header>
+
+<main class="start-wrap">
+
+  <span class="eyebrow">البداية</span>
+  <h1 style="font-size:clamp(23px,3.2vw,31px);line-height:1.4;margin:8px 0 10px">
+    من أين أبدأ؟
+  </h1>
+  <p style="font-size:15px;line-height:1.95;color:var(--ink-soft);margin:0 0 22px">
+    هذا الموقع فيه أكثر من عشرين درسًا، ولن تقرأها كلها في يوم. والأسوأ من عدم القراءة
+    أن تقرأ كل شيء بلا ترتيب، فتخرج واثقًا وأنت لا تستطيع أن تكتب صفحة واحدة.
+    الصفحة التي أمامك تعطيك الطريق، لا المحتوى.
+  </p>
+
+  <div class="step">
+    <span class="n">١</span>
+    <div>
+      <h3>ابدأ من الفكرة، لا من الوسم</h3>
+      <p>
+        اقرأ «كيف يفكّر المبرمج» أولًا. عشر دقائق لا غير. ليس فيها كود، لكنها تشرح
+        ما يفعله الحاسوب حين تقرأ صفحتك: كيف يخزّن قيمة، كيف يقرأ سطرًا بعد سطر،
+        وكيف يتّخذ قرارًا. من يبدأ بالكود قبل هذا يحفظ ولا يفهم.
+      </p>
+      <a class="go-link" href="thinking.html">افتح: كيف يفكّر المبرمج</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="n">٢</span>
+    <div>
+      <h3>اقرأ درسًا واحدًا، ولا تكمل حتى تكتب</h3>
+      <p>
+        ابدأ من الدرس الأول وتقدّم بالترتيب — الترتيب مقصود، كل درس يفتح ما بعده.
+        بعد كل درس: افتح المختبر واكتب ما قرأته بيدك، ولو نقلًا. ثم أجب عن أسئلة
+        الدرس. القراءة وحدها تمرّ على العقل؛ الكتابة تحدث أثرًا.
+      </p>
+      <a class="go-link" href="lessons/01-what-is-html.html">افتح الدرس الأول</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="n">٣</span>
+    <div>
+      <h3>حين تعطب صفحتك، لا تُعِد كتابتها</h3>
+      <p>
+        ستحصل لك أعطال بلا عدد. اقرأ الحوار الثاني: طريق تشخيص من خمس خطوات، من الملف
+        إلى المطبعي. هذا الفرق بين من يتعلّم في شهر ومن يتوقف في أول عطل.
+      </p>
+      <a class="go-link" href="dialogues/02.html">افتح: لماذا لا يعمل كودي؟</a>
+    </div>
+  </div>
+
+  <h2 style="font-size:19px;margin:28px 0 6px">مسار مقترح لثلاثة وعشرين يومًا</h2>
+  <p style="font-size:13.5px;color:var(--ink-muted);line-height:1.85;margin:0">
+    لا هو موعد إلزامي ولا وسيلة ضغط. هو فقط أن يكون بينك وبين نفسك خطّ واضح.
+    يوم راحة كل ثلاثة أيام، ولا قفز ولا استدراك: من تأخّر يتابع من حيث توقف.
+  </p>
+
+  <div class="plan">
+    <div class="plan-row"><b>يوم ١</b><span>كيف يفكّر المبرمج + الدرس 01 (ما هو HTML)</span></div>
+    <div class="plan-row"><b>يوم ٢</b><span>الدرس 02 (هيكل الصفحة) + المختبر: اكتب صفحة كاملة من ذاكرتك</span></div>
+    <div class="plan-row"><b>يوم ٣</b><span>الدروس 03–04 (العناوين، الروابط والصور) + اختبار الدرسين</span></div>
+    <div class="plan-row"><b>يوم ٤</b><span>راحة، ثم مراجعة بالبطاقات فقط (ثلاث دقائق)</span></div>
+    <div class="plan-row"><b>يوم ٥</b><span>الدرس 05 (القوائم) + الدرس 06 (الجداول)</span></div>
+    <div class="plan-row"><b>يوم ٦</b><span>الدرس 07 (النماذج): اكتب نموذجًا كاملًا في المختبر</span></div>
+    <div class="plan-row"><b>يوم ٧</b><span>الدرس 08 (الدلالية) + أعد بناء صفحتك الأولى به</span></div>
+    <div class="plan-row"><b>يوم ٨</b><span>الدرس 09 (أول قاعدة CSS) + الحوار الثاني</span></div>
+    <div class="plan-row"><b>يوم ٩</b><span>الدرس 10 (الصندوق): كسّر تصميمك بنفسك ثم أصلحه</span></div>
+    <div class="plan-row"><b>يوم ١٠</b><span>راحة + بطاقات</span></div>
+    <div class="plan-row"><b>يوم ١١</b><span>الدرس 11 (Flexbox): شريط تنقّل</span></div>
+    <div class="plan-row"><b>يوم ١٢</b><span>الدرس 12 (Grid): شبكة بطاقات</span></div>
+    <div class="plan-row"><b>يوم ١٣</b><span>الدرس 13 (التجاوب): جرّب على هاتفك الحقيقي</span></div>
+    <div class="plan-row"><b>يوم ١٤</b><span>الدرس 14 (الوحدات) + كبّر الخط 150٪ وأصلح ما انكسر</span></div>
+    <div class="plan-row"><b>يوم ١٥</b><span>راحة + بطاقات</span></div>
+    <div class="plan-row"><b>يوم ١٦</b><span>الدرس 15 (مشروع كامل)</span></div>
+    <div class="plan-row"><b>يوم ١٧</b><span>الدرس 16 (التصحيح): اكسر صفحتك ثلاث مرّات واصطد كل خطأ</span></div>
+    <div class="plan-row"><b>يوم ١٨</b><span>الدرس 17 (أول JavaScript) + الدرس 18 (الشروط)</span></div>
+    <div class="plan-row"><b>يوم ١٩</b><span>الدرس 19 (الدوال والمصفوفات)</span></div>
+    <div class="plan-row"><b>يوم ٢٠</b><span>الدرس 20 (DOM والتخزين): قائمة مهام تحفظ نفسها</span></div>
+    <div class="plan-row"><b>يوم ٢١</b><span>الدرس 21 (متغيّرات CSS): انقل ألوان صفحتك إلى <code>--brand</code> واحد</span></div>
+    <div class="plan-row"><b>يوم ٢٢</b><span>الدرس 22 (الحركة): أضف انتقالًا واحدًا، ثم أغلقه لمن طلب تقليل الحركة</span></div>
+    <div class="plan-row"><b>يوم ٢٣</b><span>الدرس 23 (الأحداث): اجعل صفحتك تسمع ضغطة وتعرض نتيجة</span></div>
+  </div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 0">
+    <a class="btn" href="thinking.html" style="text-decoration:none">ابدأ من الخطوة الأولى</a>
+    <a class="btn ghost" href="index.html#lessons" style="text-decoration:none">خريطة الدروس</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="privacy.html">سياسة الخصوصية</a></span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script src="assets/progress.js"></script>
+</body>
+</html>

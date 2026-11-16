@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="4">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>التجاوب: صفحة تعمل على كل شاشة — فاصلة</title>
+<meta name="description" content="الدرس الثالث عشر: أولوية الهاتف، media queries، ثلاث نقاط توقّف، وصور ونصوص مرنة." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/13-responsive.html" />
+<meta property="og:title" content="التجاوب: صفحة تعمل على كل شاشة — فاصلة" />
+<meta property="og:description" content="الدرس الثالث عشر: أولوية الهاتف، media queries، ثلاث نقاط توقّف، وصور ونصوص مرنة." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="14-units.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الرابعة · الانتشار</div>
+    <h1>التجاوب: صفحة تعمل على كل شاشة</h1>
+    <p class="lead">
+      لا يوجد «مقاس شاشة» بعد اليوم. هناك مدى من ٣٢٠ بكسل إلى ٢٥٦٠. صفحتك يجب أن
+      تُقرأ في كل هذا المدى، والطريقة ليست أن تصنع ثلاث صفحات، بل أن تكتب قواعد تتغيّر.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 13</span><span>متوسط</span><span>20 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>الشاشة قد تكون هاتفًا صغيرًا أو حاسوبًا كبيرًا. التجاوب يعني أن الصفحة تعيد ترتيب نفسها: عمود واحد على الهاتف، وعمودان على الحاسوب.</p>
+  </div>
+
+
+  <h2 id="first">قبل كل شيء: هل صفحتك متجاوبة أصلًا؟</h2>
+  <p>
+    افتح صفحتك على هاتفك. إن ظهرت مصغّرة كأنك تنظر إليها من بعيد، فالسبب سطر واحد
+    ناقص في <code>head</code>:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>head.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+  </div>
+
+  <p>
+    بدونه يفترض الهاتف أن الصفحة بعرض ٩٨٠ بكسل ويصغّرها لتناسب الشاشة. معه، عرض
+    الصفحة يساوي عرض الشاشة الحقيقي، فتصبح قواعدك منطقية.
+  </p>
+
+  <h2 id="mobile-first">أولوية الهاتف: ابدأ من الأصعب</h2>
+  <p>
+    الطريقة القديمة كانت: صمّم للحاسوب، ثم أصلح للهاتف. والنتيجة كود متشابك.
+    الطريقة الصحيحة معاكسة:
+  </p>
+  <ol>
+    <li>اكتب CSS للهاتف أولًا، بلا أي <code>media query</code>.</li>
+    <li>ثم أضف تحسينات للشاشات الكبيرة داخل <code>min-width</code>.</li>
+  </ol>
+  <p>
+    السبب عملي: الهاتف هو الحالة الأضيق، وكل ما ينجح فيه ينجح في غيره غالبًا. أما
+    العكس فتضطر فيه إلى «تفكيك» ما بنيته.
+  </p>
+
+  <h2 id="mq">media query: شكلها ومعناها</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>responsive.css</span><button data-copy>نسخ</button></div>
+<pre><code>/* الأساس: هاتف */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* تابلت وما فوق */
+@media (min-width: 640px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* حاسوب وما فوق */
+@media (min-width: 1024px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}</code></pre>
+  </div>
+
+  <p>
+    لاحظ أن كل كتلة <em>تضيف</em> ولا تُلغي. ولا تكتب <code>max-width</code> مع
+    <code>min-width</code> بالتبادل، فتصنع شبكة يصعب تتبّعها. اتجاه واحد يكفي: من
+    الصغير إلى الكبير.
+  </p>
+
+  <div class="callout idea">
+    <b>ثلاث نقاط توقّف تكفي</b>
+    <p>
+      المهنة كلها تدور حول ٦٤٠ و١٠٢٤ تقريبًا، وبينهما لا شيء. لا تضع نقطة لكل هاتف
+      في السوق: اكتب تخطيطًا مرنًا (Flexbox أو Grid) واترك النقاط للحالات التي
+      تتغيّر فيها البنية فعلًا — كتحويل عمودين إلى عمود واحد.
+    </p>
+  </div>
+
+  <h2 id="fluid">مرونة بلا media query</h2>
+  <p>
+    كثير من التجاوب يمكن تحقيقه بأقل من ذلك:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>fluid.css</span><button data-copy>نسخ</button></div>
+<pre><code>/* كل صورة لا تتجاوز حاويتها */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* شبكة تتغيّر أعمدتها تلقائيًّا */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+/* نص يتناسب مع الشاشة بين حدّين */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}</code></pre>
+  </div>
+
+  <p>
+    <code>clamp(الأدنى, المفضّل, الأقصى)</code> من أفضل ما أُضيف إلى CSS: النص يكبر
+    مع الشاشة بسلاسة، ولا يصغر تحت حدّ القراءة ولا يتضخّم بلا معنى.
+  </p>
+
+  <h2 id="test">كيف تختبر بصدق</h2>
+  <ul>
+    <li>أدوات المطوّر (F12) ثم وضع الجهاز، وجرّب <strong>320</strong> و<strong>360</strong> بكسل — لا 375 فقط.</li>
+    <li>كبّر الخط في المتصفح إلى 150٪ وتأكد أن شيئًا لا ينكسر.</li>
+    <li>جرّب على جهاز حقيقي، لا على محاكي فقط: اللمس والتمرير يختلفان.</li>
+    <li>اضغط بيد واحدة: كل زر يجب أن يكون كبيرًا كفاية (٤٤ بكسل تقريبًا).</li>
+  </ul>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> نسيان سطر viewport ثم لوم CSS.</li>
+    <li><span>!</span> عرض أفقي (تمرير جانبي) بسبب عنصر بعرض ثابت أكبر من الشاشة.</li>
+    <li><span>!</span> نصوص صغيرة جدًّا على الهاتف لأنها كُتبت بـ<code>px</code> ثابت.</li>
+    <li><span>!</span> استخدام <code>100vh</code> لأقسام كاملة، فتظهر مسافة في متصفحات الهاتف بسبب شريط العنوان.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٧ دقائق · بلا مشاهدة حل</b>
+    <p>
+      خذ صفحة «عن نفسي» من الدرس الثامن، واجعلها متجاوبة: على الهاتف عمود واحد،
+      ومن ٧٠٠ بكسل فما فوق يظهر الشريط الجانبي بجانب المحتوى.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>responsive.css</span><button data-copy>نسخ</button></div>
+<pre><code>body { margin: 0; padding: 16px; }
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 700px) {
+  main {
+    grid-template-columns: 1fr 240px;
+  }
+}
+
+img { max-width: 100%; height: auto; }</code></pre>
+      </div>
+      <p>
+        سطر واحد داخل media query نقل الشريط الجانبي من الأسفل إلى الجانب. هذا هو
+        التجاوب في صورته الحقيقية: تغيير في البنية، لا في الألوان.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما وظيفة سطر viewport، وماذا يحدث بدونه؟</li>
+      <li>لماذا نبدأ بالهاتف؟</li>
+      <li>ما الفرق بين <code>min-width</code> و<code>max-width</code> في media query؟</li>
+      <li>كيف تجعل صورة لا تتجاوز حاويتها؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="13"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="12-grid.html"><small>السابق</small>Grid</a>
+  <a href="14-units.html"><small>التالي</small>الوحدات: px و rem و vh</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

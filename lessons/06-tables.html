@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="2">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الجداول: متى تصدق ومتى تكذب — فاصلة</title>
+<meta name="description" content="الدرس السادس: جدول للبيانات الحقيقية لا لترتيب التصميم. caption وthead وtbody وth وscope ودمج الخلايا." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/06-tables.html" />
+<meta property="og:title" content="الجداول: متى تصدق ومتى تكذب — فاصلة" />
+<meta property="og:description" content="الدرس السادس: جدول للبيانات الحقيقية لا لترتيب التصميم. caption وthead وtbody وth وscope ودمج الخلايا." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="07-forms.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثانية · التنظيم</div>
+    <h1>الجداول: متى تصدق ومتى تكذب</h1>
+    <p class="lead">
+      الجدول أداة بيانات لا أداة تصميم. من يفهم هذه الجملة يكتب جداول يعمل معها
+      قارئ الشاشة، ويعرف لماذا فشل جيل كامل من المواقع في التسعينيات.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 06</span><span>مبتدئ</span><span>16 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>الجدول شبكة: صفوف وأعمدة، مثل جدول حصص المدرسة. نستخدمه فقط حين تكون المعلومات فعلًا بهذا الشكل، لا لترتيب الصفحة.</p>
+  </div>
+
+
+  <h2 id="idea">الشرط الوحيد لاستخدام جدول</h2>
+  <p>
+    اسأل نفسك سؤالًا واحدًا: <strong>هل البيانات أمامي لها صفوف وأعمدة حقيقية؟</strong>
+    درجات طلاب، أسعار منتجات، مواعيد قطارات، مقارنة ميزات. إن كانت الإجابة نعم، فالجدول
+    هو العنصر الصحيح. وإن كانت الإجابة «أريد أن أضع شيئين جنبًا إلى جنب»، فالجدول خطأ،
+    والصواب CSS.
+  </p>
+
+  <div class="callout warn">
+    <b>لماذا نُصرّ على هذا؟</b>
+    <p>
+      في التسعينيات كانت المواقع تُبنى كلها بجداول متداخلة. النتيجة: كود هشّ، وصفحات
+      لا تصلح للهاتف، وقارئ الشاشة يقرأ الخلية الأولى ثم يقفز عشر مرات إلى الصف التالي
+      فيسمع كلامًا بلا معنى. حين ظهر CSS الحديث، أُلغي هذا الأسلوب نهائيًّا.
+    </p>
+  </div>
+
+  <h2 id="skeleton">الهيكل الأساسي</h2>
+  <p>
+    الجدول يُبنى صفًّا صفًّا، لا عمودًا عمودًا. تبدأ صفًّا <code>&lt;tr&gt;</code>،
+    وتضع داخله خلايا. هذه أول حقيقة تُربك المبتدئ: لا يوجد وسم «عمود» في HTML.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>table.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;table&gt;
+  &lt;caption&gt;أسعار الاشتراك&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;الخطة&lt;/th&gt;
+      &lt;th scope="col"&gt;السعر&lt;/th&gt;
+      &lt;th scope="col"&gt;المدة&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;أساسية&lt;/th&gt;
+      &lt;td&gt;٠&lt;/td&gt;
+      &lt;td&gt;شهر&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;متقدمة&lt;/th&gt;
+      &lt;td&gt;٥٠&lt;/td&gt;
+      &lt;td&gt;شهر&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+  </div>
+
+  <h2 id="parts">كل قطعة ولماذا</h2>
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>caption</code>
+      <p>عنوان الجدول. يُقرأ أولًا، ويُربط بالجدول دلاليًّا. لا تستبدله بعنوان <code>h2</code> فوقه فقط.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>thead</code>
+      <p>رأس الجدول: صف العناوين. مفيد حين يطول الجدول ويُطبع على صفحات.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>tbody</code>
+      <p>جسم البيانات. كل ما ليس رأسًا ولا مجموعًا نهائيًّا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>th</code>
+      <p>خلية عنوان لا خلية بيانات. تُعرض عريضة ووسطًا تلقائيًّا، وهذا مجرد أثر بصري.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>scope</code>
+      <p>تقول: هذا العنوان يحكم عمودًا (<code>col</code>) أم صفًّا (<code>row</code>). بها يفهم قارئ الشاشة أي عنوان يخصّ أي رقم.</p>
+    </div>
+  </div>
+
+  <div class="callout idea">
+    <b>أثر scope في تجربة حقيقية</b>
+    <p>
+      من يستخدم قارئ شاشة يسمع: «السعر، ٥٠». بلا <code>scope</code> يسمع «٥٠» وحدها
+      ويضطر للرجوع بعشر خلايا ليعرف أي عمود هذا. كلمة واحدة تُصلح كل ذلك.
+    </p>
+  </div>
+
+  <h2 id="span">دمج الخلايا: colspan و rowspan</h2>
+  <ul>
+    <li><code>colspan="2"</code> — الخلية تمتد على عمودين أفقيًّا.</li>
+    <li><code>rowspan="3"</code> — الخلية تمتد على ثلاثة صفوف رأسيًّا.</li>
+  </ul>
+
+  <div class="code-block">
+    <div class="code-head"><span>span.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2"&gt;الفصل الأول&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;رياضيات&lt;/td&gt;&lt;td&gt;٩٠&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;لغة عربية&lt;/td&gt;&lt;td&gt;٨٥&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+  </div>
+
+  <p>
+    القاعدة العملية: احسب مجموع الأعمدة في كل صف، فيجب أن يتساوى في كل الصفوف.
+    إذا اختلف، انزاح الجدول كله. لهذا نكتب <code>colspan</code> بحساب لا بالتجربة.
+  </p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> استخدام <code>table</code> لتخطيط الصفحة. انتهى هذا عام ٢٠٠٥ تقريبًا، ولا تعُده.</li>
+    <li><span>!</span> نسيان <code>caption</code>، فيصل الزائر إلى أرقام بلا سياق.</li>
+    <li><span>!</span> استخدام <code>td</code> لخلية العنوان بدل <code>th</code>.</li>
+    <li><span>!</span> جدول من عمود واحد طويل — هذا جدول لا معنى له؛ استخدم قائمة.</li>
+    <li><span>!</span> كتابة الجدول على الهاتف بلا خطة: الأعمدة الكثيرة تنكسر. الحل في الوحدة الرابعة: تمرير أفقي أو تحويل الجدول إلى بطاقات.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٥ دقائق · بلا مشاهدة حل</b>
+    <p>
+      أنشئ جدول مقارنة بين ثلاث خطط اشتراك: الأعمدة (الخطة، السعر، عدد المستخدمين،
+      الدعم). ضع <code>caption</code>، واجعل خلايا العمود الأول <code>th</code>
+      بـ<code>scope="row"</code>، ثم أضف صفًّا أخيرًا عنوانه «ملاحظة» يمتد على ثلاثة أعمدة.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>plans.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;table&gt;
+  &lt;caption&gt;مقارنة خطط الاشتراك&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;الخطة&lt;/th&gt;
+      &lt;th scope="col"&gt;السعر&lt;/th&gt;
+      &lt;th scope="col"&gt;المستخدمون&lt;/th&gt;
+      &lt;th scope="col"&gt;الدعم&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;أساسية&lt;/th&gt;
+      &lt;td&gt;٠&lt;/td&gt;&lt;td&gt;١&lt;/td&gt;&lt;td&gt;بريدي&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;متقدمة&lt;/th&gt;
+      &lt;td&gt;٥٠&lt;/td&gt;&lt;td&gt;٣&lt;/td&gt;&lt;td&gt;أولوية&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;فريق&lt;/th&gt;
+      &lt;td&gt;١٢٠&lt;/td&gt;&lt;td&gt;١٠&lt;/td&gt;&lt;td&gt;مباشر&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;الأسعار شهرية، وتُلغى في أي وقت.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <p>
+        صف الملاحظة فيه خلية واحدة تمتد على أربعة أعمدة، ولهذا مجموع أعمدته يساوي
+        مجموع باقي الصفوف (٤) — وهذا شرط عدم الانزياح.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما السؤال الذي يحسم: جدول أم لا؟</li>
+      <li>لماذا الجدول يُبنى صفًّا صفًّا؟ وما الوسم الذي لا وجود له؟</li>
+      <li>ما فائدة <code>scope</code> لمن لا يرى؟</li>
+      <li>كيف تتأكد أن <code>colspan</code> لم يزحزح الجدول؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="6"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="05-lists.html"><small>السابق</small>القوائم</a>
+  <a href="07-forms.html"><small>التالي</small>النماذج: كيف يُدخل الإنسان بياناته</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

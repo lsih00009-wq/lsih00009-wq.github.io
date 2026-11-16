@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>فاصلة — تدريب: اختبار وبطاقات حفظ</title>
+<meta name="description" content="اختبر فهمك لدروس HTML مع تصحيح فوري وشرح لكل إجابة، وراجع المفاهيم ببطاقات حفظ تُرتَّب تلقائيًّا حسب ما تنساه." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/practice.html" />
+<meta property="og:title" content="فاصلة — تدريب: اختبار وبطاقات حفظ" />
+<meta property="og:description" content="اختبر فهمك لدروس HTML مع تصحيح فوري وشرح لكل إجابة، وراجع المفاهيم ببطاقات حفظ تُرتَّب تلقائيًّا حسب ما تنساه." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="lab.html">المختبر</a>
+      <a href="challenges.html">تحديات</a>
+      <a href="start.html">البداية</a>
+      <a href="index.html">الرئيسية</a>
+      <a class="nav-cta" href="lessons/01-what-is-html.html">الدرس 01</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page-shell" style="padding-top:26px">
+
+  <div class="section-heading" style="margin-bottom:18px">
+    <div>
+      <span class="eyebrow">تدريب لا قراءة</span>
+      <h1>اختبر نفسك<br /><em>وراجع ما تنساه.</em></h1>
+    </div>
+    <p>الاختبار يصحّح ويشرح كل إجابة. والبطاقات تُعيد عليك ما أخطأت فيه بعد أيام، لا في اليوم نفسه.</p>
+  </div>
+
+  <div class="tool-tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="quiz">الاختبار · الوحدة الأولى</button>
+    <button role="tab" aria-selected="false" data-tab="cards">بطاقات الحفظ</button>
+  </div>
+
+  <!-- ══ الاختبار ══ -->
+  <section id="pane-quiz">
+    <div class="score-box" id="scoreBox">
+      <div class="lbl">نتيجتك</div>
+      <div class="big"><span id="scoreNum">0</span> / <span id="scoreTot">8</span></div>
+      <div class="bar"><i id="scoreBar"></i></div>
+      <p id="scoreNote" style="font-size:13px;color:var(--ink-soft);margin:10px 0 0;line-height:1.7"></p>
+    </div>
+
+    <div id="quizList"></div>
+
+    <div class="quiz-actions">
+      <button class="btn" id="gradeBtn">صحّح إجاباتي</button>
+      <button class="btn ghost" id="resetBtn">إعادة</button>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink-muted);line-height:1.7">
+      الاختبار على جهازك فقط، ولا يُرسل إلى أي مكان.
+    </p>
+  </section>
+
+  <!-- ══ البطاقات ══ -->
+  <section id="pane-cards" hidden>
+    <div class="flash" id="flash">
+      <span class="kicker" id="cardKicker">بطاقة 1</span>
+      <div class="front" id="cardFront"></div>
+      <div class="back" id="cardBack"></div>
+      <span class="tap-hint" id="tapHint">اضغط البطاقة لتكشف الجواب</span>
+    </div>
+
+    <div class="flash-actions">
+      <button class="again" id="againBtn" disabled>لم أتذكّر</button>
+      <button class="known" id="knownBtn" disabled>أعرفها</button>
+    </div>
+
+    <div class="deck-stat">
+      <span id="deckLeft">—</span>
+      <span id="deckDone">—</span>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--ink-muted);line-height:1.8;margin-top:16px">
+      ما تضغط «أعرفها» عليه يعود بعد يومين. وما تضغط «لم أتذكّر» عليه يعود في هذه الجلسة نفسها،
+      ثم بعد يوم، ثم بعد ثلاثة. ثلاث إلى أربع دقائق في اليوم تكفي.
+      <br />التقدّم محفوظ في متصفحك وحده.
+    </p>
+  </section>
+
+  <div class="ad-slot" data-ad-slot="practice-bottom"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="privacy.html">سياسة الخصوصية</a></span>
+  </div>
+</footer>
+
+<script>
+/* ═══════════ ١) الاختبار ═══════════ */
+var QUESTIONS = [
+  {
+    q: "ما وظيفة الوسم (tag) في HTML؟",
+    o: [
+      "يُنسّق النص: يجعل الخط عريضًا أو ملوّنًا",
+      "يُخبر المتصفح بمعنى القطعة: هذه فقرة، وهذا عنوان",
+      "يُخزّن الملف داخل المتصفح",
+      "لا وظيفة له سوى التنظيم البصري للكود"
+    ],
+    a: 1,
+    why: "الوسم يوصّف <b>المعنى</b> لا الشكل. الشكل وظيفة CSS، والوسم يقول: هذه فقرة، هذا رابط، هذه صورة."
+  },
+  {
+    q: "في السطر <code>&lt;p&gt;مرحبًا&lt;/p&gt;</code> — أي جزء هو المحتوى؟",
+    o: ["p", "p>مرحبًا</p", "مرحبًا", "&lt;p&gt;"],
+    a: 2,
+    why: "كل ما يقع <b>بين</b> وسم الفتح ووسم الإغلاق هو المحتوى. و p اسم العنصر فقط."
+  },
+  {
+    q: "نسيت وسم الإغلاق &lt;/p&gt; في آخر الصفحة. ماذا يحدث عمليًّا؟",
+    o: [
+      "يتوقف المتصفح عن العرض ويُظهر خطأً أحمر",
+      "لا شيء على الإطلاق في كل الحالات",
+      "يُغلق المتصفح الفقرة تلقائيًّا في معظم الحالات، لكن ما بعدها قد يُحسب جزءًا منها",
+      "يحذف المتصفح الفقرة كلها"
+    ],
+    a: 2,
+    why: "المتصفح <b>متعاون</b> لا صارم: يُصلح النقص ويُكمل الشجرة. لكن الإصلاح ليس دقيقًا دائمًا، فيدخل ما بعده في الفقرة. لهذا نُغلق دائمًا."
+  },
+  {
+    q: "ما الفرق بين <code>head</code> و <code>body</code>؟",
+    o: [
+      "head للمحتوى الظاهر، body لبيانات الصفحة",
+      "head لبيانات الصفحة التي لا تُرى، body لما يراه الزائر",
+      "لا فرق، الاسمان لشيء واحد",
+      "head للعناوين، body للفقرات"
+    ],
+    a: 1,
+    why: "كل ما في head إعدادات للصفحة: الترميز، العنوان في تبويب المتصفح، ملفات الستايل. وكل ما يراه الزائر في body."
+  },
+  {
+    q: "لماذا يبدأ الملف بـ <code>&lt;!doctype html&gt;</code>؟",
+    o: [
+      "لأنه تعليق اختياري لا يؤثر",
+      "ليعرض المتصفح الصفحة بوضع المعايير الحديث بدل وضع التوافق القديم",
+      "لتحميل ملف الستايل تلقائيًّا",
+      "لتعريف اسم الموقع للزائر"
+    ],
+    a: 1,
+    why: "بدونه قد يعمل المتصفح بوضع قديم فتختلف المقاسات وتنهار التنسيقات. سطر واحد يمنع ساعات من الحيرة."
+  },
+  {
+    q: "كتبت في الملف ثلاثة أسطر متتالية داخل فقرة. كيف تظهر في الصفحة؟",
+    o: [
+      "ثلاثة أسطر كما كتبتها",
+      "سطر واحد متصل، لأن المتصفح يدمج المسافات والأسطر",
+      "خطأ يمنع العرض",
+      "سطران"
+    ],
+    a: 1,
+    why: "في HTML المسافات والأسطر المتعددة تُدمج في مسافة واحدة. لسطر جديد فعلي: <code>&lt;br&gt;</code>، وللفقرة جديدة: <code>&lt;p&gt;</code>."
+  },
+  {
+    q: "رقم <code>h1</code> هو…",
+    o: [
+      "أصغر عنوان في الصفحة",
+      "أهم عنوان في الصفحة، وأفضل مكان لعنوانها الرئيسي",
+      "عنوان من نوع مختلف تمامًا",
+      "وسم للخط العريض"
+    ],
+    a: 1,
+    why: "h1 أكبر درجة وأهمها دلاليًّا، و h6 أصغرها. والحجم قابل للتغيير بـ CSS، أما المرتبة فلا."
+  },
+  {
+    q: "رابط خارجي يُفتح في تبويب جديد: أي كتابة هي الأسلم؟",
+    o: [
+      'target="_blank"',
+      'target="_blank" rel="noopener"',
+      'href="_blank"',
+      'new="tab"'
+    ],
+    a: 1,
+    why: 'بلا rel="noopener" تستطيع الصفحة الجديدة التحكم في تبويبك عبر window.opener. إضافة واحدة تُغلق هذا الباب.'
+  }
+];
+
+var CARDS = [
+  { f: "ما هو الوسم (tag)؟", b: "علامة تحيط بقطعة من المحتوى وتُخبر المتصفح بمعناها. تُكتب بين &lt; و &gt;." },
+  { f: "ما هو العنصر (element)؟", b: "الوسم كاملًا: وسم الفتح + المحتوى + وسم الإغلاق. أي أن العنصر هو الوسم ومحتواه معًا." },
+  { f: "ما هي الخاصية (attribute)؟", b: "معلومة إضافية تُكتب داخل وسم الفتح، مثل src و href و class، وتأتي بصيغة اسم=&quot;قيمة&quot;." },
+  { f: "ما وظيفة &lt;!doctype html&gt;؟", b: "يُخبر المتصفح أن الملف HTML حديث، فيعرضه بوضع المعايير لا وضع التوافق القديم." },
+  { f: "ما وظيفة &lt;meta charset=&quot;UTF-8&quot;&gt;؟", b: "يُحدّد ترميز الحروف، وبدونه تظهر العربية رموزًا غريبة." },
+  { f: "ما وظيفة &lt;meta name=&quot;viewport&quot;&gt;؟", b: "يجعل عرض الصفحة مساويًا لعرض شاشة الهاتف، وبدونه يبدو الموقع مصغّرًا." },
+  { f: "الفرق بين head و body؟", b: "head: بيانات لا يراها الزائر (الترميز، العنوان، الستايل). body: كل المحتوى الظاهر." },
+  { f: "كم درجة عناوين توجد؟", b: "ستّ: h1 إلى h6. h1 الأهم و h6 الأقل، والترتيب دلالي لا بصري." },
+  { f: "كيف تُنشئ سطرًا جديدًا داخل فقرة؟", b: "بوسم &lt;br&gt;. أما الأسطر الفارغة في الملف فيتجاهلها المتصفح." },
+  { f: "الفرق بين &lt;strong&gt; و &lt;b&gt;؟", b: "strong تعني «أهمية» ويعتمد عليها قارئ الشاشة في التشديد، و b شكل عريض بلا معنى دلالي." },
+  { f: "الفرق بين المسار المطلق والنسبي؟", b: "المطلق يبدأ بالبروتوكول والنطاق، والنسبي يُحسب من موقع الملف الحالي؛ ونسبي أفضل داخل موقعك." },
+  { f: "لماذا &lt;img alt&gt; ليس تفصيلًا؟", b: "يُقرأ لقارئ الشاشة عند تعذّر الصورة، ويظهر مكانها إن فشل تحميلها، ويفهمه محرك البحث." },
+  { f: "الفرق بين ul و ol؟", b: "ul قائمة غير مرتّبة (الترتيب لا يهم). ol مرتّبة (الترتيب يحمل معنى)، والأرقام يرسمها المتصفح تلقائيًّا." },
+  { f: "أين تُوضع القائمة الداخلية؟", b: "داخل عنصر li التابع، قبل إغلاقه — لا بعده ولا بين عنصرين." },
+  { f: "ماذا تعني dl و dt و dd؟", b: "قائمة تعريف: dl الحاوية، dt المصطلح، dd شرحه. تُستخدم للمسارد والأسئلة المتكررة." },
+  { f: "متى يكون الجدول صوابًا؟", b: "حين تكون البيانات ذات صفوف وأعمدة حقيقية (درجات، أسعار، مواعيد). وللترتيب البصري: CSS." },
+  { f: "ما الوسم الذي لا وجود له في الجداول؟", b: "لا يوجد وسم «عمود». تبني صفوفًا بـ tr وخلايا بـ td أو th، والمتصفح يرتّبها أعمدة." },
+  { f: "ما وظيفة scope في th؟", b: "تحدّد هل العنوان يحكم عمودًا (col) أو صفًّا (row)، فيسمع قارئ الشاشة «السعر، ٥٠» بدل رقم مجرود." },
+  { f: "الفرق بين id و name في الحقل؟", b: "id للربط مع label وللستايل، و name هو ما يُرسل إلى الخادم. الحقل بلا name لا يُرسل." },
+  { f: "لماذا label أهم من placeholder؟", b: "لأن placeholder يختفي عند الكتابة. label يبقى، وضغطه ينقل المؤشر للحقل، ويُقرأ لقارئ الشاشة." },
+  { f: "شرط عمل أزرار الاختيار radio؟", b: "أن تحمل كلها نفس name، وإلا صارت مستقلّة كالمربّعات checkbox." },
+  { f: "ما معيار article مقابل section؟", b: "article يُفهم وحده لو نُشر منفصلًا. section قسم بعنوان داخل موضوع أكبر. و div حاوية للتنسيق فقط." },
+  { f: "كم عنصر main في الصفحة؟", b: "واحد فقط. وكل ما يتكرر في كل الصفحات (التنقّل والتذييل) لا يُوضع داخله." },
+  { f: "ما تحقق HTML المجاني؟", b: "required و type و pattern و minlength. تحقق للراحة لا للأمان — الأمان الحقيقي على الخادم." },
+  { f: "أجزاء قاعدة CSS؟", b: "محدِّد + كتلة تصريحات { }. وكل تصريح: خاصية، نقطتان، قيمة، فاصلة منقوطة." },
+  { f: "ترتيب الأولوية في CSS؟", b: "style داخل الوسم ← #id ← .class ← اسم العنصر. وعند التساوي يفوز الأخير في الترتيب." },
+  { f: "لماذا الملف الخارجي أفضل؟", b: "يُحمّل مرة ويُخزَّن، ويُعدَّل التصميم كله من ملف واحد، ولا يخلط المعنى بالشكل." },
+  { f: "طبقات الصندوق من الداخل؟", b: "content ← padding ← border ← margin. والهامش شفاف ولا يأخذ لون الخلفية." },
+  { f: "ما يفعل box-sizing: border-box؟", b: "يجعل width تعني عرض الصندوق كاملًا، فيدخل الحشو والحدود داخلها ولا تتجاوز العناصر حاوياتها." },
+  { f: "ما انهيار الهوامش؟", b: "هامشان رأسيان متلاصقان يأخذ المتصفح الأكبر لا المجموع. ولا يحدث داخل Flexbox أو Grid." },
+  { f: "المحوران في Flexbox؟", b: "رئيسي وعرضي. في الصف الأفقي: justify-content للتوزيع الأفقي و align-items للمحاذاة الرأسية." },
+  { f: "لماذا gap أفضل من margin في Flexbox؟", b: "لأنه يضع الفراغ بين العناصر فقط، بلا فراغ زائد على الأطراف، ولا ينهار." },
+  { f: "ماذا تعني 1fr؟", b: "جزء واحد من المساحة الحرّة بعد خصم الفراغات. و 2fr 1fr يعني الثلثين والثلث." },
+  { f: "متى Grid ومتى Flexbox؟", b: "Grid لصفوف وأعمدة معًا (تخطيط صفحة). Flexbox لاتجاه واحد وتوزيع مساحة (سطر أزرار، شريط تنقّل)." },
+  { f: "ما تعني repeat(auto-fit, minmax(240px, 1fr))؟", b: "أكبر عدد ممكن من الأعمدة، كل عمود لا يقلّ عن ٢٤٠ — عمود على الهاتف وثلاثة على الحاسوب بلا media query." },
+  { f: "الفرق بين padding و margin؟", b: "padding مسافة داخلية بين المحتوى والحدود وتأخذ لون الخلفية. margin مسافة خارجية إلى الجيران، شفافة دائمًا." },
+  { f: "ما وظيفة meta viewport؟", b: "يجعل عرض الصفحة مساويًا لعرض شاشة الهاتف. بدونه يفترض الهاتف ٩٨٠ بكسل ويصغّر الصفحة." },
+  { f: "ما معنى أولوية الهاتف؟", b: "نكتب CSS للهاتف أولًا بلا media query، ثم نضيف تحسينات للشاشات الكبيرة بـmin-width." },
+  { f: "كم نقطة توقّف تكفي؟", b: "اثنتان تقريبًا: ٦٤٠ و١٠٢٤. والمرونة الحقيقية تأتي من Grid وFlexbox لا من كثرة النقاط." },
+  { f: "ما فائدة clamp؟", b: "قيمة بين حدّين: clamp(1.5rem, 4vw, 2.5rem) — نص يكبر مع الشاشة ولا يخرج عن حدود القراءة." },
+  { f: "لماذا rem أفضل من px للنصوص؟", b: "لأنها تُحسب من حجم خط الجذر، فيكبر موقعك مع من يكبّر الخط في متصفحه. px يتجاهل إعداده." },
+  { f: "ما معنى ch؟", b: "عرض المحرف «0». تُستخدم لطول السطر: max-width: 65ch — أي ٤٥ إلى ٧٥ محرفًا للقراءة المريحة." },
+  { f: "لماذا نتجنّب 100vh في الهاتف؟", b: "لأن شريط عنوان المتصفح يغيّر الارتفاع الفعلي فتظهر مسافة أو قصّ. dvh أدقّ." },
+  { f: "ما أول خطوة في أي مشروع صفحة؟", b: "التخطيط على الورق: قائمة الأقسام، جملة لكل قسم، ثم المحرّر." },
+  { f: "لماذا نكتب الهيكل قبل الستايل؟", b: "لأن الصفحة يجب أن تُقرأ وتُفهم بلا تصميم. التصميم يضيف، ولا ينقذ بنية سيئة." },
+  { f: "ما فائدة متغيّرات CSS في :root؟", b: "قيم مسمّاة في مكان واحد: تعدّل --green فيتغيّر لون كل الأزرار والعناصر في الموقع." },
+  { f: "أين تُقرأ أخطاء JavaScript؟", b: "في لوحة Console داخل أدوات المطوّر: اسم الملف ورقم السطر." },
+  { f: "لماذا لا تظهر أخطاء CSS في Console؟", b: "لأن القاعدة الخاطئة تُهمَل بصمت؛ تفحصها من Elements ← Styles، وتبحث عن القاعدة المشطوبة." },
+  { f: "ما الفرق بين HTML وJavaScript؟", b: "HTML تصف ما في الصفحة، وCSS تصف شكله، وJavaScript تقرّر وتكرّر وتتفاعل: تضغط زرًّا فيحدث شيء." },
+  { f: "أين نكتب وسوم script؟", b: "قبل إغلاق body مباشرة، أو في head مع defer — ليكون العنصر موجودًا قبل أن نمسكه." },
+  { f: "ما الفرق بين let و const؟", b: "let صندوق تتغيّر قيمته، و const لا تتغيّر. استخدم const افتراضيًّا وlet عند الحاجة." },
+  { f: "ما الفرق بين === و ==؟", b: "=== تقارن القيمة والنوع معًا (الأسلم). == تحوّل النوع فتعتبر \"12\" تساوي 12 — تجنّبها." },
+  { f: "ما الفرق بين sayHello و sayHello()؟", b: "الأولى إشارة إلى الوصفة، والثانية تنفيذها. ولهذا نكتب بلا أقواس عند ربط دالة بحدث." },
+  { f: "من أين يبدأ عدّ المصفوفة؟", b: "من صفر. أول عنصر [0]. والبشر يبدأون من واحد، فنضيف واحدًا عند العرض فقط." },
+  { f: "ما الفرق بين map و filter؟", b: "map تُحوّل كل عنصر إلى قيمة جديدة، و filter تحتفظ بالعناصر التي تحقق شرطًا. وكلتاهما تُعيدان قائمة جديدة." },
+  { f: "ما الخطوات الثلاث لإنشاء عنصر؟", b: "createElement (اصنع) ← textContent (املأ) ← appendChild (أضف إلى الأب)." },
+  { f: "لماذا JSON.stringify مع localStorage؟", b: "لأن localStorage تحفظ نصوصًا فقط. نحول القائمة إلى نص عند الحفظ، ونعيدها بـJSON.parse عند القراءة." }
+];
+
+/* ═══════════ ٢) بناء الاختبار ═══════════ */
+var list = document.getElementById("quizList");
+var graded = false;
+
+function buildQuiz() {
+  graded = false;
+  list.innerHTML = "";
+  document.getElementById("scoreBox").classList.remove("show");
+  document.getElementById("gradeBtn").textContent = "صحّح إجاباتي";
+
+  QUESTIONS.forEach(function (item, i) {
+    var card = document.createElement("article");
+    card.className = "q-card";
+    card.dataset.qi = i;
+
+    var num = document.createElement("span");
+    num.className = "q-num";
+    num.textContent = "سؤال " + String(i + 1).padStart(2, "0");
+    card.appendChild(num);
+
+    var h = document.createElement("h3");
+    h.innerHTML = item.q;
+    card.appendChild(h);
+
+    var opts = document.createElement("div");
+    opts.className = "opts";
+    item.o.forEach(function (text, oi) {
+      var label = document.createElement("label");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "q" + i;
+      input.value = oi;
+      var span = document.createElement("span");
+      span.innerHTML = text;
+      label.appendChild(input);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+    card.appendChild(opts);
+
+    var why = document.createElement("div");
+    why.className = "why";
+    why.innerHTML = "<b>الشرح:</b> " + item.why;
+    card.appendChild(why);
+
+    list.appendChild(card);
+  });
+  document.getElementById("scoreTot").textContent = QUESTIONS.length;
+}
+
+function grade() {
+  if (graded) { buildQuiz(); return; }
+  var correct = 0;
+  var cards = list.querySelectorAll(".q-card");
+
+  cards.forEach(function (card, i) {
+    var item = QUESTIONS[i];
+    var picked = card.querySelector("input:checked");
+    card.classList.add("graded");
+    var labels = card.querySelectorAll("label");
+    labels.forEach(function (lab, li) {
+      lab.classList.remove("right", "wrong");
+      var inp = lab.querySelector("input");
+      inp.disabled = true;
+      if (li === item.a) lab.classList.add("right");
+    });
+    if (picked) {
+      if (Number(picked.value) === item.a) { correct++; }
+      else { labels[Number(picked.value)].classList.add("wrong"); }
+    }
+  });
+
+  var pct = Math.round((correct / QUESTIONS.length) * 100);
+  document.getElementById("scoreNum").textContent = correct;
+  document.getElementById("scoreBar").style.width = pct + "%";
+
+  var note;
+  if (correct === QUESTIONS.length) note = "ممتاز — فهمك للوحدة الأولى سليم. انتقل إلى التطبيق: اكتب صفحة من ذاكرتك بلا نظر في الدرس.";
+  else if (pct >= 65) note = "جيد. راجع الأسئلة التي أخطأت فيها فقط، ثم عُد للبطاقات ليثبت ما فهمته.";
+  else if (pct >= 40) note = "الفكرة وصلتك جزئيًّا. أعد قراءة الدرسين 01 و02 ثم أعد الاختبار — لا تقرأ الشروح فقط، بل أعد صياغتها بكلماتك.";
+  else note = "ابدأ بالدروس 01 إلى 03 بالترتيب. لا بأس، الاختبار هنا للكشف لا للحكم.";
+
+  document.getElementById("scoreNote").innerHTML = note;
+  document.getElementById("scoreBox").classList.add("show");
+  document.getElementById("scoreBox").scrollIntoView({ behavior: "smooth", block: "center" });
+  graded = true;
+  document.getElementById("gradeBtn").textContent = "اختبار جديد";
+}
+
+document.getElementById("gradeBtn").addEventListener("click", grade);
+document.getElementById("resetBtn").addEventListener("click", function () {
+  buildQuiz();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* ═══════════ ٣) بطاقات الحفظ ═══════════ */
+var KEY = "masar.cards.v1";
+var DAYS = [0, 1, 2, 4, 8, 16];
+var store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { store = {}; }
+
+var queue = [];
+var current = null;
+var flipped = false;
+var sessionDone = 0;
+
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+}
+
+function dueNow(ts) { return !ts || ts <= Date.now(); }
+
+function buildQueue() {
+  var now = Date.now();
+  var due = [];
+  var fresh = [];
+  CARDS.forEach(function (c, i) {
+    var rec = store[i];
+    if (!rec) fresh.push(i);
+    else if (dueNow(rec.due)) due.push(i);
+  });
+  // الأقدم أولًا: ما تأجّل أكثر يُقدَّم
+  due.sort(function (a, b) { return (store[a].due || 0) - (store[b].due || 0); });
+  queue = due.concat(fresh.slice(0, 8));
+}
+
+function renderCard() {
+  var flash = document.getElementById("flash");
+  var knownBtn = document.getElementById("knownBtn");
+  var againBtn = document.getElementById("againBtn");
+
+  if (current === null && queue.length === 0) {
+    flash.classList.remove("flipped");
+    document.getElementById("cardFront").textContent = "انتهت جلسة اليوم";
+    document.getElementById("cardBack").innerHTML =
+      "لا بطاقات مستحقّة الآن. التي أجبت عنها بـ«أعرفها» تعود بعد يومين على الأقل — هذا هو المقصود: مراجعة قبل النسيان لا بعده.";
+    document.getElementById("cardKicker").textContent = "تمّ";
+    document.getElementById("tapHint").textContent = "أعد تحميل الصفحة غدًا";
+    knownBtn.disabled = true;
+    againBtn.disabled = true;
+    document.getElementById("deckLeft").textContent = "مستحقّ الآن: 0";
+    document.getElementById("deckDone").textContent = "أُنجز في هذه الجلسة: " + sessionDone;
+    return;
+  }
+
+  if (current === null) { current = queue.shift(); flipped = false; }
+
+  flash.classList.remove("flipped");
+  document.getElementById("cardKicker").textContent = "بطاقة · " + (current + 1) + " من " + CARDS.length;
+  document.getElementById("cardFront").innerHTML = CARDS[current].f;
+  document.getElementById("cardBack").innerHTML = CARDS[current].b;
+  document.getElementById("tapHint").textContent = "اضغط البطاقة لتكشف الجواب";
+  knownBtn.disabled = true;
+  againBtn.disabled = true;
+  document.getElementById("deckLeft").textContent = "مستحقّ الآن: " + (queue.length + 1);
+  document.getElementById("deckDone").textContent = "أُنجز في هذه الجلسة: " + sessionDone;
+}
+
+function flip() {
+  if (current === null) return;
+  document.getElementById("flash").classList.add("flipped");
+  document.getElementById("tapHint").textContent = "قيّم نفسك بصدق";
+  document.getElementById("knownBtn").disabled = false;
+  document.getElementById("againBtn").disabled = false;
+}
+
+function answer(ok) {
+  if (current === null) return;
+  var rec = store[current] || { box: 0, due: 0 };
+  if (ok) {
+    rec.box = Math.min(rec.box + 1, DAYS.length - 1);
+    rec.due = Date.now() + DAYS[rec.box] * 86400000;
+  } else {
+    rec.box = 0;
+    rec.due = Date.now();
+  }
+  store[current] = rec;
+  save();
+  sessionDone++;
+  if (!ok) queue.push(current); // يعود في الجلسة نفسها
+  current = null;
+  renderCard();
+}
+
+document.getElementById("flash").addEventListener("click", flip);
+document.getElementById("knownBtn").addEventListener("click", function (e) { e.stopPropagation(); answer(true); });
+document.getElementById("againBtn").addEventListener("click", function (e) { e.stopPropagation(); answer(false); });
+
+/* ═══════════ ٤) التبويبات ═══════════ */
+var tabs = document.querySelectorAll(".tool-tabs button");
+tabs.forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    tabs.forEach(function (b) { b.setAttribute("aria-selected", "false"); });
+    btn.setAttribute("aria-selected", "true");
+    var which = btn.dataset.tab;
+    document.getElementById("pane-quiz").hidden = which !== "quiz";
+    document.getElementById("pane-cards").hidden = which !== "cards";
+    if (which === "cards") { buildQueue(); current = null; renderCard(); }
+  });
+});
+
+buildQuiz();
+buildQueue();
+renderCard();
+
+/* فتح تبويب البطاقات عند القدوم من رابط #cards */
+if (location.hash === "#cards") {
+  document.querySelector('.tool-tabs button[data-tab="cards"]').click();
+}
+</script>
+<script src="assets/app.js"></script>
+<script src="assets/progress.js"></script>
+</body>
+</html>

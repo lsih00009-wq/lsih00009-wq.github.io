@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="4">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>التصحيح: كيف تقرأ الخطأ وتجده — فاصلة</title>
+<meta name="description" content="الدرس السادس عشر: أين يخبرك المتصفح بخطئك، وكيف تقرأ رسالته، وطريقة تختصر ساعات البحث إلى دقائق." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/16-debug.html" />
+<meta property="og:title" content="التصحيح: كيف تقرأ الخطأ وتجده — فاصلة" />
+<meta property="og:description" content="الدرس السادس عشر: أين يخبرك المتصفح بخطئك، وكيف تقرأ رسالته، وطريقة تختصر ساعات البحث إلى دقائق." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../index.html">خريطة الدورة</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الرابعة · إتقان البناء</div>
+    <h1>التصحيح: كيف تقرأ الخطأ وتجده</h1>
+    <p class="lead">
+      الخطأ ليس عقابًا، بل جملة يقولها المتصفح عن مكان الخلل. من يعرف أين يقرأها
+      يصلح في دقيقة ما يبحث عنه غيره ساعة.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 16</span><span>أساسي</span><span>20 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>حين لا تعمل صفحتك، لا تُصلح ما تظنّه خطأً. اقرأ ما يقوله المتصفح أولًا، ثم اصلح نقطة واحدة، ثم أعد التحميل.</p>
+  </div>
+
+  <h2 id="where">أين يشتكي المتصفح؟</h2>
+  <p>
+    لكل متصفح لوحة تُخبرك بما حدث. في Chrome وEdge وFirefox تُفتح بـ<code>F12</code> أو
+    <code>Ctrl+Shift+I</code>، وعلى الهاتف تُفتح بكتابة <code>about:debugging</code> (في Firefox)
+    أو بتوصيل الجهاز بحاسوب.
+  </p>
+  <p>
+    داخل اللوحة ثلاثة أماكن تخصّك في هذا الدرس:
+  </p>
+  <ul>
+    <li><strong>Console</strong> — رسائل JavaScript والأخطاء. هنا تظهر كلمة <code>Uncaught</code> حين يتوقّف كودك.</li>
+    <li><strong>Elements</strong> — شجرة الصفحة كما يفهمها المتصفح بعد التنفيذ، لا كما كتبتها.</li>
+    <li><strong>Network</strong> — كل ملف طلبه المتصفح: هل وصل، وبأي رمز حالة (200 تعني وصل، 404 تعني لم يجده).</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>الخطأ الأول لكل مبتدئ</b>
+    <p>
+      أن يصلح خمسة أشياء في وقت واحد، ثم يعيد التحميل. إن عملت الصفحة فلن تعرف أيّها
+      كان السبب، وإن لم تعمل فلديك خمسة احتمالات. القاعدة: تغيير واحد، ثم اختبار.
+    </p>
+  </div>
+
+  <h2 id="read">كيف تقرأ رسالة الخطأ</h2>
+  <p>
+    الرسالة تبدو طويلة، وفيها ثلاثة أشياء فقط تهمّك: <em>نوع الخطأ</em>، و<em>اسم الملف</em>،
+    و<em>رقم السطر</em>. الباقي تفاصيل تقنية يمكن تجاهلها في البداية.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>Console</span><button data-copy>نسخ</button></div>
+<pre><code>Uncaught ReferenceError: pric is not defined
+    at total (script.js:12)
+    at script.js:20</code></pre>
+  </div>
+
+  <p>
+    اقرأه هكذا: «استخدمتَ اسمًا لا وجود له في السطر ١٢ من <code>script.js</code>».
+    الاسم في المثال <code>pric</code> — والحلّ غالبًا حرف ناقص في <code>price</code>.
+  </p>
+  <ul>
+    <li><strong>ReferenceError</strong> — اسم غير معرّف: خطأ إملائي، أو متغيّر أعلنتَه في مكان لا يُرى منه.</li>
+    <li><strong>TypeError</strong> — عالجت شيئًا بما لا يقبله، مثل قراءة خاصية من <code>null</code>.</li>
+    <li><strong>SyntaxError</strong> — الكود نفسه مكسور: قوس لم يُغلق، أو فاصلة زائدة.</li>
+  </ul>
+
+  <h2 id="three">ثلاثة أخطاء تصنع معظم المشاكل</h2>
+  <ol>
+    <li>
+      <strong>وسم لم يُغلق:</strong> كتبتَ <code>&lt;div&gt;</code> ونسيت <code>&lt;/div&gt;</code>.
+      في Elements ستجد بقية الصفحة قد دخلت داخل هذا الصندوق — وهذا أوضح دليل.
+    </li>
+    <li>
+      <strong>قوس لم يُغلق:</strong> قاعدة CSS واحدة ناقصها <code>}</code> تُسقط كل ما بعدها.
+      علامة ذلك: التنسيق يتوقّف عند نقطة معيّنة ويُهمل الباقي.
+    </li>
+    <li>
+      <strong>ترتيب التنفيذ:</strong> تستدعي دالة قبل أن تُعرَّف، أو تعدّل عنصرًا قبل أن يوجد.
+      الحل: السكربت بعد العناصر، أو انتظار <code>DOMContentLoaded</code>.
+    </li>
+  </ol>
+
+  <h2 id="css">CSS لا يشتكي، فكيف تصطاده؟</h2>
+  <p>
+    ورقة الأنماط لا تُنتج أخطاء صاخبة: القاعدة الخاطئة تُهمَل بصمت. لذلك تحتاج أدوات
+    فحص بدل الرسائل:
+  </p>
+  <ol>
+    <li>افتح Elements، واختر العنصر، وانظر لوحة Styles: هل قاعدتك موجودة؟ هل مشطوبة؟</li>
+    <li>القاعدة المشطوبة تعني أن قاعدة أخرى أقوى غلبتها — راجع الأولوية من الدرس التاسع.</li>
+    <li>لتحديد صندوق عنصر بصراحة، أضف مؤقّتًا <code>outline: 2px solid red</code> — لا يحرّك شيئًا، بخلاف <code>border</code>.</li>
+  </ol>
+
+  <div class="code-block">
+    <div class="code-head"><span>فحص سريع</span><button data-copy>نسخ</button></div>
+<pre><code>/* يظهر الحدّ ولا يزحزح أي عنصر */
+* { outline: 1px solid rgba(255, 0, 0, .35); }</code></pre>
+  </div>
+
+  <h2 id="method">طريقة تُنهي البحث في دقائق</h2>
+  <ol>
+    <li><strong>أعد إنتاج الخطأ أصغر ما يمكن:</strong> صفحة واحدة، عنصران، إن عملت فالمشكلة في الباقي.</li>
+    <li><strong>اقرأ لا تُخمّن:</strong> الرسالة تقول السطر؛ ابدأ منه لا من أول الملف.</li>
+    <li><strong>اطبع الحالة:</strong> <code>console.log</code> قبل السطر المشكوك فيه وبعده. إن لم تُطبع الثانية فالكود توقّف بينهما.</li>
+    <li><strong>ارجع خطوة:</strong> احذف آخر تعديل. إن عملت، فأنت وجدت الجاني.</li>
+  </ol>
+
+  <div class="callout idea">
+    <b>سؤال يوفّر ساعات</b>
+    <p>
+      بدل «لماذا لا يعمل؟» اسأل: «ما آخر شيء عمل، وما أول شيء لم يعمل؟» الفرق بينهما
+      هو مكان الخطأ تقريبًا دائمًا.
+    </p>
+  </div>
+
+  <h2 id="exercise">مهمتك</h2>
+  <div class="exercise">
+    <b>١٥ دقيقة · اصطد ثلاثة أخطاء</b>
+    <p>
+      خُذ صفحتك من الدرس الخامس عشر، واكسرها ثلاث مرّات بقصد: احذف <code>&lt;/h2&gt;</code>،
+      ثم احذف <code>}</code> من قاعدة CSS، ثم اكتب اسم متغيّر بحرف ناقص. بعد كل كسر،
+      افتح اللوحة وسجّل ما قرأته: أي أداة أخبرتك؟ وبأي جملة؟
+    </p>
+    <details class="answer">
+      <summary>ما ستلاحظه</summary>
+      <p>
+        وسم HTML المكسور لن يُنتج خطأً في Console أبدًا، بل سيظهر خللًا في Elements — وهذا درس
+        بحدّ ذاته: بعض الأخطاء تُرى ولا تُقال. قاعدة CSS المكسورة ستُظهر كل ما بعدها مهملًا
+        في Styles. وأما الاسم الناقص فسيظهر صريحًا في Console مع رقم السطر.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما اللوحة التي تُظهر أخطاء JavaScript؟</li>
+      <li>لماذا لا تظهر أخطاء CSS في Console؟</li>
+      <li>ما أول شيء تفعله قبل أن تُصلح أي شيء؟</li>
+      <li>لماذا يُنصح بتغيير واحد في كل مرّة؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="16"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="15-project.html"><small>السابق</small>مشروع كامل</a>
+  <a href="17-js-first-step.html"><small>التالي</small>أول سطر JavaScript</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

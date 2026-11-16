@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="4">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>مشروع كامل من الصفر — فاصلة</title>
+<meta name="description" content="الدرس الخامس عشر: صفحة هبوط كاملة خطوة بخطوة: التخطيط على الورق، الهيكل، التنسيق، والتجاوب." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/15-project.html" />
+<meta property="og:title" content="مشروع كامل من الصفر — فاصلة" />
+<meta property="og:description" content="الدرس الخامس عشر: صفحة هبوط كاملة خطوة بخطوة: التخطيط على الورق، الهيكل، التنسيق، والتجاوب." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="16-debug.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الرابعة · الانتشار</div>
+    <h1>مشروع كامل من الصفر</h1>
+    <p class="lead">
+      كل ما تعلّمته في الدروس السابقة سيتجمّع هنا في صفحة واحدة حقيقية.
+      لا كود غامض: كل سطر سبق أن رأيته.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 15</span><span>مشروع</span><span>45 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>هنا نجمع كل شيء ونبني صفحة كاملة: نخطّط على الورق أولًا، ثم نكتب الهيكل، ثم نُلبسه الشكل. لا نبدأ بالكتابة العشوائية.</p>
+  </div>
+
+
+  <h2 id="plan">أولًا: على الورق، لا في المحرّر</h2>
+  <p>
+    الخطأ الأول لكل مبتدئ: يفتح المحرّر ويكتب. النتيجة صفحة تنمو بلا خطة، ثم يبدأ
+    الحذف والإصلاح. اكتب أولًا، بجملة واحدة لكل قسم:
+  </p>
+  <ol>
+    <li><strong>رأس:</strong> اسم المنتج + رابط «جرّب الآن».</li>
+    <li><strong>مقدمة:</strong> جملة تقول ما هذا، وزرّان.</li>
+    <li><strong>ثلاث ميزات:</strong> ثلاث بطاقات متساوية.</li>
+    <li><strong>قسم سعر واحد:</strong> واضح، بلا مفاجآت.</li>
+    <li><strong>تذييل:</strong> حقوق وروابط.</li>
+  </ol>
+  <p>
+    هذا كل شيء. خمسة أقسام تكفي لصفحة هبوط. كل قسم أضفتَه بعدها يجب أن يُبرّر نفسه
+    بجملة، وإلا فهو ضجيج.
+  </p>
+
+  <h2 id="files">ثانيًا: بنية الملفات</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>الهيكل</span><button data-copy>نسخ</button></div>
+<pre><code>my-site/
+├── index.html
+└── assets/
+    ├── style.css
+    └── images/</code></pre>
+  </div>
+
+  <p>
+    مستويان يكفيان لمشروع من صفحة واحدة. وكلمة <code>index</code> ليست اختيارًا:
+    الخادم يبحث عنها تلقائيًّا حين يطلب أحدهم المجلد نفسه.
+  </p>
+
+  <h2 id="html">ثالثًا: الهيكل قبل أي لون</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>index.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;أداة تنظيم الملفات — جرّبها&lt;/title&gt;
+  &lt;link rel="stylesheet" href="assets/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header class="bar"&gt;
+    &lt;strong&gt;أداة تنظيم&lt;/strong&gt;
+    &lt;a class="btn" href="#price"&gt;جرّب الآن&lt;/a&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section class="hero"&gt;
+      &lt;h1&gt;رتّب ملفاتك في دقيقة&lt;/h1&gt;
+      &lt;p&gt;لا حساب، لا تثبيت، يعمل في متصفحك.&lt;/p&gt;
+      &lt;a class="btn" href="#price"&gt;ابدأ&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;section class="features"&gt;
+      &lt;h2&gt;لماذا هذه الأداة&lt;/h2&gt;
+      &lt;div class="grid"&gt;
+        &lt;article&gt;&lt;h3&gt;سريعة&lt;/h3&gt;&lt;p&gt;تعمل بلا إنترنت.&lt;/p&gt;&lt;/article&gt;
+        &lt;article&gt;&lt;h3&gt;آمنة&lt;/h3&gt;&lt;p&gt;لا تُرسل ملفًا واحدًا.&lt;/p&gt;&lt;/article&gt;
+        &lt;article&gt;&lt;h3&gt;بسيطة&lt;/h3&gt;&lt;p&gt;واجهة واحدة، بلا قوائم.&lt;/p&gt;&lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class="pricing" id="price"&gt;
+      &lt;h2&gt;السعر&lt;/h2&gt;
+      &lt;p class="big"&gt;٠&lt;/p&gt;
+      &lt;p&gt;مفتوحة الآن، وبلا حساب.&lt;/p&gt;
+      &lt;a class="btn" href="#"&gt;افتح الأداة&lt;/a&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;© ٢٠٢٦ — أداة تنظيم الملفات&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+
+  <p>
+    افتح هذا الملف الآن بلا ستايل. سيبدو قبيحًا، وهذا مقصود: <strong>الهيكل يعمل
+    بلا تصميم</strong>. جرّب أن تقرأه — ستفهمه. هذه هي الدلالة التي بنيناها في
+    الدرس الثامن.
+  </p>
+
+  <h2 id="css">رابعًا: التنسيق على أربع مراحل</h2>
+  <p>
+    لا تكتب CSS كله في مرة. رتّبه بالترتيب نفسه الذي يفكّر به القارئ:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>assets/style.css</span><button data-copy>نسخ</button></div>
+<pre><code>/* ١) الأساس */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root {
+  --ink: #17231f;
+  --muted: #5d6d68;
+  --paper: #fbfcf8;
+  --line: #dfe5d9;
+  --green: #4e8f3a;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* ٢) الحاوية والشريط */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+main > section {
+  padding: 2.5rem 1.25rem;
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+/* ٣) المقدمة والأزرار */
+.hero { text-align: center; padding-block: 3.5rem; }
+.hero h1 { font-size: clamp(1.7rem, 5vw, 2.6rem); margin: 0 0 0.5rem; }
+.hero p { color: var(--muted); margin: 0 0 1.5rem; }
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  background: var(--green);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn:hover { background: #3f6b2a; }
+
+/* ٤) الشبكة */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.grid article {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  background: #fff;
+}
+
+.pricing { text-align: center; }
+.pricing .big { font-size: clamp(2rem, 8vw, 3.2rem); margin: 0; }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+}</code></pre>
+  </div>
+
+  <div class="callout idea">
+    <b>لماذا المتغيّرات؟</b>
+    <p>
+      <code>--ink</code> و<code>--green</code> في <code>:root</code> تعني أنك تغيّر
+      لون الموقع كله من سطر واحد. هذه أول خطوة نحو ما يُسمّى «نظام تصميم»، وهي أيضًا
+      ما يجعل تعديلك بعد شهر سهلًا.
+    </p>
+  </div>
+
+  <h2 id="check">قائمة الفحص قبل أن تقول «انتهيت»</h2>
+  <ul>
+    <li>افتحه على ٣٢٠ بكسل: لا تمرير أفقي، ولا نص خارج الصندوق.</li>
+    <li>كبّر الخط 150٪: كل شيء يبقى مقروءًا ومترابطًا.</li>
+    <li>تنقّل بالكيبورد وحده (Tab): كل رابط وزر واضح التركيز.</li>
+    <li>أطفئ الصور (أو احذف مجلدها): الصفحة تبقى مفهومة.</li>
+    <li>اطبعها (Ctrl+P): يظهر النص لا القوائم.</li>
+    <li>هل كل عنوان متدرّج؟ h1 واحد، ثم h2، ثم h3.</li>
+  </ul>
+
+  <h2 id="exercise">مهمتك</h2>
+  <div class="exercise">
+    <b>٢٠–٣٠ دقيقة · المشروع نفسه</b>
+    <p>
+      خذ هذا الهيكل وبدّل محتواه بشيء تملكه فعلًا: تطبيق من تطبيقاتك، أو قناة،
+      أو أداة صغيرة كتبتها. غيّر لونًا واحدًا فقط، واكتب جملك أنت. الهدف ليس النسخ،
+      بل أن تمرّ بالتجربة كاملة.
+    </p>
+    <details class="answer">
+      <summary>أفكار للتحسين بعد الإنجاز</summary>
+      <p>
+        أضف قسمًا للأسئلة الشائعة بـ<code>details</code> و<code>summary</code> — يعمل
+        بلا جافاسكربت. أضف صورة مع <code>alt</code> حقيقي. غيّر <code>gap</code> وشاهد
+        أثره. أضف <code>:focus-visible</code> لإبراز الزر عند التنقّل بالكيبورد.
+        ثم افتح أدوات المطوّر وجرّب أن تكسر التصميم بنفسك — من يعرف كيف ينكسر يعرف
+        كيف يُصلح.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>لماذا نخطط على الورق قبل المحرّر؟</li>
+      <li>لماذا نكتب الهيكل قبل الستايل؟</li>
+      <li>ما فائدة المتغيّرات في <code>:root</code>؟</li>
+      <li>ما أول بند في قائمة الفحص، ولماذا؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="15"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="14-units.html"><small>السابق</small>الوحدات</a>
+  <a href="16-debug.html"><small>التالي</small>التصحيح: كيف تقرأ الخطأ</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

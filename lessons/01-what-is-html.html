@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="1">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ما هو HTML؟ وما معنى «وسم»؟ — فاصلة</title>
+<meta name="description" content="الدرس الأول: لماذا وُجد HTML، وما هو الوسم، وكيف يقرأه المتصفح، وتفكيك أول سطر كود حرفًا حرفًا." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/01-what-is-html.html" />
+<meta property="og:title" content="ما هو HTML؟ وما معنى «وسم»؟ — فاصلة" />
+<meta property="og:description" content="الدرس الأول: لماذا وُجد HTML، وما هو الوسم، وكيف يقرأه المتصفح، وتفكيك أول سطر كود حرفًا حرفًا." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="02-document-structure.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الأولى · الهيكل</div>
+    <h1>ما هو HTML؟ وما معنى «وسم»؟</h1>
+    <p class="lead">
+      قبل أي كود: لماذا يحتاج المتصفح إلى ملف خاص أصلًا؟ وما الفرق بين
+      «العنصر» و«الوسم» و«الخاصية»؟ هذا الدرس يبني المفردات التي ستستخدمها في كل ما بعده.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 01</span><span>مبتدئ</span><span>12 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>تخيّل أنك تكتب على ورقة، وتريد أن يعرف القارئ: هذا عنوان، وهذه فقرة، وهذا رابط. HTML هي الطريقة التي تضع بها هذه العلامات. المتصفح يقرأ العلامات فيعرف ماذا يفعل.</p>
+  </div>
+
+
+  <h2 id="idea">الفكرة في جملة واحدة</h2>
+  <p>
+    <strong>HTML لغة تُعطي معنى للمحتوى.</strong> ليست لغة برمجة، ولا تحسب شيئًا،
+    ولا تُلوّن شيئًا. وظيفتها أن تقول للمتصفح: هذا عنوان، وهذه فقرة، وهذا رابط،
+    وهذه صورة — فيعرف كيف يعرضها وكيف يتعامل معها.
+  </p>
+
+  <div class="callout idea">
+    <b>تخيّل معي</b>
+    <p>
+      أعطِ صديقًا ورقة فيها عشرون سطرًا بلا تنسيق وقل له: «هذه صفحة ويب».
+      سيسألك: أيّها العنوان؟ وأين الرابط؟ وماذا أضغط؟ كل ما يفعله HTML أنه
+      يجيب عن هذه الأسئلة الثلاثة قبل أن يراها المتصفح.
+    </p>
+  </div>
+
+  <h2 id="why">لماذا لا يكفي أن نكتب نصًّا فقط؟</h2>
+  <p>
+    لأن النص وحده لا يحمل وظيفة. جملة «اتصل بنا» قد تكون عنوانًا، وقد تكون
+    زرًّا، وقد تكون رابطًا ينقلك إلى صفحة أخرى. الشكل الظاهر قد يكون متشابهًا،
+    لكن الوظيفة مختلفة تمامًا.
+  </p>
+  <p>
+    HTML يفصل بين <strong>المعنى</strong> و<strong>الشكل</strong>. أنت تقول
+    «هذا رابط»، وCSS (الوحدة الثالثة) تقول «اجعله أخضر ومسطّرًا». هذا الفصل
+    هو سبب وجود الويب الحديث: تغيّر الشكل كله دون أن تلمس المعنى.
+  </p>
+
+  <h2 id="tag">ما هو الوسم بالضبط؟</h2>
+  <p>
+    الوسم (Tag) كلمة محصورة بين قوسين زاويّين: <code>&lt;p&gt;</code>.
+    والحاسوب لا يعرف العربية ولا الإنجليزية داخل القوسين، إنه يقرأ حروفًا
+    لاتينية محدودة وضعها معيار الويب.
+  </p>
+  <p>
+    أغلب العناصر تأتي في <strong>زوج</strong>: وسم فتح ووسم إغلاق، وبينهما
+    المحتوى:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>example.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;p&gt;هذه فقرة قصيرة.&lt;/p&gt;</code></pre>
+  </div>
+
+  <p>وقليل من العناصر لا تحتاج إغلاقًا، لأنها لا تحتوي شيئًا داخلها:</p>
+
+  <div class="code-block">
+    <div class="code-head"><span>elements.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;br&gt;      &lt;!-- سطر جديد --&gt;
+&lt;hr&gt;      &lt;!-- خط فاصل --&gt;
+&lt;img src="photo.jpg" alt="صورة"&gt;  &lt;!-- صورة --&gt;</code></pre>
+  </div>
+
+  <h2 id="anatomy">تفكيك أول سطر: حرفًا حرفًا</h2>
+  <p>
+    خذ هذه الفقرة، ولنقرأها كما يقرأها المتصفح. لا يوجد فيها شيء عشوائي،
+    كل رمز له وظيفة:
+  </p>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>&lt;</code>
+      <p>يقول للمتصفح: انتبه، سيأتي اسم عنصر وليس نصًّا عاديًا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>p</code>
+      <p>اسم العنصر. <code>p</code> اختصار <em>paragraph</em> أي فقرة. اسم قصير لأنه يُكتب ملايين المرات.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>&gt;</code>
+      <p>يقول: انتهى اسم العنصر، وابدأ المحتوى.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>هذه فقرة قصيرة.</code>
+      <p>المحتوى نفسه. هذا ما سيقرأه الزائر.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>&lt;/p&gt;</code>
+      <p>الشرطة المائلة تعني «إغلاق». من هنا يعرف المتصفح أن هذه الفقرة انتهت.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>خطأ يقع فيه الجميع مرة</b>
+    <p>
+      كتابة <code>&lt;p&gt;نص</code> دون إغلاق. المتصفح لن يصرخ، بل سيكمل
+      ويكمّل النص في نفس الفقرة حتى نهاية الصفحة تقريبًا. الخطأ الصامت أسوأ من
+      الخطأ الظاهر، وهذا سبب تفصيلنا له من أول درس.
+    </p>
+  </div>
+
+  <h2 id="terms">ثلاث كلمات يجب أن تفرّق بينها</h2>
+  <ul>
+    <li><strong>الوسم (Tag):</strong> النص المحصور بين <code>&lt;</code> و<code>&gt;</code> مثل <code>p</code>.</li>
+    <li><strong>العنصر (Element):</strong> وسم الفتح + المحتوى + وسم الإغلاق معًا.</li>
+    <li><strong>الخاصية (Attribute):</strong> معلومة إضافية تُكتب داخل وسم الفتح مثل <code>src</code> و<code>href</code> و<code>alt</code>.</li>
+  </ul>
+  <p>مثال يجمع الثلاثة:</p>
+
+  <div class="code-block">
+    <div class="code-head"><span>all-three.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;a href="https://example.com"&gt;زيارة الموقع&lt;/a&gt;</code></pre>
+  </div>
+
+  <p>
+    هنا <code>&lt;a href="..."&gt;</code> هو وسم الفتح، و<code>href</code> خاصية
+    تحمل عنوان الوجهة، والعنصر كله هو السطر الكامل. ولاحظ أن قيمة الخاصية
+    محصورة بين علامتي تنصيص — وهي عادة إلزامية، وليست للجمال.
+  </p>
+
+  <h2 id="write">أين تكتب هذا الكود؟</h2>
+  <p>
+    في ملف نصي عادي. لا تحتاج برنامجًا خاصًّا، ولا حسابًا، ولا إنترنت.
+    افتح «المفكرة» على ويندوز أو أي محرّر نصوص، واكتب السطر التالي:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>index.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h1&gt;مرحبًا، هذه أول صفحة أكتبها&lt;/h1&gt;
+&lt;p&gt;أكتب هنا أي شيء، ثم أحفظ الملف وأفتحه.&lt;/p&gt;</code></pre>
+  </div>
+
+  <p>
+    عند الحفظ اختر الاسم <code>index.html</code>، وتأكد أن الامتداد
+    <code>.html</code> وليس <code>.txt</code>. ثم اضغط عليه مرتين، سيُفتح في
+    متصفحك ويعرض سطرين. هذه صفحة ويب حقيقية.
+  </p>
+  <p>جرّبها هنا مباشرة قبل أن تفتح أي برنامج:</p>
+
+  <div class="code-block">
+    <div class="code-head"><span>جرّب الآن</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;h1&gt;مرحبًا، هذه أول صفحة أكتبها&lt;/h1&gt;
+&lt;p&gt;أكتب هنا أي شيء، ثم أحفظ الملف وأفتحه.&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال» لترى النتيجة هنا.</div></div>
+
+  <h2 id="mistakes">أخطاء شائعة في أول ساعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> حفظ الملف باسم <code>index.html.txt</code> لأن ويندوز يخفي الامتدادات. الحل: أظهر الامتدادات من إعدادات المجلد.</li>
+    <li><span>!</span> كتابة القوس المقلوب: <code>&gt;p&lt;</code> بدل <code>&lt;p&gt;</code>. المتصفح يعرضها نصًّا عاديًّا وليس عنصرًا.</li>
+    <li><span>!</span> استخدام وسوم للشكل لا للمعنى، كاختيار <code>h3</code> لأن حجمه مناسب. الحجم وظيفة CSS، والمعنى وظيفة HTML.</li>
+    <li><span>!</span> نسيان أن المتصفح متسامح: لن يعتذر عن خطئك، بل سيصلحه بطريقته — وأحيانًا طريقته أسوأ.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٣ دقائق · بلا مشاهدة حل</b>
+    <p>
+      أنشئ ملفًا باسم <code>about.html</code> يحتوي: عنوانًا باسمك، فقرة من سطرين
+      تشرح شيئًا تحبّه، ثم خطًّا فاصلًا، ثم فقرة أخيرة. استخدم ثلاثة عناصر
+      مختلفة على الأقل، وأغلق كل وسم فتحته.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>about.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h1&gt;سالم&lt;/h1&gt;
+&lt;p&gt;أكتب تطبيقات صغيرة، وأتعلّم الويب الآن.&lt;br&gt;
+أجمل شيء في هذا المجال أن كل ما تراه بدأ بسطر نص.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;هذه الفقرة الأخيرة، وهي موجودة فقط لأتأكد أنني أفهم الإغلاق.&lt;/p&gt;</code></pre>
+      </div>
+      <p>
+        لاحظ أن <code>&lt;br&gt;</code> لم يُغلق، لأنه عنصر فارغ بلا محتوى.
+        لو أغلقت <code>&lt;p&gt;</code> بعد <code>&lt;hr&gt;</code> لظهر الخط
+        الفاصل داخل الفقرة، وهذا خطأ شائع.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين «الوسم» و«العنصر»؟</li>
+      <li>لماذا بعض العناصر لا تحتاج وسم إغلاق؟</li>
+      <li>ماذا يحدث إن نسيت إغلاق <code>&lt;p&gt;</code>؟ ولماذا لا يظهر خطأ؟</li>
+      <li>أين تُكتب الخاصية، وما وظيفتها؟</li>
+    </ol>
+    <p>
+      إن أجبت عن الأربعة دون رجوع إلى الأعلى، فقد انتهى الدرس فعلًا.
+      وإن تعثّرت في واحدة، أعد قراءة قسمها فقط ثم تابع.
+    </p>
+  </div>
+
+
+  <div id="lessonQuiz" data-quiz="1"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="../index.html"><small>السابق</small>خريطة الدورة</a>
+  <a href="02-document-structure.html"><small>التالي</small>هيكل الصفحة: من doctype إلى body</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="1">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الروابط والصور: أول اتصال بالعالم — فاصلة</title>
+<meta name="description" content="الدرس الرابع: href وsrc، الفرق بين المسار المطلق والنسبي، ولماذا alt ليس تفصيلًا صغيرًا." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/04-links-and-images.html" />
+<meta property="og:title" content="الروابط والصور: أول اتصال بالعالم — فاصلة" />
+<meta property="og:description" content="الدرس الرابع: href وsrc، الفرق بين المسار المطلق والنسبي، ولماذا alt ليس تفصيلًا صغيرًا." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../index.html#lessons">الخريطة</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الأولى · الهيكل</div>
+    <h1>الروابط والصور: أول اتصال بالعالم</h1>
+    <p class="lead">
+      حتى الآن صفحتك معزولة. الرابط هو ما جعل الويب «شبكة» لا أرشيفًا،
+      والصورة هي ما جعلها تُقرأ قبل أن تُقرأ. وسنرى لماذا كلاهما أكثر تعقيدًا
+      مما يبدو.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 04</span><span>مبتدئ</span><span>20 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>الرابط باب: تضغطه فتنتقل مكانًا آخر. والصورة نافذة نضع فيها صورة موجودة في ملف عندك، ويجب أن نكتب وصفها لمن لا يرى.</p>
+  </div>
+
+
+  <h2 id="link">الرابط: <code>&lt;a href&gt;</code></h2>
+  <p>
+    <code>a</code> اختصار <em>anchor</em> أي «مرساة»، و<code>href</code>
+    اختصار <em>hypertext reference</em> أي «مرجع». العنصر يقول: هذا نص
+    قابل للنقر، وأين يؤدي.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>link.html</span><button data-run>شغّل المثال</button></div>
+<pre><code>&lt;p&gt;اقرأ &lt;a href="https://developer.mozilla.org/ar/"&gt;مرجع MDN بالعربية&lt;/a&gt; فهو أدق مصدر.&lt;/p&gt;</code></pre>
+  </div>
+  <div class="preview"><div class="preview-empty">اضغط «شغّل المثال».</div></div>
+
+  <h3>نص الرابط ليس تفصيلًا</h3>
+  <p>
+    «اضغط هنا» تعني شيئًا لمن يرى الجملة كاملة، ولا تعني شيئًا لقارئ
+    الشاشة الذي يتنقّل بين الروابط وحدها، ولا لمحرك البحث. اكتب دائمًا
+    وصفًا للوجهة: «مرجع MDN بالعربية» أفضل من «هنا».
+  </p>
+
+  <h2 id="href-types">أربعة أنواع من الوجهات</h2>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>https://…</code>
+      <p><strong>مطلق:</strong> رابط كامل لموقع آخر. يبدأ بالبروتوكول.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>about.html</code>
+      <p><strong>نسبي:</strong> ملف داخل مشروعك، في نفس المجلد. لا بروتوكول ولا نطاق.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>#section</code>
+      <p><strong>مرساة:</strong> ينزل إلى عنصر في نفس الصفحة يحمل <code>id="section"</code>.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>mailto: / tel:</code>
+      <p><strong>وظيفي:</strong> يفتح البريد أو تطبيق الاتصال.</p>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-head"><span>targets.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;a href="about.html"&gt;عن الموقع&lt;/a&gt;
+&lt;a href="lessons/01-what-is-html.html"&gt;الدرس الأول&lt;/a&gt;
+&lt;a href="#contact"&gt;انتقل إلى بيانات التواصل&lt;/a&gt;
+&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;يفتح في تبويب جديد&lt;/a&gt;
+&lt;a href="mailto:me@example.com"&gt;راسلني&lt;/a&gt;</code></pre>
+  </div>
+
+  <div class="callout warn">
+    <b>عن <code>target="_blank"</code></b>
+    <p>
+      فتح الرابط في تبويب جديد عادةٌ نبيلة في مواقع أخرى، ومزعجة في بعضها.
+      والأهم: أضف معه <code>rel="noopener"</code>، لأن التبويب الجديد يستطيع
+      — بلا هذه الخاصية — التحكم في تبويبك الأصلي عبر <code>window.opener</code>.
+      هذا ثغرة حقيقية لا نظرية.
+    </p>
+  </div>
+
+  <h2 id="paths">المسارات النسبية: مصدر نصف مشاكل المبتدئين</h2>
+  <p>
+    تخيّل هذه الشجرة:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>شجرة المشروع</span><button data-copy>نسخ</button></div>
+<pre><code>site/
+├── index.html
+├── about.html
+├── assets/
+│   ├── style.css
+│   └── images/
+│       └── logo.png
+└── lessons/
+    └── 01-what-is-html.html</code></pre>
+  </div>
+
+  <ul>
+    <li>من <code>index.html</code> إلى الشعار: <code>assets/images/logo.png</code></li>
+    <li>من مجلد <code>lessons/</code> إلى الشعار: <code>../assets/images/logo.png</code></li>
+    <li><code>..</code> تعني «اصعد مجلدًا واحدًا»، وتُكرَّر عند الحاجة: <code>../../</code></li>
+  </ul>
+
+  <div class="callout idea">
+    <b>اختبار سريع</b>
+    <p>
+      افتح صفحتك، واضغط الزر الأيمن على الصورة، واختر «فتح الصورة في تبويب
+      جديد». إن ظهرت صفحة خطأ ٤٠٤ فالمسار خاطئ. المسار الصحيح لا يعتمد على
+      مكانك في الجهاز، بل على مكان الملف بالنسبة للملف الذي يكتبه.
+    </p>
+  </div>
+
+  <h2 id="image">الصورة: <code>&lt;img src alt&gt;</code></h2>
+  <p>
+    الصورة عنصر فارغ: لا محتوى داخلها ولا وسم إغلاق. ولها خاصيتان
+    أساسيتان، وثالثة تُنسى دائمًا:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>image.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;img src="assets/images/logo.png" alt="شعار موقع فاصلة: قوسان متقابلان" width="120" height="120"&gt;</code></pre>
+  </div>
+
+  <h3>لماذا <code>alt</code> ليس تفصيلًا صغيرًا؟</h3>
+  <ul>
+    <li><strong>للضرورة:</strong> من لا يرى الصورة يحتاج وصفها، وقارئ الشاشة يقرأ <code>alt</code> بصوت عالٍ.</li>
+    <li><strong>للشبكة الضعيفة:</strong> إن فشل تحميل الصورة، يظهر النص البديل بدلًا من مربع مكسور.</li>
+    <li><strong>لمحركات البحث:</strong> لا ترى الصور، تقرأ وصفها.</li>
+  </ul>
+  <p>
+    وصف الصورة المفيدة يشرح <em>وظيفتها</em> لا شكلها: «رسم يوضح ترتيب أقسام
+    الصفحة» أفضل من «صورة». أما الصورة الزخرفية تمامًا فـ<code>alt=""</code>
+    فارغ، وهذا مقصود: يقول لقارئ الشاشة «تجاهلها».
+  </p>
+
+  <h3>لماذا نكتب العرض والارتفاع؟</h3>
+  <p>
+    لأن المتصفح إن لم يعرف أبعاد الصورة، سيحجز مساحة صفرًا، ثم يقفز المحتوى
+    حين تُحمّل الصورة — وهذا ما يُسمّى «قفزة التخطيط». كتابة الأبعاد تمنحه
+    المساحة الصحيحة مسبقًا. ومع <code>max-width: 100%</code> في CSS تبقى
+    الصورة مرنة على الهاتف.
+  </p>
+
+  <h3>الشكل الرسمي للصورة المشروحة</h3>
+  <p>
+    عندما تحتاج الصورة إلى تعليق، استخدم <code>figure</code> و
+    <code>figcaption</code> بدل فقرة عادية:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>figure.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;figure&gt;
+  &lt;img src="assets/images/layout.png" alt="مخطط يوضح منطقة الرأس ثم المحتوى ثم التذييل"&gt;
+  &lt;figcaption&gt;ترتيب الأقسام في صفحة نموذجية.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+  </div>
+
+  <h2 id="formats">أي صيغة أختار؟</h2>
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>.jpg</code>
+      <p>للصور الفوتوغرافية. حجم صغير وجودة مقبولة، لكن لا يدعم الشفافية.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>.png</code>
+      <p>للشعارات والرسوم ذات الخلفية الشفافة. حجم أكبر من اللازم غالبًا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>.webp</code>
+      <p>الخيار الحديث: أصغر بنحو الربع مع جودة أعلى. مدعوم في كل المتصفحات الحالية.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>.svg</code>
+      <p>للأيقونات والخطوط والرسوم. لا يتبكسل أبدًا، وحجمه نص صغير.</p>
+    </div>
+  </div>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> كتابة مسار يبدأ بشرطة مائلة <code>/images/logo.png</code> أثناء التطوير المحلي، فيبحث المتصفح عنه في جذر القرص.</li>
+    <li><span>!</span> نسيان <code>alt</code>، أو كتابة <code>alt="صورة"</code> في كل مرة.</li>
+    <li><span>!</span> وضع صورة بحجم ٤٠٠٠ بكسل وعرضها بـ ٣٠٠ بكسل — الزائر يحمّل ٤ ميجابايت ليرى صورة صغيرة.</li>
+    <li><span>!</span> استخدام صورة كنص: نص داخل صورة لا يُنسخ ولا يُقرأ ولا يُفهرس.</li>
+    <li><span>!</span> رابط نصه «اضغط هنا» أو رابط بلا نص أصلًا.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>١٥ دقيقة · أول صفحة مترابطة</b>
+    <p>
+      أنشئ مجلدًا فيه <code>index.html</code> و<code>about.html</code> ومجلد
+      <code>images</code>. ضع في الرئيسية رابطًا إلى «عن الموقع»، وفي
+      «عن الموقع» رابطًا للعودة، وصورة مع <code>alt</code> وصفي وتعليق
+      بـ<code>figcaption</code>. ثم اختبر كل رابط بنقرة.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>index.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h1&gt;مرحبًا&lt;/h1&gt;
+&lt;p&gt;هذه صفحتي الأولى. &lt;a href="about.html"&gt;تعرّف عليّ&lt;/a&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src="images/work.jpg" alt="مكتب صغير عليه حاسوب ودفتر مفتوح" width="640" height="420"&gt;
+  &lt;figcaption&gt;مكان عملي في الصباح.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+      </div>
+      <div class="code-block">
+        <div class="code-head"><span>about.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h1&gt;عنّي&lt;/h1&gt;
+&lt;p&gt;أكتب تطبيقات صغيرة وأتعلّم الويب.&lt;/p&gt;
+&lt;p&gt;&lt;a href="index.html"&gt;العودة إلى الرئيسية&lt;/a&gt;&lt;/p&gt;</code></pre>
+      </div>
+      <p>
+        لاحظ أن <code>about.html</code> في نفس المجلد، فلا حاجة إلى
+        <code>../</code>. ولو نقلته إلى مجلد <code>pages/</code> لصار الرابط
+        <code>../index.html</code>.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين <code>https://example.com/a</code> و<code>a.html</code>؟</li>
+      <li>ماذا تفعل <code>..</code> في المسار؟</li>
+      <li>متى يكون <code>alt=""</code> فارغًا عن قصد؟</li>
+      <li>لماذا نكتب <code>width</code> و<code>height</code> للصورة؟</li>
+      <li>ما خطر <code>target="_blank"</code> بلا <code>rel="noopener"</code>؟</li>
+    </ol>
+    <p>
+      انتهت بذلك الوحدة الأولى: أنت تعرف الآن كيف تُبنى صفحة، وكيف تُنظَّم،
+      وكيف تتصل بغيرها. الوحدة القادمة عن القوائم والجداول والنماذج.
+    </p>
+  </div>
+
+
+  <div id="lessonQuiz" data-quiz="4"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="03-headings-and-text.html"><small>السابق</small>العناوين والفقرات</a>
+  <a href="05-lists.html"><small>التالي</small>القوائم: ul و ol و dl</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

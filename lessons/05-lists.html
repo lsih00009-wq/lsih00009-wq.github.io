@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="2">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>القوائم: ul و ol و dl — فاصلة</title>
+<meta name="description" content="الدرس الخامس: ثلاث قوائم لثلاث حاجات، وكيف تُكتب بلا فوضى، ولماذا القائمة ليست مجرد نقاط." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/05-lists.html" />
+<meta property="og:title" content="القوائم: ul و ol و dl — فاصلة" />
+<meta property="og:description" content="الدرس الخامس: ثلاث قوائم لثلاث حاجات، وكيف تُكتب بلا فوضى، ولماذا القائمة ليست مجرد نقاط." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="06-tables.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثانية · التنظيم</div>
+    <h1>القوائم: ul و ol و dl</h1>
+    <p class="lead">
+      القائمة ليست «نصًّا فيه نقاط». القائمة إعلانٌ أن هذه الأشياء من عائلة واحدة،
+      وأن ترتيبها مهم أو غير مهم. المتصفح يحتاج أن يعرف أيّهما.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 05</span><span>مبتدئ</span><span>14 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>القائمة أشياء مرتبة تحت بعضها. إن كان ترتيبها مهمًّا — خطوة أولى ثم ثانية — نسمّيها «مرتّبة». وإن لم يكن، «غير مرتّبة».</p>
+  </div>
+
+
+  <h2 id="idea">ثلاث قوائم، لا واحدة</h2>
+  <p>
+    في HTML ثلاث قوائم، وكل واحدة تُجيب عن سؤال مختلف:
+  </p>
+  <ul>
+    <li><strong>قائمة غير مرتّبة <code>&lt;ul&gt;</code></strong> — الترتيب لا يهم: مكوّنات، صفات، خيارات.</li>
+    <li><strong>قائمة مرتّبة <code>&lt;ol&gt;</code></strong> — الترتيب يهم: خطوات، مراحل، أولويات.</li>
+    <li><strong>قائمة تعريف <code>&lt;dl&gt;</code></strong> — مصطلح وشرحه: مسرد، أسئلة وأجوبة، مواصفات.</li>
+  </ul>
+  <p>
+    الفرق بين الأولى والثانية ليس شكليًّا. لو كانت الخطوات مرتّبة وكتبتها بـ<code>ul</code>،
+    سيكتب المتصفح نقاطًا بلا أرقام، وسيقرأ قارئ الشاشة عناصر متساوية لا تسلسل بينها.
+    المستخدم الذي لا يرى الشاشة لن يعرف أن هناك خطوة أولى وثانية.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>lists.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h2&gt;خطوات إنشاء صفحتك&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;أنشئ ملف index.html&lt;/li&gt;
+  &lt;li&gt;احفظه بامتداد .html&lt;/li&gt;
+  &lt;li&gt;افتحه في المتصفح&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;ما تحتاجه قبل البدء&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;محتوى مكتوب&lt;/li&gt;
+  &lt;li&gt;عنوان واضح&lt;/li&gt;
+  &lt;li&gt;اختبار على الهاتف&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <div class="callout idea">
+    <b>لاحظ الاسم</b>
+    <p>
+      العنصر الداخلي اسمه <code>li</code> اختصار <em>list item</em>، ويُغلق دائمًا.
+      والقاعدة الوحيدة الصارمة: <code>li</code> لا يعيش إلا داخل <code>ul</code>
+      أو <code>ol</code>. لو كتبته وحده خارج القائمة، فأنت تكتب كودًا لا معنى له.
+    </p>
+  </div>
+
+  <h2 id="nested">القوائم داخل القوائم</h2>
+  <p>
+    التداخل طبيعي جدًّا، وشرطه واحد: القائمة الداخلية تُوضع <em>داخل</em> عنصر
+    <code>li</code>، لا بين عنصرين. هذا هو الخطأ الأول الذي يقع فيه الجميع.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>nested.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;الوحدة الأولى
+    &lt;ul&gt;
+      &lt;li&gt;ما هو HTML&lt;/li&gt;
+      &lt;li&gt;هيكل الصفحة&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;الوحدة الثانية&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <p>
+    لو أغلقت <code>li</code> قبل بدء القائمة الداخلية، لظهرت القائمة الداخلية
+    شقيقةً للخارجية لا تابعةً لها، وسيخطئ المتصفح في العدّ والمسافات.
+  </p>
+
+  <h2 id="dl">قائمة التعريف: dl و dt و dd</h2>
+  <p>
+    هذه أقلّها شهرة وأكثرها إهمالًا. تستخدمها حين يكون لديك <strong>مصطلح</strong>
+    و<strong>شرحه</strong>: مسرد مصطلحات، بطاقة مواصفات منتج، أسئلة متكرّرة.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>glossary.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;dl&gt;
+  &lt;dt&gt;الوسم&lt;/dt&gt;
+  &lt;dd&gt;علامة تحصر معنى قطعة من المحتوى.&lt;/dd&gt;
+
+  &lt;dt&gt;العنصر&lt;/dt&gt;
+  &lt;dd&gt;وسم الفتح والمحتوى ووسم الإغلاق معًا.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+  </div>
+
+  <ul>
+    <li><code>dt</code> = <em>definition term</em>: المصطلح.</li>
+    <li><code>dd</code> = <em>definition description</em>: الشرح، ويجوز أن يكون فقرة كاملة أو أكثر من واحد للمصطلح نفسه.</li>
+  </ul>
+
+  <h2 id="wrong">الخطأ الذي تراه في نصف المواقع</h2>
+  <p>
+    كتابة قائمة وهمية بلا قائمة: أسطر متتالية، كل سطر يبدأ بشرطة أو نقطة مكتوبة يدويًّا،
+    أو عدة <code>&lt;br&gt;</code> بينها.
+  </p>
+
+  <div class="callout warn">
+    <b>لماذا هذا خطأ، وليس تفصيلًا؟</b>
+    <p>
+      لأنه يفقد ثلاثة أشياء دفعة واحدة: قارئ الشاشة لا يعلن «قائمة من ثلاثة عناصر»،
+      ومحرك البحث لا يفهم أنها عائلة واحدة، وأنت نفسك لا تستطيع لاحقًا أن تُنسّق
+      النقاط أو تغيّرها بـCSS. الرموز التي تراها أمام العناصر يرسمها المتصفح
+      تلقائيًّا — لا تكتبها بيدك أبدًا.
+    </p>
+  </div>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> استخدام <code>ul</code> للخطوات المرتّبة. إن كان الترتيب يعني شيئًا، فهي <code>ol</code>.</li>
+    <li><span>!</span> وضع نص حرّ داخل <code>ul</code> بلا <code>li</code>. المتصفح سيقبله، لكنه كلام بلا موضع.</li>
+    <li><span>!</span> كتابة النقطة أو الرقم داخل النص: <code>&lt;li&gt;• أول عنصر&lt;/li&gt;</code>. ستظهر نقطتان.</li>
+    <li><span>!</span> استخدام القوائم لترتيب تصميم الصفحة (صفوف وأعمدة). هذا عمل CSS، والوحدة الثالثة كلها له.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٤ دقائق · بلا مشاهدة حل</b>
+    <p>
+      اكتب صفحة فيها: عنوان «مكوّنات حاسوبي»، ثم قائمة غير مرتّبة بأربعة مكوّنات،
+      وداخل المكوّن الثاني قائمة داخلية بثلاثة تفاصيل. ثم عنوان «كيف أجمّع جهازًا»،
+      وتحته قائمة مرتّبة بأربع خطوات. ثم قائمة تعريف بمصطلحين.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>my-pc.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;h2&gt;مكوّنات حاسوبي&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;المعالج&lt;/li&gt;
+  &lt;li&gt;الذاكرة
+    &lt;ul&gt;
+      &lt;li&gt;16 جيجابايت&lt;/li&gt;
+      &lt;li&gt;نوع DDR4&lt;/li&gt;
+      &lt;li&gt;تردد 3200&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;كرت الشاشة&lt;/li&gt;
+  &lt;li&gt;التخزين&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;كيف أجمّع جهازًا&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;ثبّت المعالج في اللوحة&lt;/li&gt;
+  &lt;li&gt;ركّب الذاكرة&lt;/li&gt;
+  &lt;li&gt;ضع اللوحة في الصندوق&lt;/li&gt;
+  &lt;li&gt;وصّل الطاقة وجرّب&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;المعالج&lt;/dt&gt;
+  &lt;dd&gt;العقل الذي ينفّذ الأوامر.&lt;/dd&gt;
+  &lt;dt&gt;الذاكرة العشوائية&lt;/dt&gt;
+  &lt;dd&gt;مساحة عمل مؤقتة تُفرَّغ عند الإغلاق.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+      </div>
+      <p>
+        لاحظ أن القائمة الداخلية وُضعت <em>قبل</em> إغلاق <code>&lt;li&gt;</code> الخاص
+        بالذاكرة، وأن كل <code>dd</code> سبقه <code>dt</code>.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>متى تختار <code>ol</code> ومتى <code>ul</code>؟ وأيّهما يهمّ قارئ الشاشة أكثر؟</li>
+      <li>أين تُوضع القائمة الداخلية بالضبط؟</li>
+      <li>ما وظيفة <code>dl</code>، ولماذا لا تكفيها القائمة العادية؟</li>
+      <li>لماذا لا نكتب النقاط أو الأرقام بأيدينا داخل <code>li</code>؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="5"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="04-links-and-images.html"><small>السابق</small>الروابط والصور</a>
+  <a href="06-tables.html"><small>التالي</small>الجداول: متى تصدق ومتى تكذب</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

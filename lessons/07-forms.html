@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="2">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>النماذج: كيف يُدخل الإنسان بياناته — فاصلة</title>
+<meta name="description" content="الدرس السابع: form وlabel وinput وأنواعه وselect وtextarea وbutton، والتحقق الذاتي بلا جافاسكربت." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/07-forms.html" />
+<meta property="og:title" content="النماذج: كيف يُدخل الإنسان بياناته — فاصلة" />
+<meta property="og:description" content="الدرس السابع: form وlabel وinput وأنواعه وselect وtextarea وbutton، والتحقق الذاتي بلا جافاسكربت." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="08-semantics.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثانية · التنظيم</div>
+    <h1>النماذج: كيف يُدخل الإنسان بياناته</h1>
+    <p class="lead">
+      هنا ينتقل المتعلّم من «أعرض» إلى «أستقبل». وستكتشف أن HTML وحده يعرف أكثر
+      مما تنتظر: يتحقق من البريد، ويمنع الإرسال الفارغ، ويفتح لوحة مفاتيح مناسبة —
+      كل ذلك بلا سطر برمجة.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 07</span><span>مبتدئ</span><span>22 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>النموذج استمارة: خانات تكتب فيها اسمك وبريدك، ثم زر «أرسل». والـlabel هو الاسم المكتوب بجانب الخانة، فتعرف ماذا تكتب فيها.</p>
+  </div>
+
+
+  <h2 id="idea">النموذج صندوق واحد</h2>
+  <p>
+    كل حقول الإدخال تعيش داخل عنصر واحد اسمه <code>&lt;form&gt;</code>. هذا الصندوق
+    هو ما يجمع البيانات ويُرسلها. حقول كثيرة بلا <code>form</code> تعمل بصريًّا، لكن
+    زر الإرسال لن يعرف عن أي حقل يسأل.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>form.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;form action="/subscribe" method="post"&gt;
+  &lt;label for="email"&gt;بريدك الإلكتروني&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;button type="submit"&gt;اشترك&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+  </div>
+
+  <ul>
+    <li><code>action</code> — إلى أين تُرسل البيانات (عنوان الخادم).</li>
+    <li><code>method</code> — <code>post</code> للبيانات الحساسة أو الطويلة، و<code>get</code> للبحث.</li>
+    <li><code>name</code> — اسم الحقل كما سيصل إلى الخادم. الحقل بلا <code>name</code> لا يُرسل أصلًا.</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>الحقل الذي يختفي</b>
+    <p>
+      أشهر حيرة عند المبتدئين: «كتبت الاسم ولم يصل». السبب في تسعة من عشر حالات
+      <code>name</code> ناقص. <code>id</code> يخدم الـ<code>label</code> والستايل،
+      و<code>name</code> يخدم الإرسال. وظيفتان مختلفتان، وكثيرًا ما يتشابهان في القيمة.
+    </p>
+  </div>
+
+  <h2 id="label">label ليس زينة</h2>
+  <p>
+    <code>&lt;label&gt;</code> هو ما يربط نصًّا بحقله. الربط يتم بطريقتين:
+  </p>
+  <ul>
+    <li>عبر <code>for</code> يساوي <code>id</code> الحقل (الطريقة الأشهر).</li>
+    <li>أو بتغليف الحقل داخل الـ<code>label</code> نفسه.</li>
+  </ul>
+  <p>
+    فائدته عملية بلا مجاز: الضغط على النص ينقل المؤشر إلى الحقل، وقارئ الشاشة
+    يعلن «بريدك الإلكتروني، حقل كتابة» عند المرور عليه. حتى أصغر شاشة هاتف
+    يستفيد من مساحة الضغط الأكبر.
+  </p>
+
+  <div class="callout idea">
+    <b>لا تستخدم placeholder بدلًا من label</b>
+    <p>
+      نص <code>placeholder</code> يختفي عند أول حرف، فينسى المستخدم أي حقل يكتب فيه.
+      وهو أيضًا رمادي باهت لا يُقرأ جيدًا. القاعدة: label دائمًا، وplaceholder
+      (إن استخدمته) مثال لا اسم.
+    </p>
+  </div>
+
+  <h2 id="types">أنواع الحقول: HTML يعرف أكثر مما تظن</h2>
+  <p>
+    <code>type</code> هو أهم خاصية في <code>input</code>. تغييرها يغيّر سلوك الحقل
+    بالكامل — وفي الهاتف يغيّر لوحة المفاتيح التي تظهر للزائر.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>types.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;input type="text"     name="name"     placeholder="اسمك"&gt;
+&lt;input type="email"    name="email"    placeholder="you@site.com"&gt;
+&lt;input type="password" name="pass"&gt;
+&lt;input type="tel"      name="phone"&gt;
+&lt;input type="number"   name="age" min="10" max="99"&gt;
+&lt;input type="date"     name="birthday"&gt;
+&lt;input type="url"      name="site"&gt;
+&lt;input type="search"   name="q"&gt;</code></pre>
+  </div>
+
+  <ul>
+    <li><code>email</code> — يرفض صيغة بلا @ عند الإرسال، ويفتح لوحة فيها @ على الهاتف.</li>
+    <li><code>tel</code> — يفتح لوحة أرقام. لاحظ أنه لا يتحقق من الصيغة، لأن صيغ الهواتف تختلف بين الدول.</li>
+    <li><code>number</code> — مع <code>min</code> و<code>max</code> و<code>step</code> تحصل على تحقق كامل بلا كود.</li>
+    <li><code>date</code> — يفتح تقويم النظام نفسه، فلا تحتاج مكتبة تقويم.</li>
+  </ul>
+
+  <h2 id="controls">عناصر أخرى لا تقل أهمية</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>controls.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;label for="msg"&gt;رسالتك&lt;/label&gt;
+&lt;textarea id="msg" name="msg" rows="5"&gt;&lt;/textarea&gt;
+
+&lt;label for="city"&gt;المدينة&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+  &lt;option value="cai"&gt;القاهرة&lt;/option&gt;
+  &lt;option value="alx"&gt;الإسكندرية&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;fieldset&gt;
+  &lt;legend&gt;كيف تفضّل التواصل؟&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="way" value="mail"&gt; بريد&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="way" value="phone"&gt; هاتف&lt;/label&gt;
+&lt;/fieldset&gt;
+
+&lt;label&gt;&lt;input type="checkbox" name="agree" required&gt; أوافق على الشروط&lt;/label&gt;</code></pre>
+  </div>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>textarea</code>
+      <p>لنص طويل. لا يُغلق اختياريًّا، ويأخذ المحتوى بين وسمَيه.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>select</code>
+      <p>قائمة منسدلة. القيمة المرسلة هي <code>value</code> لا النص الظاهر — وهذا مهم للخادم.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>fieldset</code>
+      <p>يجمّع حقولًا مترابطة، و<code>legend</code> عنوان المجموعة. أساسي في أزرار الاختيار.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>radio</code>
+      <p>اختيار واحد فقط. الشرط أن تحمل كل الأزرار نفس <code>name</code>، وإلا صارت مستقلّة.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>checkbox</code>
+      <p>اختيار متعدد مستقل. هنا كل مربّع شأنه شأنه.</p>
+    </div>
+  </div>
+
+  <h2 id="validate">تحقق بلا جافاسكربت</h2>
+  <p>
+    ثلاث خصائص تُغني عن سكربت كامل:
+  </p>
+  <ul>
+    <li><code>required</code> — لا يُرسل النموذج فارغًا.</li>
+    <li><code>pattern</code> — تعبير نمطي بسيط للصيغة (مثل رقم هاتف محلي).</li>
+    <li><code>minlength</code> / <code>maxlength</code> — طول النص المسموح.</li>
+  </ul>
+  <p>
+    والمتصفح يعرض رسالة الخطأ بلغة النظام، ويضع المؤشر في الحقل الناقص. هذا تحقق
+    <strong>للراحة</strong> لا للأمان: من يملك أدوات المطوّر يستطيع تجاوزه. التحقق
+    الحقيقي على الخادم دائمًا، وهذه نقطة سنعود إليها في وحدة الانتشار.
+  </p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> نسيان <code>name</code>، فتُرسل البيانات ناقصة بلا أي خطأ ظاهر.</li>
+    <li><span>!</span> أزرار اختيار بأسماء مختلفة، فتتحول إلى مربّعات متعددة بلا قصد.</li>
+    <li><span>!</span> زر إرسال مكتوب <code>&lt;div onclick=…&gt;</code> بدل <code>&lt;button&gt;</code>: لا يعمل بالكيبورد، ولا يُقرأ كزر.</li>
+    <li><span>!</span> الاعتماد على الأمان اللوني: تعليم الحقل الإلزامي بالنجمة الحمراء وحدها. اكتب كلمة «مطلوب».</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٧ دقائق · بلا مشاهدة حل</b>
+    <p>
+      ابنِ نموذج «تواصل معي»: اسم (مطلوب)، بريد (مطلوب)، هاتف اختياري،
+      قائمة مدينة، رسالة نصية، مربّع موافقة (مطلوب)، وزر إرسال. كل حقل له
+      <code>label</code> مربوط بـ<code>for</code>، وكل حقل له <code>name</code>.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>contact.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;form action="/contact" method="post"&gt;
+  &lt;p&gt;
+    &lt;label for="name"&gt;الاسم&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;label for="email"&gt;البريد&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;label for="phone"&gt;الهاتف (اختياري)&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone"&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;label for="city"&gt;المدينة&lt;/label&gt;
+    &lt;select id="city" name="city"&gt;
+      &lt;option value="cai"&gt;القاهرة&lt;/option&gt;
+      &lt;option value="alx"&gt;الإسكندرية&lt;/option&gt;
+      &lt;option value="other"&gt;أخرى&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;label for="msg"&gt;رسالتك&lt;/label&gt;
+    &lt;textarea id="msg" name="msg" rows="5"&gt;&lt;/textarea&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;label&gt;&lt;input type="checkbox" name="agree" required&gt; أوافق على الشروط&lt;/label&gt;
+  &lt;/p&gt;
+
+  &lt;button type="submit"&gt;أرسل&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+      <p>
+        جرّب الضغط على «أرسل» دون تعبئة: سيمنعك المتصفح ويضع المؤشر في أول حقل ناقص،
+        ويكتب لك السبب. لم تكتب سطرًا واحدًا من JavaScript.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق بين <code>id</code> و<code>name</code> في الحقل؟</li>
+      <li>ما فائدتان ملموستان لـ<code>label</code>؟</li>
+      <li>لماذا أزرار الاختيار تحتاج نفس الـ<code>name</code>؟</li>
+      <li>أي ثلاثة أنواع حقول تغيّر لوحة مفاتيح الهاتف؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="7"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="06-tables.html"><small>السابق</small>الجداول</a>
+  <a href="08-semantics.html"><small>التالي</small>العناصر الدلالية</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="4">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الوحدات: px و rem و % و vh — فاصلة</title>
+<meta name="description" content="الدرس الرابع عشر: متى تستخدم كل وحدة ولماذا، وrem للنصوص، وclamp، والأساس الحسابي الواحد." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/14-units.html" />
+<meta property="og:title" content="الوحدات: px و rem و % و vh — فاصلة" />
+<meta property="og:description" content="الدرس الرابع عشر: متى تستخدم كل وحدة ولماذا، وrem للنصوص، وclamp، والأساس الحسابي الواحد." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="15-project.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الرابعة · الانتشار</div>
+    <h1>الوحدات: px و rem و % و vh</h1>
+    <p class="lead">
+      لماذا يبدو موقعك جامدًا حين يكبّر المستخدم الخط؟ الجواب في الوحدات.
+      هذا الدرس قصير لكنه يغيّر كل ما كتبته قبلًا.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 14</span><span>متوسط</span><span>16 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>الوحدات مثل المساطر: البكسلات مسطرة ثابتة، وrem مسطرة تتغيّر مع حجم خط القارئ. إن استخدمت rem، كبرت صفحتك لمن يكبّر الخط فلا يتعب.</p>
+  </div>
+
+
+  <h2 id="two">نوعان: مطلق ونسبي</h2>
+  <p>
+    الوحدات المطلقة ثابتة لا تتغيّر: <code>px</code>. والوحدات النسبية تُحسب من
+    شيء آخر: من حجم خط الجذر، أو من حجم الأب، أو من الشاشة. والفرق بينهما ليس
+    تجميليًّا: إنه الفرق بين موقع يحترم إعدادات القارئ وموقع يتجاهلها.
+  </p>
+
+  <h2 id="units">الوحدات التي تحتاجها فعلًا</h2>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>rem</code>
+      <p>مضاعف حجم خط الجذر (16px افتراضيًّا): <code>1rem</code> = 16، و<code>1.5rem</code> = 24. لو غيّر المستخدم حجم خط المتصفح، كبرت كل صفحتك معه. <strong>للنصوص والمسافات.</strong></p>
+    </div>
+    <div class="anatomy-row">
+      <code>em</code>
+      <p>مضاعف حجم خط الأب. مفيد داخل مكوّن يريد أن يتناسب مع نصّه، لكنه يتراكم في التداخل ويصير محيّرًا. لا تبدأ به.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>%</code>
+      <p>نسبة من الأب. للعروض داخل حاوية معروفة.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>fr</code>
+      <p>كسر من المساحة الحرّة داخل Grid. لا تُستخدم خارج الشبكات.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>vw / vh</code>
+      <p>١٪ من عرض/ارتفاع نافذة العرض. احترس من <code>vh</code> في الهاتف، و<code>dvh</code> أدقّ حين يتوفّر.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>ch</code>
+      <p>عرض المحرف «0». سحرية لعرض عمود نص: <code>max-width: 65ch</code> يعطي طول سطر مريحًا للقراءة.</p>
+    </div>
+  </div>
+
+  <h2 id="rule">قاعدتان تكفيان</h2>
+  <div class="callout idea">
+    <b>الاختصار الذهني</b>
+    <p>
+      <strong>للنصوص والمسافات: <code>rem</code>.</strong>
+      <strong>للأبعاد داخل حاوية: <code>%</code> أو <code>fr</code>.</strong>
+      ولا تستخدم <code>px</code> إلا للحدود (1px) والزوايا الصغيرة. هذه القاعدة وحدها
+      تجعل تصميمك محترمًا لمن يكبّر الخط، وهم كثيرون أكثر مما تظن.
+    </p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-head"><span>units.css</span><button data-copy>نسخ</button></div>
+<pre><code>:root {
+  font-size: 100%;      /* يحترم إعداد المستخدم */
+}
+
+body {
+  font-size: 1rem;      /* 16px */
+  line-height: 1.9;
+}
+
+h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+
+.card {
+  padding: 1rem 1.25rem;
+  border: 1px solid #dfe5d9;
+  border-radius: 10px;
+  max-width: 65ch;
+}</code></pre>
+  </div>
+
+  <div class="callout warn">
+    <b>خطأ شائع جدًّا</b>
+    <p>
+      كتابة <code>html { font-size: 62.5% }</code> لتسهيل الحساب (1rem = 10px).
+      هذا مظهر ذكي لكنه يكسر توقّعات من يكبّر الخط في متصفحه، وتضطر بعدها إلى تعويض
+      ذلك بيدك. اترك الجذر 100٪ واحسب: 0.875rem = 14px.
+    </p>
+  </div>
+
+  <h2 id="math">حساب سريع في رأسك</h2>
+  <ul>
+    <li><code>0.875rem</code> = 14px</li>
+    <li><code>1rem</code> = 16px</li>
+    <li><code>1.25rem</code> = 20px</li>
+    <li><code>1.5rem</code> = 24px</li>
+    <li><code>2rem</code> = 32px</li>
+  </ul>
+  <p>
+    وإن أردت أن تعرف الرقم بالعكس: اقسم البكسلات على ١٦. لا تحتاج آلة حاسبة،
+    فقط تدرّب أسبوعًا وستحفظ الخمسة الأوائل.
+  </p>
+
+  <h2 id="measure">طول السطر: أهم رقم لا يعرفه المبتدئون</h2>
+  <p>
+    السطر الطويل جدًّا يُتعب العين لأنها تفقد مكانها عند الرجوع. المدي المثالي
+    للقراءة الطويلة بين ٤٥ و٧٥ محرفًا. في CSS:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>reading.css</span><button data-copy>نسخ</button></div>
+<pre><code>.prose {
+  max-width: 68ch;
+  margin-inline: auto;
+}</code></pre>
+  </div>
+
+  <p>
+    و<code>margin-inline</code> تعني «الهامش في اتجاه السطر» — في العربية يمين
+    ويسار. وهي أفضل من <code>margin: 0 auto</code> لأنها لا تفترض الاتجاه.
+  </p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> كل شيء بـ<code>px</code>، فيصبح الموقع جامدًا أمام تكبير الخط.</li>
+    <li><span>!</span> استخدام <code>100vh</code> لقسم كامل، فتظهر مسافة أو قصّ في الهاتف.</li>
+    <li><span>!</span> نصوص بعرض الشاشة كاملة على الحاسوب: سطر من ١٤٠ محرفًا لا يُقرأ.</li>
+    <li><span>!</span> الاعتماد على <code>em</code> متداخلًا، فتصل إلى 0.7em داخل 0.8em داخل 0.9em بلا أن تدري.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٥ دقائق · بلا مشاهدة حل</b>
+    <p>
+      حوّل ملف CSS من الدرس التاسع إلى <code>rem</code>: النص الأساسي 1rem، العناوين
+      بـ<code>clamp</code>، الحشو بـ<code>rem</code>، وعرض المقالة ٦٥ محرفًا.
+      ثم كبّر الخط في المتصفح إلى 150٪ ولاحظ الفرق.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>style.css</span><button data-copy>نسخ</button></div>
+<pre><code>body {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #24352c;
+}
+
+h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); }
+h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+p {
+  max-width: 65ch;
+  margin-inline: auto;
+}
+
+.note {
+  padding: 0.9rem 1.1rem;
+  border-inline-start: 3px solid #7aa85c;
+}</code></pre>
+      </div>
+      <p>
+        الآن كبّر خط المتصفح: كل شيء يكبر متناسبًا، ولا يبقى نص صغير معلّقًا. هذا
+        هو معنى «موقع يحترم قارئه».
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق الجوهري بين <code>px</code> و<code>rem</code>؟</li>
+      <li>متى تستخدم <code>ch</code>، وما الرقم المريح للسطر؟</li>
+      <li>لماذا نتجنّب <code>100vh</code> في الهاتف؟</li>
+      <li>ما خطأ <code>html { font-size: 62.5% }</code>؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="14"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="13-responsive.html"><small>السابق</small>التجاوب</a>
+  <a href="15-project.html"><small>التالي</small>مشروع كامل من الصفر</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

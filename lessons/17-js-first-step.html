@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="5">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>أول سطر JavaScript: زر يغيّر الكلام — فاصلة</title>
+<meta name="description" content="الدرس السابع عشر: ما تفعله JavaScript، وأين تكتبها، وكيف تجعل زرًا يغيّر نصًّا في الصفحة — بخطوات صغيرة وشرح لكل سطر." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/17-js-first-step.html" />
+<meta property="og:title" content="أول سطر JavaScript: زر يغيّر الكلام — فاصلة" />
+<meta property="og:description" content="الدرس السابع عشر: ما تفعله JavaScript، وأين تكتبها، وكيف تجعل زرًا يغيّر نصًّا في الصفحة — بخطوات صغيرة وشرح لكل سطر." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="18-js-variables.html">التالي</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الخامسة · الحركة</div>
+    <h1>أول سطر JavaScript: زر يغيّر الكلام</h1>
+    <p class="lead">
+      حتى الآن صفحتك تتكلّم ولا تسمع. JavaScript هي التي تجعلها تستجيب: تضغط زرًّا،
+      فيحدث شيء. في هذا الدرس ستكتب أول كود يعمل فعلًا — سبعة أسطر فقط.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 17</span><span>مبتدئ</span><span>18 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>HTML يقول ماذا يوجد في الصفحة. CSS تقول كيف يبدو. JavaScript تقول ماذا يحدث حين تفعل شيئًا. «حين تضغط هذا الزر، اكتب كلمة أخرى مكان هذه الكلمة» — هذه هي JavaScript في جملة.</p>
+  </div>
+
+  <h2 id="why">الفرق بين الصفحة والصفحة الحيّة</h2>
+  <p>
+    صفحة HTML تشبه ورقة مطبوعة: كل ما فيها موجود قبل أن تلمسه، ولن يتغيّر مهما فعلت.
+    صفحة فيها JavaScript تشبه لوحة إعلانات إلكترونية: تضغط زرًّا فتظهر كلمة جديدة.
+  </p>
+  <p>
+    <strong>JavaScript لغة برمجة</strong> — وهذا أول فرق حقيقي بينها وبين الاثنتين
+    السابقتين. HTML وCSS تصفان فقط. أما JavaScript فتستطيع أن تقرّر: «إن كان كذا
+    فافعل كذا»، وأن تكرّر عملًا مئة مرة، وأن تحسب وتعدّ وتخزّن.
+  </p>
+
+  <div class="callout idea">
+    <b>لا تحفظ، بل افهم هذه الجملة</b>
+    <p>
+      كل JavaScript في الدنيا، من ألعاب الفيديو إلى محرّكات البحث، مبنية من ثلاثة
+      أشياء: <strong>قيم</strong> نحفظها في صناديق، و<strong>قرارات</strong> (إن كان…
+      فافعل)، و<strong>تكرار</strong> (كرّر…). إن فهمت الثلاثة، فأنت تفهم اللغة كلها
+      من حيث المبدأ.
+    </p>
+  </div>
+
+  <h2 id="where">أين نكتب الكود؟</h2>
+  <p>
+    كما في CSS، له مكانان. ونستخدم المكان الصحيح من البداية: ملف خارجي بامتداد
+    <code>.js</code>، يُربط قبل إغلاق <code>body</code> مباشرة.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>index.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;body&gt;
+
+  &lt;h1 id="title"&gt;مرحبًا&lt;/h1&gt;
+  &lt;button id="btn"&gt;اضغطني&lt;/button&gt;
+
+  &lt;script src="assets/app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+  </div>
+
+  <p>
+    ولماذا في النهاية لا في البداية؟ لأن المتصفح يقرأ الملف من أعلاه إلى أسفله. لو
+    وضعت السكربت في الأعلى، سيبحث عن الزر قبل أن يخلق المتصفح الزر نفسه، فلا يجده.
+    وضعُه في النهاية يعني: «انتظر حتى تكون الصفحة جاهزة، ثم ابدأ».
+  </p>
+
+  <h2 id="console">أول تجربة: لوحة الرسائل</h2>
+  <p>
+    قبل أي شيء، جرّب أن تطلب من الصفحة أن تكتب لك رسالة. اكتب في ملف
+    <code>assets/app.js</code> سطرًا واحدًا:
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>app.js</span><button data-copy>نسخ</button></div>
+<pre><code>console.log("مرحبًا، أنا أعمل");</code></pre>
+  </div>
+
+  <p>
+    احفظ، ثم افتح الصفحة، ثم اضغط <code>F12</code> واختر تبويب «Console». ستجد رسالتك
+    هناك. هذه اللوحة هي صديقك الأول في كل عطل قادم: تكتب فيها سطرًا لتعرف قيمة شيء،
+    بدل التخمين.
+  </p>
+
+  <div class="callout warn">
+    <b>إن لم تظهر الرسالة</b>
+    <p>
+      فالمشكلة في الرابط أو المسار — تمامًا كما في الدرس التاسع مع CSS. افتح تبويب
+      «Network»: إن ظهر الملف بالأحمر (404) فالمسار خطأ. لا تُكمل قبل أن تعمل هذه
+      الخطوة، فكل ما بعدها مبني عليها.
+    </p>
+  </div>
+
+  <h2 id="vars">الصناديق: let و const</h2>
+  <p>
+    المتغيّر صندوق نضع فيه قيمة ونسمّيه باسم. الاسم من اختيارك، لكن بلا مسافات ولا
+    حروف عربية، ويُفضّل أن يكون معناه واضحًا.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>vars.js</span><button data-copy>نسخ</button></div>
+<pre><code>let age = 12;              // رقم في صندوق اسمه age
+let name = "سالم";          // نص في صندوق اسمه name
+const pi = 3.14;           // قيمة لن تتغيّر أبدًا
+
+console.log(age);          // 12
+age = age + 1;             // صار 13
+console.log(age);          // 13</code></pre>
+  </div>
+
+  <ul>
+    <li><code>let</code> — صندوق يمكنك تغيير ما فيه.</li>
+    <li><code>const</code> — صندوق لا يتغيّر. إن حاولت تغييره سيرفض المتصفح، وهذا مفيد: يمنعك من الخطأ.</li>
+    <li><code>//</code> — كل ما بعده في السطر تعليق لك، لا ينفّذه المتصفح.</li>
+  </ul>
+
+  <h2 id="first">التفاعل الأول، سطرًا سطرًا</h2>
+  <p>
+    هذه هي اللحظة المهمة. ستأخذ الزر وتضع عليه «أذنًا تسمع»: كلما ضُغط، نفّذ ما تكتبه.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>assets/app.js</span><button data-copy>نسخ</button></div>
+<pre><code>// ١) امسك العنصرين من الصفحة باسمهما
+const title = document.getElementById("title");
+const btn = document.getElementById("btn");
+
+// ٢) علّق على الزر: حين يُضغط، افعل هذا
+btn.addEventListener("click", function () {
+  title.textContent = "تغيّر الكلام!";
+});</code></pre>
+  </div>
+
+  <p>لنقرأ كل قطعة، لأن كل كلمة فيها لها سبب:</p>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>document</code>
+      <p>«الصفحة كلها». منه نبدأ حين نريد أن نبحث عن شيء.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>getElementById("title")</code>
+      <p>«أعطني العنصر الذي معرّفه title». ولذلك يجب أن يكون في HTML: <code>id="title"</code>.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>addEventListener("click", …)</code>
+      <p>«أضف مستمعًا لحدث الضغط». أي: علّق أذنًا تسمع كلمة click.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>function () { … }</code>
+      <p>«الوصفة التي تُنفَّذ حين يحدث ذلك». نكتبها مرة، وتعمل كل مرة يُضغط فيها الزر.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>textContent</code>
+      <p>«الكلام الموجود داخل العنصر». تغييره يغيّر ما يراه الزائر، لا الشكل.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <b>ثلاثة أخطاء تُكرَّر دائمًا</b>
+    <p>
+      الأولى: نسيان <code>#</code> ليس هنا بل في CSS — هنا نكتب الاسم كما هو في
+      <code>id</code> بلا علامات. الثانية: كتابة <code>getElementByID</code> بحرف D
+      كبير؛ JavaScript حسّاسة لحالة الأحرف. الثالثة: وضع السكربت قبل العناصر.
+    </p>
+  </div>
+
+  <h2 id="make">اجعله أوضح: عدّاد ضغطات</h2>
+  <p>
+    مثال صغير يجمع كل ما تعلّمته: صندوق، وحدث، وتغيير نص، وحساب.
+  </p>
+
+  <div class="code-block">
+    <div class="code-head"><span>counter.js</span><button data-copy>نسخ</button></div>
+<pre><code>const title = document.getElementById("title");
+const btn = document.getElementById("btn");
+
+let count = 0;
+
+btn.addEventListener("click", function () {
+  count = count + 1;
+  title.textContent = "ضغطت " + count + " مرة";
+});</code></pre>
+  </div>
+
+  <p>
+    لاحظ <code>"ضغطت " + count</code>: علامة <code>+</code> بين نص ورقم تلصقهما
+    في نص واحد. هذا يُسمّى دمج النصوص، وستستخدمه كثيرًا.
+  </p>
+
+  <h2 id="order">ترتيب التعلّم بعد هذا الدرس</h2>
+  <ol>
+    <li>المتغيّرات والأنواع (رقم، نص، صحيح/خطأ).</li>
+    <li>الشروط: <code>if</code> و<code>else</code>.</li>
+    <li>الدوال: كيف تكتب وصفة وتستدعيها.</li>
+    <li>المصفوفات والكائنات: كيف تحفظ قائمة أو مجموعة صفات.</li>
+    <li>الحلقات: كيف تكرّر بلا تكرار في الكتابة.</li>
+    <li>ثم DOM: كيف تغيّر الصفحة بناءً على كل ما سبق.</li>
+  </ol>
+  <p>
+    لا تقفز بينها. من يقفز إلى DOM قبل الشروط يكتب كودًا يعمل مرة واحدة ولا يفهمه.
+  </p>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>١٠ دقائق · بلا مشاهدة حل</b>
+    <p>
+      أنشئ صفحة فيها عنوان بمعرّف <code>msg</code> يحمل كلمة «جاهز»، وزرّان: الأول
+      يكتب «بدأنا»، والثاني يكتب «انتهينا». استخدم دالة واحدة تُستدعى من الزرّين مع
+      نصّ مختلف لكل زر.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>app.js</span><button data-copy>نسخ</button></div>
+<pre><code>const msg = document.getElementById("msg");
+const startBtn = document.getElementById("start");
+const endBtn = document.getElementById("end");
+
+function changeTo(word) {
+  msg.textContent = word;
+}
+
+startBtn.addEventListener("click", function () {
+  changeTo("بدأنا");
+});
+
+endBtn.addEventListener("click", function () {
+  changeTo("انتهينا");
+});</code></pre>
+      </div>
+      <p>
+        الفكرة التي تستحق الانتباه: كتبنا <code>changeTo</code> مرة واحدة، واستدعيناها
+        من مكانين. هذا معنى الدالة: وصفة واحدة تُستخدم مرات كثيرة. وإن أردت لاحقًا أن
+        تُضيف تنبيهًا صوتيًّا، تُعدّله في مكان واحد فقط.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما الفرق الجوهري بين HTML وJavaScript؟</li>
+      <li>لماذا نضع السكربت قبل إغلاق <code>body</code>؟</li>
+      <li>ما الفرق بين <code>let</code> و<code>const</code>؟</li>
+      <li>ما وظيفة <code>addEventListener</code> بكلماتك؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="17"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="16-debug.html"><small>السابق</small>التصحيح</a>
+  <a href="18-js-variables.html"><small>التالي</small>المتغيّرات والشروط</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJS بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>

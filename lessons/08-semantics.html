@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-unit="2">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>العناصر الدلالية: هيكل يفهمه الإنسان والآلة — فاصلة</title>
+<meta name="description" content="الدرس الثامن: header وnav وmain وarticle وsection وaside وfooter، والفرق بين div وsection، وأثر ذلك على البحث وقارئ الشاشة." />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/theme.js"></script>
+<meta name="theme-color" content="#0d171b" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="فاصلة" />
+<meta property="og:url" content="https://lsih00009-wq.github.io/lessons/08-semantics.html" />
+<meta property="og:title" content="العناصر الدلالية: هيكل يفهمه الإنسان والآلة — فاصلة" />
+<meta property="og:description" content="الدرس الثامن: header وnav وmain وarticle وsection وaside وfooter، والفرق بين div وsection، وأثر ذلك على البحث وقارئ الشاشة." />
+<meta property="og:image" content="https://lsih00009-wq.github.io/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="فاصلة — تعلّم بناء صفحات الويب بالعربية" />
+<meta property="og:locale" content="ar_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9408910582669216" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408910582669216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M13.6 3.2c1.9 1.6 3 3.7 3 6.1 0 3.5-2.3 6.2-5.3 6.2-1.1 0-2-.5-2-.5s-.4 2.4 1.3 4.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg></span>
+      <span>فاصلة<small>تعلّم الويب من الصفر</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="../glossary.html">القاموس</a>
+      <a href="../tools.html">الأدوات</a>
+      <a href="../lab.html">المختبر</a>
+      <a href="../challenges.html">تحديات</a>
+      <a href="../start.html">البداية</a>
+      <a href="../index.html#lessons">الدروس</a>
+      <a class="nav-cta" href="../index.html#unit-3">الوحدة الثالثة</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="crumbs"><a href="../index.html">الرئيسية</a> ← الوحدة الثانية · التنظيم</div>
+    <h1>العناصر الدلالية: هيكل يفهمه الإنسان والآلة</h1>
+    <p class="lead">
+      كل ما بنيته حتى الآن صحيح. لكن صفحتك حتى هذه اللحظة كومة عناصر متساوية في نظر
+      المتصفح: الكل <code>div</code> أو فقرة. هذا الدرس يعطي الصفحة خريطة.
+    </p>
+    <div class="lesson-tags">
+      <span>الدرس 08</span><span>مبتدئ</span><span>18 دقيقة</span>
+    </div>
+  </div>
+</section>
+
+<main class="lesson-body">
+
+  <nav class="toc" data-toc><b>في هذا الدرس</b></nav>
+
+  <div class="simple-box">
+    <b>بكلمات بسيطة — قبل أي تفصيل</b>
+    <p>بدل أن نسمّي كل شيء «صندوق»، نسمّي الأشياء بأسمائها: هذا رأس الصفحة، هذا التنقّل، هذا المحتوى، هذا التذييل. فتسهل القراءة على الناس وعلى الآلات.</p>
+  </div>
+
+
+  <h2 id="idea">المشكلة التي يحلّها هذا الدرس</h2>
+  <p>
+    تخيّل كتابًا بلا فهرس وبلا عناوين، صفحاته متشابهة. تستطيع قراءته من أوله،
+    لكنك لا تستطيع أن تقول: أين الفصل الثالث؟ هكذا يرى قارئ الشاشة الصفحة المبنية كلها
+    من <code>div</code>. ومحرك البحث يرى الشيء نفسه.
+  </p>
+  <p>
+    العناصر الدلالية لا تُغيّر الشكل افتراضيًّا شيئًا يُذكر. فائدتها كلها في المعنى:
+    تقول «هذا رأس الصفحة»، «هذا التنقّل»، «هذا المحتوى الأساسي»، «هذه مقالة قائمة بذاتها».
+  </p>
+
+  <h2 id="map">خريطة الصفحة النموذجية</h2>
+
+  <div class="code-block">
+    <div class="code-head"><span>layout.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;اسم الموقع&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="/"&gt;الرئيسية&lt;/a&gt;
+      &lt;a href="/about"&gt;عن الموقع&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;عنوان المقالة&lt;/h2&gt;
+      &lt;p&gt;النص…&lt;/p&gt;
+    &lt;/article&gt;
+
+    &lt;aside&gt;
+      &lt;h2&gt;مقالات ذات صلة&lt;/h2&gt;
+      &lt;ul&gt;&lt;li&gt;&lt;a href="/a"&gt;مقال&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+    &lt;/aside&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;© ٢٠٢٦&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+  </div>
+
+  <div class="anatomy">
+    <div class="anatomy-row">
+      <code>header</code>
+      <p>رأس قسم أو رأس الصفحة: الشعار والعنوان وأدوات علوية. ليس محصورًا بأعلى الصفحة، فقد يكون لكل مقالة رأسها.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>nav</code>
+      <p>مجموعة روابط تنقّل أساسية. لا تُغلّف كل رابط في الصفحة به، بل مجموعات التنقّل الحقيقية فقط.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>main</code>
+      <p>المحتوى الأساسي، وواحد فقط في الصفحة. كل ما هو مكرّر في كل الصفحات (كالقائمة والتذييل) لا يدخل فيه.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>article</code>
+      <p>قطعة تُفهم وحدها: مقالة، تدوينة، تعليق، بطاقة منتج. معيارها: لو نسختها ونشرتها في مكان آخر، بقيت ذات معنى.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>section</code>
+      <p>قسم موضوعي داخل الصفحة، ويُفضّل أن يبدأ بعنوان. بلا عنوان يصبح صندوقًا ملتبسًا.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>aside</code>
+      <p>محتوى جانبي: مقالات ذات صلة، إعلان، ملاحظة. لو حُذف، لم يخسر القارئ الفكرة الأساسية.</p>
+    </div>
+    <div class="anatomy-row">
+      <code>footer</code>
+      <p>تذييل: حقوق، روابط ثانوية، بيانات تواصل.</p>
+    </div>
+  </div>
+
+  <h2 id="div">إذًا، متى أستخدم div؟</h2>
+  <p>
+    <code>div</code> ليس عنصرًا سيئًا؛ هو العنصر <strong>الحيادي</strong>. استخدمه حين
+    تحتاج حاوية للتصميم لا للمعنى: صندوق تريد أن تُنسّقه، أو غلافًا لشبكة CSS.
+    القاعدة التي تحلّ الحيرة:
+  </p>
+
+  <div class="callout idea">
+    <b>سؤال واحد يفرّق بين الثلاثة</b>
+    <p>
+      هل لهذا الشيء <em>معنى مستقل</em> يمكن أن يُنشر وحده؟ → <code>article</code>.
+      هل هو <em>قسم بعنوان</em> داخل موضوع أكبر؟ → <code>section</code>.
+      لا معنى له إلا أنه <em>علبة تنسيق</em>؟ → <code>div</code>.
+    </p>
+  </div>
+
+  <h2 id="why">ما الذي تكسبه فعلًا</h2>
+  <ul>
+    <li><strong>قارئ الشاشة</strong> يعطيك مفاتيح قفز: «الانتقال إلى المحتوى الأساسي». مع div لا يوجد شيء لتقفز إليه.</li>
+    <li><strong>محرك البحث</strong> يفصل المقالة عن القائمة الجانبية عن التذييل، فيعرف أيّ نص يستحق الفهرسة.</li>
+    <li><strong>أنت بعد شهرين</strong>: <code>header</code> و<code>aside</code> تقول لك وظيفة القطعة. عشرة <code>div</code> متتالية لا تقول شيئًا.</li>
+    <li><strong>الوضع القارئ</strong> في المتصفحات وملحقات القراءة يستخرج <code>main</code> و<code>article</code> بسهولة، فيعطيك نصًّا نظيفًا.</li>
+  </ul>
+
+  <div class="callout warn">
+    <b>تحذير من الإفراط</b>
+    <p>
+      كل شيء <code>section</code> ردة فعل مبالغة. لو كانت الصفحة كلها أقسامًا متداخلة
+      بلا سبب، عدنا إلى الفوضى بأسماء جديدة. الدلالة تُستخدم حين تكون صحيحة، لا حين
+      تكون متاحة.
+    </p>
+  </div>
+
+  <h2 id="outline">ترتيب العناوين: الخطأ الذي يُبطل العمل</h2>
+  <p>
+    العناصر الدلالية بلا ترتيب عناوين سليم تشبه خريطة بلا أسماء شوارع. القاعدة:
+    تدرّج واحد، ولا تقفز درجة في النزول — من <code>h1</code> إلى <code>h2</code>
+    إلى <code>h3</code>، ثم تعود إلى <code>h2</code>. وإذا احتجت حجمًا أصغر لسبب بصري،
+    فذاك عمل CSS لا HTML.
+  </p>
+
+  <h2 id="mistakes">أخطاء شائعة</h2>
+  <ul class="mistakes">
+    <li><span>!</span> أكثر من <code>main</code> واحد في الصفحة.</li>
+    <li><span>!</span> وضع التنقّل داخل <code>main</code>، فيُقرأ في كل مرة كأنه محتوى.</li>
+    <li><span>!</span> <code>section</code> بلا عنوان، فتصير <code>div</code> بثمن أعلى.</li>
+    <li><span>!</span> تخطّي درجات العناوين للوصول إلى حجم مناسب: <code>h1</code> ثم <code>h4</code>.</li>
+  </ul>
+
+  <h2 id="exercise">تمرينك الآن</h2>
+  <div class="exercise">
+    <b>٦ دقائق · بلا مشاهدة حل</b>
+    <p>
+      خذ صفحة «عن نفسي» التي كتبتها في الدرس الأول، وأعد بناءها بالعناصر الدلالية:
+      رأس فيه اسمك وتنقّل بثلاثة روابط، محتوى أساسي فيه مقالة واحدة وقسم للمهارات،
+      جانب فيه روابط خارجية، وتذييل. تأكد أن العناوين متدرّجة.
+    </p>
+    <details class="answer">
+      <summary>أظهر الحل</summary>
+      <div class="code-block">
+        <div class="code-head"><span>about.html</span><button data-copy>نسخ</button></div>
+<pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;سالم&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="#about"&gt;عني&lt;/a&gt;
+      &lt;a href="#skills"&gt;مهاراتي&lt;/a&gt;
+      &lt;a href="#contact"&gt;تواصل&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;article id="about"&gt;
+      &lt;h2&gt;عني&lt;/h2&gt;
+      &lt;p&gt;أكتب تطبيقات صغيرة، وأتعلّم الويب الآن.&lt;/p&gt;
+    &lt;/article&gt;
+
+    &lt;section id="skills"&gt;
+      &lt;h2&gt;مهاراتي&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Flutter&lt;/li&gt;
+        &lt;li&gt;HTML&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;aside&gt;
+      &lt;h2&gt;روابط خارجية&lt;/h2&gt;
+      &lt;ul&gt;&lt;li&gt;&lt;a href="https://example.com"&gt;مدونتي&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+    &lt;/aside&gt;
+  &lt;/main&gt;
+
+  &lt;footer id="contact"&gt;
+    &lt;p&gt;للتواصل: mail@example.com&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+      </div>
+      <p>
+        لاحظ أن <code>nav</code> داخل <code>header</code>، وأن <code>main</code> واحد،
+        وأن القائمة الجانبية <code>aside</code> لأن حذفها لا يُفقد الفكرة.
+      </p>
+    </details>
+  </div>
+
+  <div class="quiz">
+    <h2 id="review">مراجعة سريعة</h2>
+    <ol>
+      <li>ما معيار <code>article</code> مقابل <code>section</code>؟</li>
+      <li>متى يكون <code>div</code> هو الصواب؟</li>
+      <li>كم <code>main</code> في الصفحة، ولماذا؟</li>
+      <li>ما فائدتان تلمسهما فعلًا من الدلالة؟</li>
+    </ol>
+  </div>
+
+  <div id="lessonQuiz" data-quiz="8"></div>
+
+  <div class="ad-slot" data-ad-slot="lesson-bottom"></div>
+
+</main>
+
+<nav class="lesson-nav">
+  <a href="07-forms.html"><small>السابق</small>النماذج</a>
+  <a href="09-first-css.html"><small>التالي</small>أول قاعدة CSS: من يخاطب من؟</a>
+</nav>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>فاصلة — دورة HTML وCSS وJavaScript بالعربية.</span>
+    <span><a href="../index.html#lessons">كل الدروس</a></span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/lesson-quiz.js"></script>
+<script src="../assets/ux.js" defer></script>
+</body>
+</html>
